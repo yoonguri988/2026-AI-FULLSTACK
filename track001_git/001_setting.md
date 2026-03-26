@@ -1,5 +1,6 @@
 ## Part001
 - TODO1: GIT
+
 ■ 1. git, github
 - git: 내 컴퓨터에서 파일의 변화를 기록
 - github: 협업시 저장공간 (원격)
