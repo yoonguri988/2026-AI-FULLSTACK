@@ -1,20 +1,31 @@
 package com.the703.v1;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+	private static void explain() {
+		System.out.println("====== BANK ======");
+		System.out.println("* 1. 추가");
+		System.out.println("* 2. 조회");
+		System.out.println("* 3. 입금");
+		System.out.println("* 4. 출금");
+		System.out.println("* 5. 삭제");
+		System.out.println("* 9. 종료");
+		System.out.println("==================");
+	}
+	
 	public static void main(String[] args)  {
+		UserRepository repo = new UserRepository();
+		UserService service = new UserService(repo);
+
 		Scanner scan = new Scanner(System.in);
-		String id;
-		String pw;
+
+		String userId;
+		String password;
 		int age;
 		long account;
 		
-		List<User> list = new ArrayList<>();
 		int num;
-		
 		System.out.println("WELCOME! (주)CODE_NOAH BANK");
 		while(true) {
 			explain();
@@ -23,103 +34,62 @@ public class Main {
 				num = scan.nextInt();								
 				if(num == 1) {
 					System.out.print("아이디 입력 : ");
-					id = scan.next();
+					userId = scan.next();
 					System.out.print("비밀번호 : ");
-					pw = scan.next();
+					password = scan.next();
 					System.out.print("나이 : ");
 					age = scan.nextInt();
 					System.out.print("잔액 : ");
 					account = scan.nextInt();
-					User user = new User(id, pw, age, account);
-					list.add(user);
+					
+					service.addUser(userId, new User(userId, password, age, account));
+					
 				}else if(num == 2) {
 					System.out.print("id : ");
-					id = scan.next();
+					userId = scan.next();
 					System.out.print("pass : ");
-					pw = scan.next();
-					boolean isExists = false;
-					for(int i = 0; i < list.size(); i++) {
-						User user = list.get(i);
-						isExists = user.isExists(id, pw);
-						if(isExists) {
-							// 계좌 조회
-							user.selectOneById(id);
-							break;
-						}
+					password = scan.next();
+					
+					if(service.isExists(userId, password)) {
+						service.showUserInfo(userId);
 					}
-					if(!isExists) {					
-						System.out.println("다시 확인해주세요.");
-					}
+					
 				}else if(num == 3) {
 					System.out.print("id : ");
-					id = scan.next();
+					userId = scan.next();
 					System.out.print("pass : ");
-					pw = scan.next();
+					password = scan.next();
 					System.out.print("금액 : ");
-					account = scan.nextInt();
-					boolean isExists = false;
-					for(int i = 0; i < list.size(); i++) {
-						User user = list.get(i);
-						isExists = user.isExists(id, pw);
-						if(isExists) {
-							// 계좌 입금
-							account = user.updateAccountById(id, account);
-							System.out.println("=== 입금 완료");
-						    System.out.println("잔액: "+account);
-							break;
-						}
-					}
-					if(!isExists) {					
-						System.out.println("다시 확인해주세요.");
+					account = scan.nextLong();
+					
+					if(service.isExists(userId, password)) {
+						service.depositAccountById(userId, account);
 					}
 				}else if(num == 4) {
 					System.out.print("id : ");
-					id = scan.next();
+					userId = scan.next();
 					System.out.print("pass : ");
-					pw = scan.next();
+					password = scan.next();
 					System.out.print("금액 : ");
-					account = scan.nextInt();
-					boolean isExists = false;
-					for(int i = 0; i < list.size(); i++) {
-						User user = list.get(i);
-						isExists = user.isExists(id, pw);
-						if(isExists) {
-							// 계좌 출금
-							if(user.isEmpty(account)) {
-								account = user.updateAccountById(id, -account);
-								System.out.println("=== 출금 완료");
-								System.out.println("잔액: "+account);
-								break;
-							}else {
-								System.out.println("계좌에 돈이 부족합니다.");
-							}
+					account = scan.nextLong();
+					
+					if(service.isExists(userId, password)) {
+						if(service.isEmpty(userId, account)) {
+							service.withdrawalAccountById(userId, account);
 						}
-					}
-					if(!isExists) {					
-						System.out.println("다시 확인해주세요.");
 					}
 				}else if(num == 5) {
 					System.out.print("id : ");
-					id = scan.next();
+					userId = scan.next();
 					System.out.print("pass : ");
-					pw = scan.next();
-					boolean isExists = false;
-					for(int i = 0; i < list.size(); i++) {
-						User user = list.get(i);
-						isExists = user.isExists(id, pw);
-						if(isExists) {
-							// 사용자 삭제
-							System.out.println("계좌를 삭제하시겠습니까? (Y/N)");
-							String Yn = scan.next().toUpperCase();
-							if(Yn.equals("Y")) {
-								list.remove(i);
-								System.out.println("계좌가 삭제되었습니다.");
-							}
-							break;
+					password = scan.next();
+					
+					if(service.isExists(userId, password)) {
+						System.out.println("계좌를 삭제하시겠습니까? (Y/N)");
+						String Yn = scan.next().toUpperCase();
+						if(Yn.equals("Y")) {
+							service.removeUserById(userId, password);
 						}
-					}
-					if(!isExists) {					
-						System.out.println("다시 확인해주세요.");
 					}
 				}else if(num == 9) {
 					System.out.println("종료기능 입니다.");
@@ -132,16 +102,5 @@ public class Main {
 				scan.next();
 			}
 		}
-	}
-	
-	private static void explain() {
-		System.out.println("====== BANK ======");
-		System.out.println("* 1. 추가");
-		System.out.println("* 2. 조회");
-		System.out.println("* 3. 입금");
-		System.out.println("* 4. 출금");
-		System.out.println("* 5. 삭제");
-		System.out.println("* 9. 종료");
-		System.out.println("==================");
 	}
 }
