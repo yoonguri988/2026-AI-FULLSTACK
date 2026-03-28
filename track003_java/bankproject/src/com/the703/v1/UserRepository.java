@@ -6,21 +6,23 @@ import java.util.Map;
 public class UserRepository {
 	private Map<String, User> store = new HashMap<>();
 
-	public User insertUser(String userId, User user) {
-		return store.put(userId, user);
+	public User insertUser(User user) {
+		return store.put(user.getUserId(), user);
 	}
 	
-	public User selectOneById(String userId) {
+	public User selectByUserId(String userId) {
 		return store.get(userId);
 	}
-	
-	public User updateAccountById(String userId, long account) {
-		User user = store.get(userId);
-		user.setAccount(user.getAccount() + account);
-		return user;
-	}
 
-	public User deleteUserById(String userId, String password) {
+	public User deleteByUserId(String userId) {
 		return store.remove(userId);
 	}
+	
+	public User updateAccountByUserId(User user) {
+		String userId = user.getUserId();
+		User existUser = store.get(userId);
+		existUser.setAccount(existUser.getAccount() + user.getAccount());
+		return existUser;
+	}
+
 }
