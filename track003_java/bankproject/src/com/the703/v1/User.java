@@ -6,6 +6,17 @@ public class User {
 	int age;
 	long account;
 
+	public User(String userId, String password) {
+		this.userId = userId;
+		this.password = password;
+	}
+	
+	public User(String userId, String password, long account) {
+		this.userId = userId;
+		this.password = password;
+		this.account = account;
+	}
+	
 	public User(String userId, String password, int age, long account) {
 		this.userId = userId;
 		this.password = password;
