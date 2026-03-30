@@ -1,79 +1,37 @@
 package com.the703.v1;
 
-import java.util.Scanner;
-
 public class Main {
-	private static void explain() {
-		System.out.println("====== BANK ======");
-		System.out.println("* 1. 추가");
-		System.out.println("* 2. 조회");
-		System.out.println("* 3. 입금");
-		System.out.println("* 4. 출금");
-		System.out.println("* 5. 삭제");
-		System.out.println("* 9. 종료");
-		System.out.println("==================");
-	}
-
 	public static void main(String[] args) {
 		UserRepository repo = new UserRepository();
 		UserServiceImpl service = new UserServiceImpl(repo);
-		InputHandler handler = new InputHandler();
-
-		String userId;
-		String password;
-		int age;
-		long account;
+		UserInputView view = new UserInputView();
 
 		int num;
+		
 		System.out.println("WELCOME! (주)CODE_NOAH BANK");
 		while (true) {
-			explain();
-			num = handler.getInt("입력>>> ");
+			num = view.init();
+			User user = view.userInput(num);
 			if (num == 1) {
-				userId = handler.getString("아이디 입력 : ");
-				password = handler.getString("비밀번호 : ");
-				age = handler.getInt("나이 : ");
-				account = handler.getLong("잔액 : ");
-
-				User user = new User(userId, password, age, account);
 				service.regUser(user);
-
 			} else if (num == 2) {
-				userId = handler.getString("id : ");
-				password = handler.getString("pass : ");
-
-				User user = new User(userId, password);
 				if (service.isExists(user)) {
-					service.showUserInfo(userId);
+					service.showUserInfo(user.getUserId());
 				}
 
 			} else if (num == 3) {
-				userId = handler.getString("id : ");
-				password = handler.getString("pass : ");
-				account = handler.getLong("금액 : ");
-
-				User user = new User(userId, password, account);
 				if (service.isExists(user)) {
 					service.depositAccountByUserId(user);
 				}
 			} else if (num == 4) {
-				userId = handler.getString("id : ");
-				password = handler.getString("pass : ");
-				account = handler.getLong("금액 : ");
-
-				User user = new User(userId, password, account);
 				if (service.isExists(user)) {
 					if (service.isEmpty(user)) {
 						service.withdrawalAccountByUserId(user);
 					}
 				}
 			} else if (num == 5) {
-				userId = handler.getString("id : ");
-				password = handler.getString("pass : ");
-
-				User user = new User(userId, password);
 				if (service.isExists(user)) {
-					String Yn = handler.getString("계좌를 삭제하시겠습니까? (Y/N) > ");
+					String Yn = view.confirmPopup();
 					if (Yn.toUpperCase().equals("Y")) {
 						service.delUser(user);
 					}
