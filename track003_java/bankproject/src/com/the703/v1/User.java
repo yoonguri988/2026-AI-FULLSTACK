@@ -56,4 +56,8 @@ public class User {
 	public void setAccount(long account) {
 		this.account = account;
 	}
+	
+	public String toString() {
+		return String.format("userId: %s, password: %s, age: %d, account: %d\n", userId, password, age, account );
+	}
 }
