@@ -23,6 +23,7 @@
 ## TODO2: JAVA
 
 
+
 ---
 
 ## 복습문제
@@ -40,3 +41,33 @@
 11. 선 : 
 12. 둥근 모서리 : 
 13. 그림자 효과 : 
+
+---
+
+- 2. java
+  1. 자바의 자료형 분류(   /   )
+  2. 기본형 : 값
+    2-1 논리형 : 예) boolean  - true/false (1byte)   
+    2-2 정수형 :  
+    2-3 실수형 :  
+    2-4 문자형 :
+  3. 자동형변환은 (    )  빼고  (    ) 기본형
+
+---
+
+- 3. java [실습]
+패키지명 : com.company.java003_ex
+클래스명 : CastingEx001
+출력내용 :  Scanner이용해서 나누기 프로그램만들기 
+   숫자입력1>  _입력받기  10   ( ☆자료형을 int )
+   숫자입력2>  _입력받기  3     ( ☆자료형을 int )              
+   
+   10 / 3 = 3.33
+
+주어진조건 : 
+      //변수
+      int num1, num2;
+      double result;
+      Scanner scanner = new Scanner(System.in);
+
+---
