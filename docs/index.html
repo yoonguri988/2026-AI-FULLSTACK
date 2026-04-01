@@ -4,24 +4,101 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>🦝 최윤정 | Portfolio</title>
+    <style>
+      :root {
+        scrollbar-width: thin;
+        background-color: #fffdf6;
+      }
+
+      body {
+        margin: 0 auto;
+        color: #213448;
+        font-size: 16px;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        background-color: #fffdf6;
+        /* 스크롤 했을때만 생겼으면 좋겠음*/
+        box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+
+      }
+
+      .container {
+        padding: 0 80px;
+      }
+
+      .container-nav {
+        padding: 16px 80px 16px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .logo {
+        font-weight: 900;
+        font-size: 26px; 
+        color: #547792;
+        align-content: center;
+      }
+
+      .navigater {
+        font-size: 20px; 
+        display: flex; 
+        flex-direction: row;
+        justify-content: space-between;
+        column-gap: 16px;
+      }
+      
+      .navigater > ul {
+        display: flex;
+        flex-direction: row;
+        column-gap: 16px;
+        margin: 0;
+        padding: 0 10px;
+        align-items: center;
+      }
+
+      .navigater > ul > li {
+        list-style: none;
+      }
+
+      .navigater > ul > li:hover > a {
+        color: #547792;
+      }
+
+      a {
+        color: #213448;
+        text-decoration: none;
+      }
+
+      .actions {
+        align-content: center;
+      }
+    </style>
   </head>
   <body>
+    <div id="scroll-detector"></div>
     <header>
-      <div>
-        <!-- <div style="background-color: #eae0cf">🦝 JJEONG Portfolio</div> -->
-        <nav>
+      <div class="container-nav">
+        <div class="logo"> JJEONG Portfolio </div>
+        <div class="navigater">
           <ul>
-            <li><a href="#about">ABOUT ME</a></li>
-            <li><a href="#skills">SKILLS</a></li>
-            <li><a href="#experience">EXPERIENCE</a></li>
-            <li><a href="#project">PROJECT</a></li>
-            <li><a href="#contact">CONTACT</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#project">Project</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
+          <!-- <div class="actions">
+            <button>icon button</button>
+            <button>button</button>
+          </div> -->
         </nav>
       </div>
     </header>
     <main>
-      <section id="color-check">
+      <!-- <section id="color-check">
         <span style="padding: 10px; background-color: #213448; color: #fffdf6"
           >#213448</span
         >
@@ -34,8 +111,8 @@
         <span style="padding: 10px; background-color: #eae0cf; color: #000"
           >#eae0cf</span
         >
-      </section>
-      <section id="about">
+      </section> -->
+      <section class="container" id="about">
         <h1>나를 한마디로 표현하자면...</h1>
         <h2>#키워드 #키워드 #키워드 #키워드 #키워드</h2>
         <p><img src="./img/its_me.jpg" alt="최윤정의 사진" /></p>
