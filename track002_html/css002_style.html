@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 내부 적용</title>
+    <style>
+        /* 선택자  { 속성 :  값; } */
+        div {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px rgba(23, 161, 51, 0.828);
+            background-color: rgb(255, 235, 134);
+        }
+
+        div:hover {
+            background-color: coral;
+            transition: all 0.5s; /* 모든 속성 0.5초 동안 느리게 */
+        } 
+
+        /* Q1. h3 선택해서 글자 색상: #123456, border-left: 3px soild #123456 */
+        h3 {
+            color: cornflowerblue;
+            border-left: 3px solid cornflowerblue;
+            padding: 10px 0 10px 10px;
+        }
+        
+        /* Q2. p 선택해서 글자 사이즈: 14px, 정렬 - center  */
+        p {
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h3>인라인</h3>
+        <p>태그 안에 직접 적용</p>
+        <p style="color: red">color: red</p>
+    </div>
+    <div>
+        <h3>내부 스타일</h3>
+        <p>head 안에 style 태그 사용 작성</p>
+        <pre>
+            p     { color: red; }
+          선택자  { 속성 :  값; }
+        </pre>
+    </div>
+    <div>
+        <h3>외부 스타일</h3>
+        <p>별도의 .css 파일을 만들어서 link 태그로 연결</p>
+    </div>
+</body>
+</html>
