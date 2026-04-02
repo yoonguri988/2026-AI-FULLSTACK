@@ -5,21 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>🦝 최윤정 | Portfolio</title>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        color: var(--color-light-950);
+      }
+      
       :root {
         scrollbar-width: thin;
-        background-color: #fffdf6;
+        background-color: #ffffff;
+
+        /* light */
+        --color-primary:#547792;
+
+        --color-light-default: #ffffff;
+        --color-light-50: #f9fafb;
+        --color-light-100: #f3f4f6;
+        --color-light-200: #e5e7eb;
+        --color-light-300: #d1d5db;
+        --color-light-400: #9ca3af;
+        --color-light-500: #6b7280;
+        --color-light-600: #4b5563;
+        --color-light-700: #374151;
+        --color-light-800: #1f2937;
+        --color-light-900: #111827;
+        --color-light-950: #030712;
       }
 
       body {
         margin: 0 auto;
-        color: #213448;
-        font-size: 16px;
+        color: var(--color-light-950);
+        font-size: 14px;
       }
 
       header {
         position: sticky;
         top: 0;
-        background-color: #fffdf6;
+        background-color: var(--color-light-default);
         /* 스크롤 했을때만 생겼으면 좋겠음*/
         box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
 
@@ -28,8 +50,8 @@
       .container {
         padding: 0 80px;
       }
-
-      .container-nav {
+      
+      .container .nav {
         padding: 16px 80px 16px;
         display: flex;
         justify-content: space-between;
@@ -38,33 +60,26 @@
       .logo {
         font-weight: 900;
         font-size: 26px; 
-        color: #547792;
+        color: var(--color-primary);
         align-content: center;
       }
-
-      .navigater {
+      
+      .nav {
         font-size: 20px; 
-        display: flex; 
+        display: flex;
         flex-direction: row;
         justify-content: space-between;
         column-gap: 16px;
-      }
-      
-      .navigater > ul {
-        display: flex;
-        flex-direction: row;
-        column-gap: 16px;
-        margin: 0;
-        padding: 0 10px;
+
         align-items: center;
       }
 
-      .navigater > ul > li {
+      .nav .col {
         list-style: none;
       }
 
-      .navigater > ul > li:hover > a {
-        color: #547792;
+      .nav > .col:hover > a {
+        color: var(--color-primary);
       }
 
       a {
@@ -72,73 +87,105 @@
         text-decoration: none;
       }
 
-      .actions {
+      /* 라이트/다크모드, pdf 파일 다운로드 */
+      .actions { 
         align-content: center;
+      }
+
+      .about {
+        padding: 96px 80px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        row-gap: 20px;
+      }
+
+      .certification > dt {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      .certification > dd {
+        display: inline;
+        color: var(--color-light-600);
+        background-color: var(--color-light-200);
+        border-radius: 12px;
+        /* margin-left: 10px; 마지막은 제외 */
+        padding: 4px 20px;
+        text-align: center;
+        align-items: center;
+      }
+
+      .content .pic {
+
       }
     </style>
   </head>
   <body>
-    <div id="scroll-detector"></div>
     <header>
-      <div class="container-nav">
-        <div class="logo"> JJEONG Portfolio </div>
-        <div class="navigater">
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#project">Project</a></li>
-            <li><a href="#contact">Contact</a></li>
+      <div class="container nav">
+        <div class="logo">JJEONG</div>
+          <ul class="nav">
+            <li class="col"><a href="#about">About</a></li>
+            <li class="col"><a href="#skills">Skills</a></li>
+            <li class="col"><a href="#experience">Experience</a></li>
+            <li class="col"><a href="#project">Project</a></li>
+            <li class="col"><a href="#contact">Contact</a></li>
           </ul>
-          <!-- <div class="actions">
-            <button>icon button</button>
-            <button>button</button>
-          </div> -->
-        </nav>
-      </div>
     </header>
     <main>
-      <!-- <section id="color-check">
-        <span style="padding: 10px; background-color: #213448; color: #fffdf6"
-          >#213448</span
-        >
-        <span style="padding: 10px; background-color: #547792; color: #fffdf6"
-          >#547792</span
-        >
-        <span style="padding: 10px; background-color: #94b4c1; color: #fffdf6"
-          >#94b4c1</span
-        >
-        <span style="padding: 10px; background-color: #eae0cf; color: #000"
-          >#eae0cf</span
-        >
-      </section> -->
-      <section class="container" id="about">
-        <h1>나를 한마디로 표현하자면...</h1>
-        <h2>#키워드 #키워드 #키워드 #키워드 #키워드</h2>
-        <p><img src="./img/its_me.jpg" alt="최윤정의 사진" /></p>
-        <p>최종 학력 및 자격증</p>
-        <p>나를 소개하는 글</p>
+      <section class="container about" id="about">
+        <div class="content">
+          <h1>It's-A Me, Developer 최윤정</h1>
+          <h2>#효율중시 #협업 #데이터 시각화 #UI/UX 개선 #컴포넌트 설계</h2>
+          <p>저는 사용자가 막히는 순간을 코드로 해결하는 개발자 입니다.<br>
+            기능을 만드는 것보다 그 기능을 실제로 잘 쓰이는지가 더 중요하다는 것을 배웠습니다.<br>
+            (예시1)<br>
+            배움을 증명하는 방식은 항상 하나였습니다. 직접 만들어 배포하는 것.<br>
+            (예시2)<br>
+            프론트엔드 중심으로 일하지만, 백엔드 개발 경험이 있어 설계부터 협업에 자연스럽게 참여합니다.<br>
+            백엔드의 맥락을 이해하기 때문에, 프론트엔드에서 더 합리적인 판단을 내릴 수 있습니다.<br>
+            (예시3)<br>
+          </p>
+          <dl class="certification">
+            <dt>최종 학력 및 자격증</dt>
+            <dd>정보처리기사</dd>
+            <dd>SQLD</dd>
+          </dl>
+        </div>
+        <div class="content">
+          <div class="pic">
+            <!-- <img src="./img/its_me.jpg" alt="최윤정의 사진" /> -->
+            <div style="width: 252px; height: 331px; background-image: url(./img/its_me.jpg); position: relative; z-index: 50;"></div>
+            <div style="width: 252px; height: 331px; position: absolute; right: 40px; top:200px; background-color: var(--color-primary);"></div>
+          </div>
+        </div>
       </section>
-      <section id="capability">
+      <section class="container" id="capability">
         <h3>핵심 역량</h3>
         <p>핵심 역량 상세내용</p>
         <h3>핵심 역량</h3>
         <p>핵심 역량 상세내용</p>
       </section>
-      <section id="skills">
+      <section class="container" id="skills">
         <ul>
           <li>java</li>
           <li>react</li>
         </ul>
       </section>
-      <section id="experience">
+      <section class="container" id="experience">
         <ol>
           <li>직장 경력: 구체적인 회사명, 직책, 근무기간</li>
           <li>프로젝트 경험: 직접만든 서비스나 협업 결과물</li>
           <li>"무엇을 할 줄 아는가?" 작성하는 영역</li>
         </ol>
       </section>
-      <section id="project">
+      <section class="container" id="project">
         <article>
           <h3>프로젝트 제목</h3>
           <p>프로젝트 소개글</p>
@@ -154,7 +201,7 @@
       </section>
     </main>
     <footer>
-      <section id="contact">
+      <section class="container" id="contact">
         <h4>EMAIL</h4>
         <p>cyjjeong98@gmail.com</p>
         <h4>GITHUB</h4>
