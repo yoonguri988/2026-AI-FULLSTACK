@@ -8,7 +8,7 @@ public class IfEx007 {
 		int num1 = 0;
 		int num2 = 0;
 		char oper = '\u0000';
-		String result = "";
+		double result = 0.0;
 		
 		System.out.print("정수를 하나 입력해주세요 > ");
 		num1 = sc.nextInt();
@@ -19,17 +19,12 @@ public class IfEx007 {
 		
 		oper = ip.charAt(0);
 		
-		result = num1+" "+oper+" "+num2+" = ";
+		if(oper == '+') result = num1 + num2;
+		else if(oper == '-') result = num1-num2;
+		else if(oper == '*') result = num1*num2;
+		else if(oper == '/') result = num1/(double)num2;
 		
-		if(oper == '+') result += num1+num2;
-		else if(oper == '-') result += num1-num2;
-		else if(oper == '*') result += num1*num2;
-		else if(oper == '/') {
-			result += (int)((num1/(double)num2)*100)/100.0; 
-			//result += String.format("%.2f", num1/(double)num2);
-		}
-		
-		System.out.println(result);
+		System.out.printf("%d %c %d = "+(result == (int)result ? "%.0f":"%.2f"),num1,oper,num2,result);
 	}
 }
 /*
@@ -39,4 +34,7 @@ public class IfEx007 {
  * 2. 정수를 하나 입력해주세요 > 3 
  * 3. 연산자를 입력해주세요(+,-,*,/) > +
  * 10+3=13
+ */
+
+/*
  */
