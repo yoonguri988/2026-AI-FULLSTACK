@@ -10,7 +10,7 @@
         padding: 0;
         color: var(--color-light-950);
       }
-      
+
       :root {
         scrollbar-width: thin;
         background-color: #ffffff;
@@ -35,16 +35,24 @@
       body {
         margin: 0 auto;
         color: var(--color-light-950);
-        font-size: 14px;
+        font-size: 16px;
+        max-width: 1200px;  
+        padding: 0 20px;   
       }
 
       header {
+        margin: 0 auto;
         position: sticky;
         top: 0;
+        z-index: 50;
         background-color: var(--color-light-default);
         /* 스크롤 했을때만 생겼으면 좋겠음*/
-        box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+        /* box-shadow: 0px 1px 10px rgba(0,0,0,0.1); */
 
+      }
+
+      li {
+        list-style: none;
       }
 
       .container {
@@ -52,7 +60,7 @@
       }
       
       .container .nav {
-        padding: 16px 80px 16px;
+        padding: 16px 0 ;
         display: flex;
         justify-content: space-between;
       }
@@ -93,7 +101,7 @@
       }
 
       .about {
-        padding: 96px 80px;
+        padding: 64px 80px;
         display: flex;
         justify-content: space-between;
       }
@@ -103,6 +111,7 @@
         flex-direction: column;
         justify-content: space-between;
         row-gap: 20px;
+        max-width: 1200px;
       }
 
       .certification > dt {
@@ -121,9 +130,78 @@
         align-items: center;
       }
 
-      .content .pic {
-
+      /* picture */
+      .pic {
+        position: relative;
+        width: 252px; 
+        height: 331px; 
       }
+
+      .square {
+        width: 252px; 
+        height: 331px; 
+      }
+
+      .pic .image {
+        background-image: url(./img/its_me.jpg); 
+        background-size: cover;
+        position: relative; 
+        z-index: 10;
+      }
+
+      .pic .shadow {
+        position: absolute; 
+        left: 20px;
+        top: 20px; 
+        background-color: var(--color-primary);
+      }
+
+      /* experience */
+      .experience{
+        margin: 50px 0;
+      }
+      
+      .experience .title{
+        margin: 20px 0;
+        padding: 0 80px;
+        text-align: center;
+
+        font-size: 24px;
+        font-weight: 900;
+
+        span {
+          color: var(--color-primary);
+        }
+      }
+
+      .experience .content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        margin: 20px 0;
+      }
+
+      .experience .col {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .experience .company {
+        justify-content: flex-end;
+        row-gap: 80px;
+      }
+
+      .experience .project {
+        justify-content: flex-start;
+        row-gap: 20px;
+      }
+
+      .experience .date {
+        color: var(--color-light-400);
+      }
+
     </style>
   </head>
   <body>
@@ -160,17 +238,31 @@
         </div>
         <div class="content">
           <div class="pic">
-            <!-- <img src="./img/its_me.jpg" alt="최윤정의 사진" /> -->
-            <div style="width: 252px; height: 331px; background-image: url(./img/its_me.jpg); position: relative; z-index: 50;"></div>
-            <div style="width: 252px; height: 331px; position: absolute; right: 40px; top:200px; background-color: var(--color-primary);"></div>
+            <div class="square image"></div>
+            <div class="square shadow"></div>
           </div>
         </div>
       </section>
       <section class="container" id="capability">
         <h3>핵심 역량</h3>
-        <p>핵심 역량 상세내용</p>
-        <h3>핵심 역량</h3>
-        <p>핵심 역량 상세내용</p>
+        <ul>
+          <li>
+            <h4>🎯 문제는 수치로 정의한다</h4>
+            <p>막연한 "불편하다"를 측정 가능한 지표로 바꾸는 것이 개선의 시작이라고 생각합니다.</p>
+          </li>
+          <li>
+            <h4>👁 사용자 시선으로 먼저 본다</h4>
+            <p>기능이 완성됐다고 끝이 아니라, 사용자가 해메지 않아야 비로소 완성됩니다.</p>
+          </li>
+          <li>
+            <h4>🔁 배움은 결과물로 증명한다</h4>
+            <p>새로운 기술을 익힐 때에는 반드시 배포가능한 프로젝트로 완성합니다.</p>
+          </li>
+          <li>
+            <h4>🤝 흐름을 이해하는 개발자</h4>
+            <p>설계부터 함께 논의할 수 있어야 더 나은 협업이 가능하다고 믿습니다.</p>
+          </li>
+        </ul>
       </section>
       <section class="container" id="skills">
         <ul>
@@ -178,14 +270,53 @@
           <li>react</li>
         </ul>
       </section>
-      <section class="container" id="experience">
-        <ol>
+      <section class="container experience" id="experience">
+        <div class="title">My <span>Work Experience</span></div>
+        <div class="content">
+            <ol class="col company">
+              <li>
+                <h4>AI 활용 풀스택 개발자 교육 이수</h4>
+                <p class="date">2026.03 - 2026.10</p>
+              </li>
+              <li>
+                <h4>(주) 위세아이텍</h4>
+                <p class="date">2020.04 - 2022.11</p>
+              </li>
+            </ol>
+            <hr>
+            <ol class="col project">
+              <li>
+                <h4>프로젝트 <span class="date">2020.07 - 2020.09</span></h4>
+                <p>프론트엔드부터 백엔드까지 웹 개발 전반의 기술을 프로젝트 중심으로 체계적으로 습득</p>
+              </li>
+              <li>
+                <h4>식당 예약 플랫폼 <span class="date">2020.05 - 2020.06</span></h4>
+                <p>프론트엔드부터 백엔드까지 웹 개발 전반의 기술을 프로젝트 중심으로 체계적으로 습득</p>
+              </li>
+              <li>
+                <h4>은행 시스템 프로젝트 <span class="date">2020.03 - 2020.04</span></h4>
+                <p>프론트엔드부터 백엔드까지 웹 개발 전반의 기술을 프로젝트 중심으로 체계적으로 습득</p>
+              </li>
+              <li>
+                <h4>데이터 시각화 플랫폼 <span class="date">2020.08 - 2020.11</span></h4>
+                <p>기업 내에서 발생하는 데이터에 대해 통계적으로 분석하고 시각화하는 플랫폼 개발</p>
+              </li>
+              <li>
+                <h4>WiseMeta, WiseDQ Solution 개발 <span class="date">2020.08 - 2020.11</span></h4>
+                <p>JavaScript, RDB, Spring 기반의 메타 데이터 기반의 메타데이터 관리, 데이터 품질 관리 Web Solution</p>
+              </li>
+            </ol>
+        </div>
+        <!-- <ol>
           <li>직장 경력: 구체적인 회사명, 직책, 근무기간</li>
           <li>프로젝트 경험: 직접만든 서비스나 협업 결과물</li>
           <li>"무엇을 할 줄 아는가?" 작성하는 영역</li>
-        </ol>
+        </ol> -->
       </section>
-      <section class="container" id="project">
+      <section class="container project" id="project">
+        <!--배경-->
+        <!--제목-->
+        <!--리스트-->
         <article>
           <h3>프로젝트 제목</h3>
           <p>프로젝트 소개글</p>
