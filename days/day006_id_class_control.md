@@ -39,13 +39,13 @@
 2. 제목 글자를 초록색으로 바꾸려면?    ____________ color: green;
 3. 본문 글자의 크기를 18px로 지정하려면?    ____________ font-size: 18px;
 4. 메뉴 글자를 오른쪽으로 정렬하려면?    ____________ text-align: right;
-5. 링크에 밑줄을 없애려면?    ____________ text-decoration: underline;
+5. 링크에 밑줄을 없애려면?    ____________ text-decoration: none;
 6. 글꼴을 'Times New Roman'으로 바꾸려면?    ____________ font-family: 'Times New Roman'; 
 7. 강조하고 싶은 단어를 굵게 표시하려면?    ____________ font-weight: bold;
 8. 이미지를 가로 400px로 줄이고 싶다. 어떤 속성?    ____________ width: 400px;
 9. 박스 바깥쪽에 20px 여백을 주려면?    ____________ margin: 20px;
 10. 버튼 안쪽에 8px 여백을 주려면?    ____________ padding: 8px;
-11. 카드 요소에 2px 점선 테두리를 주려면?    ____________ border: 2px dashed black;
+11. 카드 요소에 2px 점선 테두리를 주려면?    ____________ border: 2px dotted black;
 12. 프로필 사진 모서리를 둥글게 50%로 만들려면?    ____________ border-radius: 50%;
 13. 박스에 살짝 번지는 그림자 효과를 주려면?    ____________ box-shadow: 0 0 10px rgba(0,0,0,0.2);
 14. 버튼에 마우스를 올렸을 때 부드럽게 색이 바뀌도록 하려면?    ____________ transition: all 2s;
@@ -63,11 +63,11 @@ int num = 0;
 
 num = sc.nextInt();
 if(num == 1){
-    System.out.println("1이면 1이다");
+    System.out.println("1이다");
 } else if(num == 2){
-    System.out.println("2이면 2이다");
+    System.out.println("2이다");
 } else if(num == 3){
-    System.out.println("3이면 3이다");
+    System.out.println("3이다");
 }
 
 
