@@ -17,6 +17,7 @@
 
         /* light */
         --color-primary:#547792;
+        --color-primary-orange: #FD853A;
 
         --color-light-default: #ffffff;
         --color-light-50: #f9fafb;
@@ -37,7 +38,8 @@
         color: var(--color-light-950);
         font-size: 16px;
         max-width: 1200px;  
-        padding: 0 20px;   
+        padding: 0 20px;
+        justify-items: center;   
       }
 
       header {
@@ -55,10 +57,18 @@
         list-style: none;
       }
 
-      .container {
-        padding: 0 80px;
+      main section.container:nth-child(even) {
+        border-radius: 20px;
+        background-color: var(--color-light-50);
       }
-      
+
+      .container {
+        padding: 25px 12px;
+        margin: 64px 0;
+        min-width: 930px;
+        max-width: 1024px;
+      }
+
       .container .nav {
         padding: 16px 0 ;
         display: flex;
@@ -68,7 +78,7 @@
       .logo {
         font-weight: 900;
         font-size: 26px; 
-        color: var(--color-primary);
+        color: var(--color-primary-orange);
         align-content: center;
       }
       
@@ -101,7 +111,6 @@
       }
 
       .about {
-        padding: 64px 80px;
         display: flex;
         justify-content: space-between;
       }
@@ -156,12 +165,8 @@
         background-color: var(--color-primary);
       }
 
-      /* experience */
-      .experience{
-        margin: 50px 0;
-      }
-      
-      .experience .title{
+      /* skills */
+      .title{
         margin: 20px 0;
         padding: 0 80px;
         text-align: center;
@@ -170,11 +175,25 @@
         font-weight: 900;
 
         span {
-          color: var(--color-primary);
+          color: var(--color-primary-orange);
         }
       }
 
-      .experience .content {
+      /* experience */
+      #experience .title{
+        margin: 20px 0;
+        padding: 0 80px;
+        text-align: center;
+
+        font-size: 24px;
+        font-weight: 900;
+
+        span {
+          color: var(--color-primary-orange);
+        }
+      }
+
+      #experience .content {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -182,24 +201,64 @@
         margin: 20px 0;
       }
 
-      .experience .col {
+      #experience .col {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
       }
 
-      .experience .company {
+      #experience .company {
         justify-content: flex-end;
         row-gap: 80px;
       }
 
-      .experience .project {
+      #experience .project {
         justify-content: flex-start;
         row-gap: 20px;
       }
 
-      .experience .date {
+      #experience .date {
         color: var(--color-light-400);
+      }
+
+      /* service */
+      .service {
+        padding: 10px 20px;
+        border-radius: 20px;
+        /* background-color: var(--color-light-50); */
+      }
+
+      .title .description {
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      #service .list {
+        margin: 40px 0 20px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        row-gap: 20px;
+      }
+
+      #service .list img {
+        display: block;
+        width: 360px;
+        height: 270px;
+        padding: 10px;
+        margin: 20px;
+        background-color: var(--color-light-300);
+        border-radius: 20px;
+      }
+
+      .list li {
+        display: flex;
+        column-gap: 20px;
+        box-shadow: 5px 5px 10px var(--color-light-400);
+      }
+
+      #service .list article {
+        margin: 20px 0;
       }
 
     </style>
@@ -212,7 +271,7 @@
             <li class="col"><a href="#about">About</a></li>
             <li class="col"><a href="#skills">Skills</a></li>
             <li class="col"><a href="#experience">Experience</a></li>
-            <li class="col"><a href="#project">Project</a></li>
+            <li class="col"><a href="#service">Service</a></li>
             <li class="col"><a href="#contact">Contact</a></li>
           </ul>
     </header>
@@ -237,14 +296,14 @@
           </dl>
         </div>
         <div class="content">
-          <div class="pic">
+          <div class="pic" >
             <div class="square image"></div>
             <div class="square shadow"></div>
           </div>
         </div>
       </section>
       <section class="container" id="capability">
-        <h3>핵심 역량</h3>
+        <h3 class="title">My <span>Capability</span></h3>
         <ul>
           <li>
             <h4>🎯 문제는 수치로 정의한다</h4>
@@ -265,13 +324,14 @@
         </ul>
       </section>
       <section class="container" id="skills">
+        <h3 class="title">My <span>Skills</span></h3>
         <ul>
           <li>java</li>
           <li>react</li>
         </ul>
       </section>
-      <section class="container experience" id="experience">
-        <div class="title">My <span>Work Experience</span></div>
+      <section class="container" id="experience">
+        <h3 class="title">My <span>Work Experience</span></h3>
         <div class="content">
             <ol class="col company">
               <li>
@@ -313,30 +373,52 @@
           <li>"무엇을 할 줄 아는가?" 작성하는 영역</li>
         </ol> -->
       </section>
-      <section class="container project" id="project">
-        <!--배경-->
+      <section class="container" id="service">
+        <div class="service"> <!--배경-->
         <!--제목-->
+          <h3 class="title">My <span>Service</span></h3>
         <!--리스트-->
-        <article>
-          <h3>프로젝트 제목</h3>
-          <p>프로젝트 소개글</p>
-        </article>
-        <article>
-          <h3>프로젝트 제목</h3>
-          <p>프로젝트 소개글</p>
-        </article>
-        <article>
-          <h3>프로젝트 제목</h3>
-          <p>프로젝트 소개글</p>
-        </article>
+        <ul class="list">
+          <li>
+            <img src="./img/portfolio1.jpg" alt="포트폴리오 이미지"/>
+            <article>
+              <h3>프로젝트 제목</h3>
+              <p>프로젝트 소개글</p>
+              <p>사용한 기술 스택</p>
+              <p><a href="#" title="github 이동" target="_blank">github</a></p>
+            </article>
+          </li>
+          <li>
+            <img src="./img/portfolio1.jpg" alt="포트폴리오 이미지"/>
+            <article>
+              <h3>프로젝트 제목</h3>
+              <p>프로젝트 소개글</p>
+              <p>사용한 기술 스택</p>
+              <p><a href="#" title="github 이동" target="_blank">github</a></p>
+            </article>
+          </li>
+          <li>
+            <img src="./img/portfolio1.jpg" alt="포트폴리오 이미지"/>
+            <article>
+              <h3>프로젝트 제목</h3>
+              <p>프로젝트 소개글</p>
+              <p>사용한 기술 스택</p>
+              <p><a href="#" title="github 이동" target="_blank">github</a></p>
+            </article>
+          </li>
+        </ul>
+        </div>
       </section>
     </main>
     <footer>
       <section class="container" id="contact">
-        <h4>EMAIL</h4>
-        <p>cyjjeong98@gmail.com</p>
-        <h4>GITHUB</h4>
-        <p>https://github.com/yoonguri988/2026-AI-FULLSTACK</p>
+        <h3 class="title">My <span>Contact</span></h3>
+        <div style="text-align: center;">
+          <h4>EMAIL</h4>
+          <p>cyjjeong98@gmail.com</p>
+          <h4>GITHUB</h4>
+          <p>https://github.com/yoonguri988/2026-AI-FULLSTACK</p>
+        </div>
       </section>
     </footer>
   </body>
