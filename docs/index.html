@@ -140,30 +140,10 @@
       }
 
       /* picture */
-      .pic {
-        position: relative;
-        width: 252px; 
-        height: 331px; 
+      .picture {
+        filter: drop-shadow(20px 20px 0 var(--color-primary));
       }
-
-      .square {
-        width: 252px; 
-        height: 331px; 
-      }
-
-      .pic .image {
-        background-image: url(./img/its_me.jpg); 
-        background-size: cover;
-        position: relative; 
-        z-index: 10;
-      }
-
-      .pic .shadow {
-        position: absolute; 
-        left: 20px;
-        top: 20px; 
-        background-color: var(--color-primary);
-      }
+      
 
       /* skills */
       .title{
@@ -261,6 +241,46 @@
         margin: 20px 0;
       }
 
+      .proj {
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate(0px, 0px);
+        opacity: 1;
+      }
+
+      .proj:hover::after {
+          background-image: url(./img/overview_box_shape_hover1.webp);
+          opacity: 1;
+      }
+
+      .proj::after {
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 75%;
+        height: 75%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        /* background-position: center center; */
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: 1;
+      }
+
+      article {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: black;
+        position: relative;
+        z-index: 2;
+      }
+
     </style>
   </head>
   <body>
@@ -295,11 +315,8 @@
             <dd>SQLD</dd>
           </dl>
         </div>
-        <div class="content">
-          <div class="pic" >
-            <div class="square image"></div>
-            <div class="square shadow"></div>
-          </div>
+        <div class="picture">
+            <img src="./img/its_me.jpg" alt=""/>
         </div>
       </section>
       <section class="container" id="capability">
@@ -379,12 +396,11 @@
           <h3 class="title">My <span>Service</span></h3>
         <!--리스트-->
         <ul class="list">
-          <li>
-            <img src="./img/portfolio1.jpg" alt="포트폴리오 이미지"/>
+          <li class="proj">
             <article>
+              <img src="./img/portfolio1.jpg" alt="포트폴리오 이미지"/>
               <h3>프로젝트 제목</h3>
               <p>프로젝트 소개글</p>
-              <p>사용한 기술 스택</p>
               <p><a href="#" title="github 이동" target="_blank">github</a></p>
             </article>
           </li>
