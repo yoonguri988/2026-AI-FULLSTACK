@@ -4,6 +4,7 @@ public class UserInputView {
 	InputHandler handler = new InputHandler();
 	
 	public int init() {
+		System.out.println("WELCOME! (주)CODE_NOAH BANK");
 		System.out.println("====== BANK ======");
 		System.out.println("* 1. 추가");
 		System.out.println("* 2. 조회");
@@ -35,8 +36,10 @@ public class UserInputView {
 		
 		if(num == 1) {
 			return new User(userId, password, age, account);
-		} else if(num == 3 || num == 4) {
+		} else if(num == 3) {
 			return new User(userId, password, account);
+		} else if(num == 4) {
+			return new User(userId, password, -account);
 		} else {
 			return new User(userId, password); 
 		}
@@ -45,6 +48,14 @@ public class UserInputView {
 	public String confirmPopup() {
 		String Yn = handler.getString("계좌를 삭제하시겠습니까? (Y/N) > ");
 		return Yn;
+	}
+	
+	public void showExitMessage() {
+		System.out.println("종료기능 입니다.");
+	}
+	
+	public void showNotExistFunction() {
+		System.out.println("해당 번호의 기능은 존재하지 않습니다.");
 	}
 	
 }

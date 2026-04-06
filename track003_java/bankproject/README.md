@@ -74,3 +74,18 @@
    Main 객체에서 반복적으로 보이는 입력부분을 UserInputView 객체로 분리하여 코드를 재사용하기 만듬.
 
 2. User 객체에 toString 메서드 추가해서 추후에 사용할 수 있는 여지를 남겨둠.
+
+### v0.2.0
+
+1. UserController 생성
+  - Main 클래스에는 실행만 할 수 있도록 
+  - 서비스와 뷰를 잇는 것은 컨트롤러
+
+2. Vaildate 유효성 검사
+  - isExists 와 isEmpty는 서비스 단계에서 처리
+
+3. while문안 의 if문이 너무 길어짐.
+  - MenuCommand 를 만들어 각각의 Command로 객체를 분리
+
+4. NumberFormatException으로 숫자만 입력해주세요 의 무한 반복문
+  - 1000000(백만) 이라는 제한을 두어 제한된 숫자를 넘으면 runtime 오류 발생
