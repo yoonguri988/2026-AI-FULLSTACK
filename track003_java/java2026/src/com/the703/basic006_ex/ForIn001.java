@@ -29,54 +29,54 @@ public class ForIn001 {
 //		}
 		
 		//ver2
-//		for(;math < 0 || math > 100;) {
-//			if(kor < 0 || kor > 100) {
-//				System.out.println("국어점수 입력(0~100만입력받기) >");
-//				kor = sc.nextInt();				
-//			} else if(eng < 0 || eng > 100) {
-//				System.out.println("영어점수 입력(0~100만입력받기) >");
-//				eng = sc.nextInt();
-//			} else {
-//				System.out.println("수학점수 입력(0~100만입력받기) >");
-//				math = sc.nextInt();				
-//			}
-//		}
+		for(;math < 0 || math > 100;) {
+			if(kor < 0 || kor > 100) {
+				System.out.println("국어점수 입력(0~100만입력받기) >");
+				kor = sc.nextInt();				
+			} else if(eng < 0 || eng > 100) {
+				System.out.println("영어점수 입력(0~100만입력받기) >");
+				eng = sc.nextInt();
+			} else {
+				System.out.println("수학점수 입력(0~100만입력받기) >");
+				math = sc.nextInt();				
+			}
+		}
 		
 		//ver3.
-		for(int i = 0; i <= 2;) {
-	         
-		      if(i == 0) {   
-		         System.out.print("국어 점수 (0~100) 입력 > ");
-		         kor = sc.nextInt();
-		            if(kor > 100 || kor < 0 ) {
-		               System.out.println("0~100 사이값을 입력해주세요.\n");
-		               continue;
-		               }
-		            else {i++;}      }
-		      
-		      else if(i == 1) {
-		         System.out.print("영어 점수 (0~100) 입력 > ");
-		         eng = sc.nextInt();
-		            if(eng > 100 || eng < 0) {
-		               System.out.println("0~100 사이값을 입력해주세요.\n");
-		               continue;
-		            }
-		            else {i++;}
-		            //System.out.println(i);
-		      }
-		      
-		      else if(i == 2) {
-		      System.out.print("수학 점수 (0~100) 입력 > ");
-		         math = sc.nextInt();
-		            if(math > 100 || math < 0) {
-		               System.out.println("0~100 사이값을 입력해주세요.\n");
-		               continue;
-		            }
-		            else {i++;}
-		            //System.out.println(i);
-		         }
-		      }
-		
+//		for(int i = 0; i <= 2;) {
+//	         
+//		      if(i == 0) {   
+//		         System.out.print("국어 점수 (0~100) 입력 > ");
+//		         kor = sc.nextInt();
+//		            if(kor > 100 || kor < 0 ) {
+//		               System.out.println("0~100 사이값을 입력해주세요.\n");
+//		               continue;
+//		               }
+//		            else {i++;}      }
+//		      
+//		      else if(i == 1) {
+//		         System.out.print("영어 점수 (0~100) 입력 > ");
+//		         eng = sc.nextInt();
+//		            if(eng > 100 || eng < 0) {
+//		               System.out.println("0~100 사이값을 입력해주세요.\n");
+//		               continue;
+//		            }
+//		            else {i++;}
+//		            //System.out.println(i);
+//		      }
+//		      
+//		      else if(i == 2) {
+//		      System.out.print("수학 점수 (0~100) 입력 > ");
+//		         math = sc.nextInt();
+//		            if(math > 100 || math < 0) {
+//		               System.out.println("0~100 사이값을 입력해주세요.\n");
+//		               continue;
+//		            }
+//		            else {i++;}
+//		            //System.out.println(i);
+//		         }
+//		      }
+//		
 		//처리
 		// 1. 총점 구하기
 		tot = kor + eng + math;
