@@ -1,6 +1,7 @@
 package com.the703.v1;
 
 public class RemoveCommand implements MenuCommand{
+	private User user;
 	private final UserService service;
     private final UserInputView view;
     
@@ -9,13 +10,29 @@ public class RemoveCommand implements MenuCommand{
         this.view = view;
     }
 
-	@Override
+    @Override
+    public void input() {
+    	String userId;
+		String password;
+	
+		userId = view.getUserId();
+		password = view.getPassword();
+    	
+		this.user = new User(userId, password);
+    }
+
+    @Override
 	public void execute() {
-		User user = view.userInput(5);
-		String Yn = view.confirmPopup();
-		if (Yn.toUpperCase().equals("Y")) {
-			service.delUser(user);
+		if(service.isExists(user)) {
+			String Yn = view.confirmPopup();
+			if (Yn.toUpperCase().equals("Y")) {				
+				service.delUser(user);
+				view.successDeleteUser();
+			}
+		}else {
+			view.reconfirmInput();
 		}
 	}
+
 
 }

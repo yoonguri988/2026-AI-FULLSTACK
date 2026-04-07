@@ -30,6 +30,7 @@ public class UserController {
 			
 			MenuCommand command = commands.get(num);
 			if(command != null) {
+				command.input();
 				command.execute();
 			} else {
 				view.showNotExistFunction();

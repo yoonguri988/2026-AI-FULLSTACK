@@ -15,4 +15,10 @@ public class ExitCommand implements MenuCommand {
 		status.stop();
 	}
 
+	@Override
+	public void input() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

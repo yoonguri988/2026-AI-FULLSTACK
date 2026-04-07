@@ -1,6 +1,7 @@
 package com.the703.v1;
 
 public class SearchCommand implements MenuCommand{
+	private User user;
 	private final UserService service;
     private final UserInputView view;
     
@@ -9,10 +10,26 @@ public class SearchCommand implements MenuCommand{
         this.view = view;
     }
 
+    @Override
+    public void input() {
+    	String userId;
+		String password;
+	
+		userId = view.getUserId();
+		password = view.getPassword();
+    	
+		this.user = new User(userId, password);	
+    }
+    
 	@Override
 	public void execute() {
-		User user = view.userInput(2);
-		service.showUserInfo(user);
+		if(service.isExists(user)) {			
+			User existUser = service.showUserInfo(user);
+			view.showUserInfo(existUser);
+		}else {
+			view.reconfirmInput();
+		}
 	}
+
 
 }

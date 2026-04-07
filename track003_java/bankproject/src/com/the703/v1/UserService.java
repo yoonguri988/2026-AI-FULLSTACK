@@ -7,6 +7,6 @@ public interface UserService {
 	public User showUserInfo(User user);
 	public int regUser(User user);
 	public int delUser(User user);
-	public int depositAccountByUserId(User user);
-	public int withdrawalAccountByUserId(User user);
+	public User depositAccountByUserId(User user);
+	public User withdrawalAccountByUserId(User user);
 }
