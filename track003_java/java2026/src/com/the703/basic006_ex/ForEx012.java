@@ -23,14 +23,17 @@ public class ForEx012 {
 //		}
 		
 		// version-2-출력
+		String result = "";
 		for(int i = num1;;) {
-			sum += i;
+			result += String.format("%d+", i);
+			sum += num1 > num2? i-- : i++;
 			if(i == num2) {
-				System.out.printf("%d=%d\n", i, sum);
+				result += String.format("%d=%d\n", i, sum += i);
 				break;
 			}
-			System.out.printf("%d+", num1 > num2? i-- : i++);
 		}
+		System.out.println(result);
+		
 	}
 }
 // 두수 사이의 합
