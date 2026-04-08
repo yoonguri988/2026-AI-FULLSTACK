@@ -33,7 +33,6 @@ public class ForEx012 {
 			}
 		}
 		System.out.println(result);
-		
 	}
 }
 // 두수 사이의 합

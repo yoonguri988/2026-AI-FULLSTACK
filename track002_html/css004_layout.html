@@ -48,9 +48,15 @@
         clear: both;
     }
 
+    /* position */
+    .p {
+        position: relative;
+    }
 
+    .me {
+        position: absolute; bottom: 0; right: 10px;
+    }
     </style>
-
 </head>
 <body>
     <div class="container">
@@ -79,6 +85,13 @@
         <p class="item f3" >float속성끊기-clear:both / overflow: hidden</p>
     </div>
 
+    <div class="container p">
+        <h3>3. 배치(2) - position: relative(누구 안에) + absolute(어디) 좌표</h3>
+        <p class="item me">WHERE I AM ?</p>
+        <p>종류: static(기본값), relative(박스의 위치가 남음), absolute(박스의 위치가 남지 않음)</p>
+        <p>     fixed(브라우저 고정), sticky(스크롤할때 특정지점에 붙기)</p>
+        <p>부모: relative(공간 확보) / 자식: (원하는 위치에 배치) - 좌표</p>
+    </div>
 
 </body>
 </html>
