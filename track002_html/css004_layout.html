@@ -56,6 +56,28 @@
     .me {
         position: absolute; bottom: 0; right: 10px;
     }
+
+    .di .item {
+        background-color: green; text-align: center; /* 글자 색상이 바뀌지 않음 color: #fff; */
+    }
+    /* a(인라인) display: block - 인라인을 블록*/
+    .di .item a {
+        /*display: block; 링크 영역 확장할 때 주로 많이 사용*/
+        color: gold; background-color: red; 
+        display: block;
+    }
+    /* a(인라인) display: none; - 화면상에 안보이게 숨기기 ※h태그에서 주의 */
+    .di .item a:last-child {
+        display: none;
+    }
+
+    /* li(블록) display: inline; - 블록을 인라인으로 - 한줄로 배치 width: 100px; 안됨 */
+    .d1 { background-color: lemonchiffon; text-align: center; margin: 10px 0; padding: 10px;}
+    .d1 li { background-color: plum; display: inline; width: 100px;}
+    
+    /* li(블록) display: inline-block; - 블록을 인라인으로 - 한줄로 배치 width: 100px; 가능 */
+    .d2 { background-color: gray; text-align: center; margin: 10px 0; padding: 10px;}
+    .d2 li { background-color: goldenrod; display: inline-block; width: 100px;}
     </style>
 </head>
 <body>
@@ -93,5 +115,26 @@
         <p>부모: relative(공간 확보) / 자식: (원하는 위치에 배치) - 좌표</p>
     </div>
 
+    <div class="container di">
+        <h3>5. 배치(3) - display</h3>
+        <p>속성 바꾸기 : display: block, inline, inline-block, none</p>
+        <p>배치 - 박스들이 어떻게 놓일지 정하는 규칙(정리 도우미) display:flex </p>
+        <p class="item">
+            <a href="https://www.naver.com">NAVER</a> <!-- display: block _ [box] 링크 확대 -->
+            <a href="https://www.daum.com">DAUM</a> <!-- display: none _ [숨기기]-->
+        </p>
+        <!-- display: inline [콘텐츠] -->
+        <ul class="d1"> 
+            <li>PEACH</li>
+            <li>BLUEBARRY</li>
+            <li>LEMON</li>
+        </ul>
+        <!-- display: inline-block [콘텐츠-width O] -->
+        <ul class="d2">
+            <li>PEACH</li>
+            <li>BLUEBARRY</li>
+            <li>LEMON</li>
+        </ul>
+    </div>
 </body>
 </html>
