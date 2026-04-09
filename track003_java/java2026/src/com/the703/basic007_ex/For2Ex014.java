@@ -4,7 +4,7 @@ public class For2Ex014 {
 	public static void main(String[] args) {
 		System.out.println("ver-1:: for");
 		
-		for(int k = 2; k < 10; k+=2) {
+		for(int k = 2; k < 10; k+=3) {
 			for (int j = 1; j < 10; j++) {
 				for (int i = k; i < k+3; i++) {
 					if(i == 10) break;
