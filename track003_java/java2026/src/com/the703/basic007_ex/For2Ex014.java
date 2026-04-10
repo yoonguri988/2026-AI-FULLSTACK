@@ -40,16 +40,18 @@ public class For2Ex014 {
 		
 		System.out.println("ver-2:: for");
 
+		String result = "";
 		for(int i = 1; i <= 27; i++) { // (3*9)*3
 			int row = ((i-1)/9)*3+2; // 3n+2
 			int col = (i-1)%9+1;
 			for (int j = row; j < row+3; j++) {
 				if(j == 10) break;
-				System.out.printf("%d*%d=%d\t",col,j,col*j);
+				result += String.format("%d*%d=%d\t",j,col,col*j);
 			}
-			System.out.println();
-			if(col == 9) System.out.println();
+			result += "\n";
+			if(col == 9) result += "\n"; 
 		}
+		System.out.println(result);
 	}
 }
 /*

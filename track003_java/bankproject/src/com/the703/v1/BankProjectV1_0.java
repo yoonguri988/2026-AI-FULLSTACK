@@ -2,7 +2,7 @@ package com.the703.v1;
 
 import java.util.Scanner;
 
-public class BankProjectV1 {
+public class BankProjectV1_0 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		// 변수
