@@ -41,6 +41,8 @@ public class For2Ex017 {
     		if(i%sq == sq-1) System.out.println(); 
     	}
     	
+    	System.out.println("AbCdEFG".lastIndexOf("dE"));
+    	
     }
 }
 
