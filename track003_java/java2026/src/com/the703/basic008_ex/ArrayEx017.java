@@ -1,35 +1,5 @@
 package com.the703.basic008_ex;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
-
-class ArrowKeyInput extends JFrame {
-    public ArrowKeyInput() {
-        setTitle("방향키 입력");
-        setSize(300, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        add(new JLabel("콘솔 창/이 창에서 방향키를 누르세요"));
-
-        // 키 리스너 등록
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                switch (e.getKeyCode()) {
-                    case KeyEvent.VK_UP: System.out.println("위"); break;
-                    case KeyEvent.VK_DOWN: System.out.println("아래"); break;
-                    case KeyEvent.VK_LEFT: System.out.println("왼쪽"); break;
-                    case KeyEvent.VK_RIGHT: System.out.println("오른쪽"); break;
-                }
-            }
-        });
-        setVisible(true);
-    }
-}
-
 public class ArrayEx017 {
 	public static void main(String[] args) {
 		int[] mon = {0,31,28,31,30,31,30,31,31,30,31,30,31};
@@ -71,8 +41,6 @@ public class ArrayEx017 {
 				}
 			}
 		System.out.println();
-		
-		new ArrowKeyInput();
 	}
 	
 	private static int calculateDate(int year, int month, int date, int[] monArr) {
