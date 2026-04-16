@@ -1,0 +1,275 @@
+      * {
+        margin: 0;
+        padding: 0;
+        color: var(--color-light-950);
+      }
+
+      :root {
+        scrollbar-width: thin;
+        background-color: #ffffff;
+
+        /* light */
+        --color-primary:#547792;
+        --color-primary-orange: #FD853A;
+
+        --color-light-default: #ffffff;
+        --color-light-50: #f9fafb;
+        --color-light-100: #f3f4f6;
+        --color-light-200: #e5e7eb;
+        --color-light-300: #d1d5db;
+        --color-light-400: #9ca3af;
+        --color-light-500: #6b7280;
+        --color-light-600: #4b5563;
+        --color-light-700: #374151;
+        --color-light-800: #1f2937;
+        --color-light-900: #111827;
+        --color-light-950: #030712;
+      }
+
+      body {
+        margin: 0 auto;
+        color: var(--color-light-950);
+        font-size: 16px;
+        max-width: 1200px;  
+        padding: 0 20px;
+        justify-items: center;   
+      }
+
+      header {
+        margin: 0 auto;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background-color: var(--color-light-default);
+        /* 스크롤 했을때만 생겼으면 좋겠음*/
+        /* box-shadow: 0px 1px 10px rgba(0,0,0,0.1); */
+
+      }
+
+      li {
+        list-style: none;
+      }
+
+      main section.container:nth-child(even) {
+        border-radius: 20px;
+        background-color: var(--color-light-50);
+      }
+
+      .container {
+        padding: 25px 12px;
+        margin: 64px 0;
+        min-width: 930px;
+        max-width: 1024px;
+      }
+
+      .container .nav {
+        padding: 16px 0 ;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .logo {
+        font-weight: 900;
+        font-size: 26px; 
+        color: var(--color-primary-orange);
+        align-content: center;
+      }
+      
+      .nav {
+        font-size: 20px; 
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        column-gap: 16px;
+
+        align-items: center;
+      }
+
+      .nav .col {
+        list-style: none;
+      }
+
+      .nav > .col:hover > a {
+        color: var(--color-primary);
+      }
+
+      a {
+        color: #213448;
+        text-decoration: none;
+      }
+
+      /* 라이트/다크모드, pdf 파일 다운로드 */
+      .actions { 
+        align-content: center;
+      }
+
+      .about {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        row-gap: 20px;
+        max-width: 1200px;
+      }
+
+      .certification > dt {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      .certification > dd {
+        display: inline;
+        color: var(--color-light-600);
+        background-color: var(--color-light-200);
+        border-radius: 12px;
+        /* margin-left: 10px; 마지막은 제외 */
+        padding: 4px 20px;
+        text-align: center;
+        align-items: center;
+      }
+
+      /* picture */
+      .picture {
+        filter: drop-shadow(20px 20px 0 var(--color-primary));
+      }
+      
+
+      /* skills */
+      .title{
+        margin: 20px 0;
+        padding: 0 80px;
+        text-align: center;
+
+        font-size: 24px;
+        font-weight: 900;
+
+        span {
+          color: var(--color-primary-orange);
+        }
+      }
+
+      /* experience */
+      #experience .title{
+        margin: 20px 0;
+        padding: 0 80px;
+        text-align: center;
+
+        font-size: 24px;
+        font-weight: 900;
+
+        span {
+          color: var(--color-primary-orange);
+        }
+      }
+
+      #experience .content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        margin: 20px 0;
+      }
+
+      #experience .col {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      #experience .company {
+        justify-content: flex-end;
+        row-gap: 80px;
+      }
+
+      #experience .project {
+        justify-content: flex-start;
+        row-gap: 20px;
+      }
+
+      #experience .date {
+        color: var(--color-light-400);
+      }
+
+      /* service */
+      .service {
+        padding: 10px 20px;
+        border-radius: 20px;
+        /* background-color: var(--color-light-50); */
+      }
+
+      .title .description {
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      #service .list {
+        margin: 40px 0 20px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        row-gap: 20px;
+      }
+
+      #service .list img {
+        display: block;
+        width: 360px;
+        height: 270px;
+        padding: 10px;
+        margin: 20px;
+        background-color: var(--color-light-300);
+        border-radius: 20px;
+      }
+
+      .list li {
+        display: flex;
+        column-gap: 20px;
+        box-shadow: 5px 5px 10px var(--color-light-400);
+      }
+
+      #service .list article {
+        margin: 20px 0;
+      }
+
+      .proj {
+        translate: none;
+        rotate: none;
+        scale: none;
+        transform: translate(0px, 0px);
+        opacity: 1;
+      }
+
+      .proj:hover::after {
+          background-image: url(./img/overview_box_shape_hover1.webp);
+          opacity: 1;
+      }
+
+      .proj::after {
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 75%;
+        height: 75%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        /* background-position: center center; */
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: 1;
+      }
+
+      article {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: black;
+        position: relative;
+        z-index: 2;
+      }
