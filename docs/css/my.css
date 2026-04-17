@@ -1,5 +1,27 @@
 @charset "UTF-8";
 
+:root {
+    scrollbar-width: thin;
+    background-color: #ffffff;
+
+    /* light */
+    --color-primary:#547792;
+    --color-primary-plum: #dda0dd;
+
+    --color-light-default: #ffffff;
+    --color-light-50: #f9fafb;
+    --color-light-100: #f3f4f6;
+    --color-light-200: #e5e7eb;
+    --color-light-300: #d1d5db;
+    --color-light-400: #9ca3af;
+    --color-light-500: #6b7280;
+    --color-light-600: #4b5563;
+    --color-light-700: #374151;
+    --color-light-800: #1f2937;
+    --color-light-900: #111827;
+    --color-light-950: #030712;
+}
+
 .myhidden {
     position: absolute; left: -9999%; width: 1px; height: 1px; overflow: hidden;
     border: 0; white-space: nowrap; /* 줄 방지 */ 
@@ -7,7 +29,21 @@
 }
 
 header, nav {
-    background-image: linear-gradient(90deg, gold, pink 40%, plum);
+    background-color: var(--color-light-default);
+}
+
+.logo {
+    color: var(--color-primary);
+}
+
+/* picture */
+.picture {
+    width: 200px;
+    filter: drop-shadow(20px 20px 0 var(--color-primary));
+}
+
+h3 span {
+    color: var(--color-primary);
 }
 
 div#demo {
@@ -16,13 +52,13 @@ div#demo {
     /* line-height: 350px; text 일때만 */
 }
 
-div#demo img {
+/* div#demo img {
     object-fit: cover;
-}
+} */
 
-.mybg {
+/* .mybg {
     background-color: transparent;
-}
+} */
 
 /* body {
     background-image: linear-gradient(135deg, gold, pink 80%, plum);
@@ -31,22 +67,22 @@ div#demo img {
 
 /*  배경 body에 fixed 하고 원하는 배경 부분만 투명하게 */
 body {
-    background-image: url(../img/mmmm_04_bg.jpg);
+    /* background-image: url(../img/mmmm_04_bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
-    background-attachment: fixed;
+    background-attachment: fixed; */
 }
 
 /* transform + transition */
-.mybg:hover {
+/* .mybg:hover {
     transform: translateY(-30px);
     transition: all 2s;
-}
+} */
 
 h3 {
     transition: all 0.3s;
 }
-h3:hover {
+/* h3:hover {
     transform: translateY(-10px);
-}
+} */

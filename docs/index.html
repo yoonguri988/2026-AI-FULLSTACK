@@ -10,28 +10,31 @@
 </head>
 <!-- HEADER: 문서의 관련된 정보 -->
 <!-- Q1. h1 내용 바꾸고 / a 태그에 들어가 있는 Logo / nav 좋아하는 색상으로 바꾸기 -->
-<header class="container-fluid">
+<header class="container-fluid sticky-top">
     <h1 class="myhidden">JJEONG PORTFOLIO</h1> <!-- 로고 또는 상호명 -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-light">
         <h2 class="myhidden">MAIN MENU</h2> <!-- 글로벌 네비게이션 바 GNB-->
         <div class="container-fluid">
-            <a class="navbar-brand" href="javascript:void(0)">JJEONG</a>
+            <a class="navbar-brand fs-3 fw-bold logo" href="javascript:void(0)">JJEONG</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="mynavbar">
-            <ul class="navbar-nav ms-auto"> <!-- margin-start == margin-left -->
+            <ul class="navbar-nav ms-auto fs-5"> <!-- margin-start == margin-left -->
                 <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">PORTFOLIO</a>
+                <a class="nav-link" href="#about">ABOUT</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">ABOUT ME</a>
+                <a class="nav-link" href="#skills">SKILLS</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">GALLERY</a>
+                <a class="nav-link" href="#experience">EXPERIENCE</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">CONTACT</a>
+                <a class="nav-link" href="#service">SERVICE</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#contact">CONTACT</a>
                 </li>
             </ul>
             </div>
@@ -74,11 +77,34 @@
     </div>
 </section>
 <!-- INFO: 내 소개 -->
-<section class="bg-light">
-    <div class="container">
-        <h3 class="p-5 text-center text-decoration-underline">ABOUT ME</h3>
+<section>
+    <div class="container py-5" id="about">
+        <h3 class="myhidden">ABOUT ME</h3>
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
+                <p class="picture py-3"><img class="w-100" src="./img/its_me.jpg" alt="내 프로필 사진"/></p>
+            </div>
+            <div class="col-sm-9">
+                <h4>It's-A Me, Developer 최윤정</h4>
+                <h4>#효율중시 #협업 #데이터 시각화 #UI/UX 개선 #컴포넌트 설계</h4>
+                <h4>설명</h4>
+                <ul>
+                    <li>저는 사용자가 막히는 순간을 코드로 해결하는 개발자 입니다.<br>
+            기능을 만드는 것보다 그 기능을 실제로 잘 쓰이는지가 더 중요하다는 것을 배웠습니다.</li>
+                    <li>(예시1)<br>
+            배움을 증명하는 방식은 항상 하나였습니다. 직접 만들어 배포하는 것.</li>
+                    <li>(예시2)<br>
+            프론트엔드 중심으로 일하지만, 백엔드 개발 경험이 있어 설계부터 협업에 자연스럽게 참여합니다.<br>
+            백엔드의 맥락을 이해하기 때문에, 프론트엔드에서 더 합리적인 판단을 내릴 수 있습니다.</li>
+                    <li>(예시3)</li>
+                </ul>
+                <h4>최종 학력 및 자격증</h4>
+                <ul>
+                    <li class="badge bg-secondary fs-6">정보처리기사</li>
+                    <li class="badge bg-secondary fs-6">SQLD</li>
+                </ul>
+            </div>
+            <!-- <div class="col-sm-4">
                 <p class="w-75 mx-auto text-center"><img class="w-75 rounded-circle" src="./img/five.png" alt="내 사진" /></p>
                 <h4 class="text-center">CHOI YOON JEONG</h4>
                 <ul>
@@ -88,7 +114,7 @@
             </div>
             <div class="col-sm-4">
                 <h4>Education</h4>
-                <ul><!-- 최신이 항상 맨 위로 -->
+                <ul>
                     <li>AI활용 풀스택(프론트엔드,백엔드)부트캠프(자바,파이썬,플러터)(26.03.26~26.10.08)</li>
                 </ul>
                 <h4>Keyword</h4>
@@ -115,18 +141,131 @@
                 <div class="progress my-3">
                     <div class="progress-bar bg-success  progress-bar-striped progress-bar-animated" style="width:85%">AWS 85%</div>
                 </div>
+            </div> -->
+        </div>
+    </div>
+</section>
+<!-- EXPERIENCE: 내 이력 -->
+<section class="py-5 m-3" id="skills">
+    <h3 class="text-center pb-5 fs-3 fw-bold">My <span>Skills</span></h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h4>FRONT-END</h4>
+                <ul>
+                    <li>bootstrap</li>
+                    <li>react</li>
+                </ul>
+            </div>
+            <div class="col-sm-4">
+                <h4>BACK-END</h4>
+                <ul>
+                    <li>java</li>
+                    <li>python</li>
+                </ul>
+            </div>
+            <div class="col-sm-4">
+                <h4>DBMS</h4>
+                <ul>
+                    <li>oracle</li>
+                    <li>mysql</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- EXPERIENCE: 내 이력 -->
+<section class="bg-light py-5 m-3" id="experience">
+    <h3 class="text-center pb-5 fs-3 fw-bold">My <span>Work Experience</span></h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+            <ul>
+              <li>
+                <p>AI 활용 풀스택 개발자 교육 이수</p>
+                <p>2026.03 - 2026.10</p>
+              </li>
+            </ul>
+            </div>
+            <div class="col-sm-8">
+                <ol>
+                        <li>
+                            <p>프로젝트 <span class="date">2020.07 - 2020.09</span></p>
+                            <p>프론트엔드부터 백엔드까지 웹 개발 전반의 기술을 프로젝트 중심으로 체계적으로 습득</p>
+                        </li>
+                        <li>
+                            <p>식당 예약 플랫폼 <span class="date">2020.05 - 2020.06</span></p>
+                            <p>프론트엔드부터 백엔드까지 웹 개발 전반의 기술을 프로젝트 중심으로 체계적으로 습득</p>
+                        </li>
+                        <li>
+                            <p>은행 시스템 프로젝트 <span class="date">2020.03 - 2020.04</span></p>
+                            <p>프론트엔드부터 백엔드까지 웹 개발 전반의 기술을 프로젝트 중심으로 체계적으로 습득</p>
+                        </li>
+                </ol>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-4">
+            <ul>
+              <li>
+                <p>(주) 위세아이텍</p>
+                <p class="date">2020.04 - 2022.11</p>
+              </li>
+            </ul>
+            </div>
+            <div class="col-sm-8">
+                <ol>
+                            <li>
+                                <p>데이터 시각화 플랫폼 <span class="date">2020.08 - 2020.11</span></p>
+                                <p>기업 내에서 발생하는 데이터에 대해 통계적으로 분석하고 시각화하는 플랫폼 개발</p>
+                            </li>
+                            <li>
+                                <p>WiseMeta, WiseDQ Solution 개발 <span class="date">2020.08 - 2020.11</span></p>
+                                <p>JavaScript, RDB, Spring 기반의 메타 데이터 기반의 메타데이터 관리, 데이터 품질 관리 Web Solution</p>
+                            </li>
+                </ol>
             </div>
         </div>
     </div>
 </section>
     <!-- PORTFOLIO: 내 포트폴리오 -->
-    <section class="bg-dark p-5">
-        <h3 class="text-white text-center text-decoration-underline">PORTFOLIO</h3>
-        <div class="container bg-white p-5 rounded">
-            <div class="row">
-            <div class="col-sm-6">
+    <section class="py-5" id="service">
+        <h3 class="text-center pb-5 fs-3 fw-bold">My <span>Service</span></h3>
+        <div class="container">
+            <div class="row shadow px-3 py-5">
+                <div class="col-sm-5">
+                    <h4 class="myhidden">프로젝트 동영상 및 이미지</h4>
+                    <p><iframe  class="w-100" height="240" src="https://www.youtube.com/embed/qLs5G_IJbys?si=ta2vEKPnJmhiF6kY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+                </div>
+                <div class="col-sm-7">
+                    <h4 class="myhidden">프로젝트 소개 글</h4>
+                    <div>
+                        <h5>BANK 콘솔 프로그램 프로젝트</h5>
+                        <p>은행 입출금 시스템을 구현해 흐름을 파악</p>
+                        <p>java</p>
+                        <p><a href="https://github.com/yoonguri988/2026-AI-FULLSTACK/tree/main/track003_java/bankproject" title="github 이동" target="_blank">포트폴리오 상세하게 더보기</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row shadow px-3 py-5">
+                <div class="col-sm-5">
+                    <h4 class="myhidden">프로젝트 동영상 및 이미지</h4>
+                    <p><iframe class="w-100" height="240" src="https://www.youtube.com/embed/n9ta1Pgeu80?si=Re2iMWtF8BVmEFe7&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+                </div>
+                <div class="col-sm-7">
+                    <h4 class="myhidden">프로젝트 소개 글</h4>
+                    <div>
+                        <h5>프로젝트 제목</h5>
+                        <p>프로젝트 소개글</p>
+                        <p>사용한 기술 스택</p>
+                        <p><a href="#" title="github 이동" target="_blank">포트폴리오 상세하게 더보기</a></p>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-sm-6">
                 <h4 class="myhidden">포트폴리오 동영상</h4>
-                <!-- 동영상 -->
+                동영상
                 <iframe class="w-100" height="240" src="https://www.youtube.com/embed/n9ta1Pgeu80?si=Re2iMWtF8BVmEFe7&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
                 <button class="btn btn-success">포트폴리오 더보기</button>
             </div>
@@ -153,17 +292,21 @@
                     <li>Git & GitHub</li>
                     <li>GitHub Actions</li>
                 </ul>
-            </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
 <!-- CONTACT -->
-<section class="p-5 mybg">
-    <h3 class="p-3 text-center text-decoration-underline">CONTACT ME</h3>
-    <p class="text-center">열정적인 개발자 000에게 문의 주세요!</p>
-    <div class="container shadow p-5">
-        <form action="/action_page.php">
+<section class="bg-light py-5 m-3 rounded" id="contact">
+    <h3 class="text-center pb-5 fs-3 fw-bold">My <span>Contact</span></h3>
+    <div class="container">
+        <div class="text-center">
+          <h4>EMAIL</h4>
+          <p>cyjjeong98@gmail.com</p>
+          <h4>GITHUB</h4>
+          <p>https://github.com/yoonguri988/2026-AI-FULLSTACK</p>
+        </div>
+        <!-- <form action="/action_page.php">
         <div class="mb-3 mt-3">
             <label for="title" class="form-label">제목:</label>
             <input type="title" class="form-control" id="title" placeholder="제목을 적어주세요!" name="title">
@@ -173,12 +316,12 @@
             <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
         </div>
         <button type="submit" class="btn btn-success">메일 보내기</button>
-        </form>
+        </form> -->
     </div>
 </section>
 <!-- FOOTER: 문서의 마무리 -->
 <!-- Q1. 글자를 페이지의 정중앙 / 배경색 좋아하는 색상 -->
-<footer class="py-5 text-center bg-secondary text-white">
+<footer class="py-3 text-center bg-light">
     © copyrights JJEONG 2026 all. rights reserved
 </footer>
 </body>
