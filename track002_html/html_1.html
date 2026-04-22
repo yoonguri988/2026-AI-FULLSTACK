@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>NodeList vs HTMLCollection</title>
+  <style>
+    .highlight {
+      background-color: yellow;
+      font-weight: bold;
+    }
+    .added {
+      color: red;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h2>과일 목록</h2>
+  <ul id="fruits">
+    <li class="fruit">Apple</li>
+    <li class="fruit">Banana</li>
+    <li class="fruit">Cherry</li>
+  </ul>
+
+  <button id="addFruit">과일 추가하기</button>
+  <button id="highlight">첫 번째 과일 강조하기</button>
+
+  <script>
+    window.addEventListener("load", function(){
+      // 1. 과일 추가하기 Mango
+      // document.querySelector("#addFruit").addEventListener("click", function(){
+      //   let fruits = document.getElementById("fruits");
+      //   let obj = prompt('추가하고 싶은 과일 작성해주세요')
+      //   fruits.innerHTML += "<li class='fruit'>"+ obj +"</li>";
+      // });
+      document.querySelector("#addFruit").addEventListener("click", function(){
+        let fruits = document.querySelector("#fruits");
+        // let obj = prompt('추가하고 싶은 과일 작성해주세요')
+        let obj = "Mango";
+        fruits.innerHTML += "<li class='fruit'>"+ obj +"</li>";
+      });
+      // 2. 첫번째 과일 강조하기
+      document.querySelector("#highlight").addEventListener("click", function(){
+        let list = document.querySelectorAll("#fruits li");
+        list[0].style.backgroundColor = 'gold';
+        list[0].style.color = 'red';
+      });
+    });
+    // HTMLCollection (실시간) 
+    // NodeList (정적) 
+    // 버튼 이벤트 
+  </script>
+</body>
+</html> 

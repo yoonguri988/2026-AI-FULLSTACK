@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>이벤트 연습</title>
+  <style>
+    .result_target {
+      background-color: black;
+      color: white;
+      padding: 20px;
+      font-size: 20px;
+      text-align: center;
+      transition: all 0.3s ease; /* 부드러운 애니메이션 효과 */
+    }
+    .big {
+      font-size: 40px;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="card-body">
+    <h4>EX</h4>
+    <input type="button" value="이름 입력" id="test1" class="btn btn-success" />
+    <input type="button" value="버튼 글자 바꾸기" id="test2" class="btn btn-success" />
+    <input type="button" value="텍스트 수정" id="test3" class="btn btn-success" />
+    <input type="button" value="마우스 이벤트" id="test4" class="btn btn-success" />
+    <input type="button" value="크게/작게" id="test5" class="btn btn-success" />
+    <input type="button" value="숨기기/보이기" id="test6" class="btn btn-success" />
+    <div class="result_target my-5">JAVASCRIPT</div>
+  </div>
+
+  <script> 
+    window.addEventListener("load", function(){
+      // Q1: 이름 입력받아 알림창 띄우기
+      let test1 = document.querySelector("#test1");
+      test1.addEventListener("click", function(){
+        let name = prompt("이름을 입력해주세요");
+        alert("당신의 이름은 "+ name);
+      });
+      // Q2: 버튼 글자 바꾸기
+      let test2 = document.querySelector("#test2");
+      test2.addEventListener("click", function(){
+        let text = prompt("바꾸고 싶은 버튼 글자를 작성해주세요");
+        this.value = text;
+      });
+
+       const result = document.querySelector(".result_target");
+
+      // Q3: result 영역 문자열 알림창 → 이름으로 수정
+      let test3 = document.querySelector("#test3");
+      test3.addEventListener("click", function(){
+        let result_target = document.querySelector(".result_target");
+        let name = prompt("이름을 입력해주세요");
+        result_target.innerHTML = name;
+      });
+      // Q4: 마우스 올리면/떼면 배경색 변경
+      let test4 = document.querySelector("#test4");
+      test4.onmouseover = function(){
+        let result_target = document.querySelector(".result_target");
+        result_target.style.backgroundColor = "plum";
+      };
+      // test4.addEventListener("mouseover", function(){
+      //   let result_target = document.querySelector(".result_target");
+      //   result_target.style.backgroundColor = "plum";
+      // });
+      test4.onmouseout = function(){
+        let result_target = document.querySelector(".result_target");
+        result_target.style.backgroundColor = "gold";
+      };
+      // test4.addEventListener("mouseout", function(){
+      //   let result_target = document.querySelector(".result_target");
+      //   result_target.style.backgroundColor = "gold";
+      // });
+      // Q5: 글자 크게/작게 토글
+      // let test5 = document.querySelector("#test5");
+      // test5.addEventListener("click", function(){
+      //   let result_target = document.querySelector(".result_target");
+      //   if(result_target.style.fontSize == "64px"){
+      //     result_target.style.fontSize = "32px";
+      //   } else {
+      //     result_target.style.fontSize = "64px";
+      //   }
+      // });
+
+    // Q5: 글자 크게/작게 토글
+    document.getElementById("test5").onclick = () => {
+      result.classList.toggle("big");
+    };
+      // Q6: 숨기기/보이기 토글
+      // let test6 = document.querySelector("#test6");
+      // test6.addEventListener("click", function(){
+      //   let result_target = document.querySelector(".result_target");
+      //   if(result_target.style.display == "none"){
+      //     result_target.style.display = "";
+      //   } else {
+      //     result_target.style.display = "none";
+      //   }
+      // });
+      
+      document.getElementById("test6").onclick = () => {
+        result.classList.toggle("hidden");
+      };
+    });
+  </script>
+</body>
+</html>
