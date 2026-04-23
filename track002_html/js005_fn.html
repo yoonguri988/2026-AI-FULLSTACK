@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title>DBDBIG</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<!--                                    -->
+<!--                                    -->
+<!--                                    -->
+<!--                                    -->
+<!--                                    -->
+<div class="p-3 bg-primary text-white ">
+  <h1>006. function </h1>
+  <ol>
+    <li>function- 명시적</li>
+    <li>a태그에서의 이벤트</li>
+  </ol>
+</div>
+<div class="container card  my-3">
+  <h3  class="card-header">006. FUNCTION - STEP1. function</h3>
+  <div class="card-body">
+    <h4>STEP1. function </h4>
+    <pre>
+    1.  function 선언   - function 함수이름(){}
+    2.  function 사용   - 함수이름();
+    </pre>
+		<input type="button"  value="FUNCTION1"  title="FUNCTION"  id="fn1"   class="btn btn-outline-primary" />
+    <script>
+      // 1.이벤트대상                    이벤트   이벤트핸들러
+      //브라우저  로딩  이벤트핸들러 
+      //#fn1 버튼 클릭시 본인이름 알림창
+      //ver-1
+      /* 
+      window.addEventListener("load", function(){
+        // document.getElementById("fn1").onclick = function(){
+        document.querySelector("#fn1").onclick = function(){
+          // alert("최윤정");alert("최윤정");alert("최윤정");alert("최윤정");alert("최윤정");
+          fn1(); // 마법상자 직접 호출
+        }
+
+      });
+      */
+     window.addEventListener("load", function(){
+        document.querySelector("#fn1").onclick = fn1;
+      });
+
+      //2. 마법 상자 - 명시적 함수
+      //호이스팅: 코드 실행 전에 메모리가 올라감, 선언전 호출가능
+      // fn1()
+      function fn1(){
+        alert("최윤정");alert("최윤정");alert("최윤정");alert("최윤정");alert("최윤정");
+      }
+      // fn1()
+      //3. 함수 표현식 - 변수에 할당하는 방식 ( React )
+      //fn21();
+      const fn21 = function() {
+        alert("Hello2");
+      };
+      //fn21();
+      //4. 화살표 함수 - React
+      const fn22 = () => alert("Hello22");
+      //fn22();
+
+      //5. 즉시 실행함수
+      // (function() { alert("Hello3"); })();
+  </script>
+  </div>
+  <!--     -->
+  <!--     -->
+  <hr/>
+  <div class="card-body">
+    <h4>EX</h4>
+    <pre>
+      1. fn2를 누르면 - window.onload / getElementById 이용
+      2. fn2()  만들기 - 1,2,3,4,5 alert 창 5번 띄우기
+      3. #fn2에서 클릭할때 fn2() 호출
+      </pre>
+      <input type="button"  value="버튼2"  title="버튼2"    id="fn2"  class="btn btn-success" />
+      <script> 
+        window.onload = function() {
+          document.getElementById("fn2").onclick = fn2;
+        };
+ 
+        function fn2() {
+          for(let i = 1; i <=5; i++){
+            alert(i);
+          }
+        }
+      </script>
+  </div>
+</div>
+
+
+
+
+<div class="container card  my-3">
+  <h3  class="card-header">006. FUNCTION - STEP2. a 태그에서 event</h3>
+  <div class="card-body">
+    <h4>STEP2. a 태그에서 event </h4>
+		<a href="https://www.naver.com/"   class="btn btn-outline-primary target_a" >EVENT</a>
+    <script>
+      //이벤트대상                    이벤트   이벤트핸들러
+      //브라우저  로딩  이벤트핸들러 
+      // .target_a 클릭하면 링크알림창 띄우기
+      window.addEventListener("load", function(){
+        // document.querySelector(".target_a").onclick = function() {
+        //   alert("링크 알림");
+        // };
+        document.querySelector(".target_a").addEventListener("click", function(e) {
+          e.preventDefault();
+          alert("링크 알림");
+        });
+      });
+  </script>
+  </div>
+  <!--     -->
+  <!--     -->
+  <hr/>
+  <div class="card-body">
+    <h4>STEP3. a 태그에서 event 사용예</h4>
+    <div class=" w-25  bg-primary    rounded  p-2 text-white  text-center ">
+      <h1>Score   <span class="target_num">0</span></h1>
+    </div>
+    <div class="w-25 text-center m-2">
+      <a href="#" class="btnPlus   btn btn-outline-primary">plus</a>
+      <a href="#" class="btnMinus  btn btn-outline-primary">minus</a>
+    </div>
+    <script>
+      window.addEventListener("load", function(){
+        let cnt = 1;
+        let btnPlus = document.querySelector(".btnPlus"); //1. .btnPlus 찾기
+        let btnMinus = document.querySelector(".btnMinus"); //2. .btnMinus 찾기
+        let target_num = document.querySelector(".target_num"); //3. .target_num 찾기
+
+        // 4. .btnPlus 를 클릭하면 일반 태그 이므로 .target_num -> innerHTML 로 접근 cnt++
+        btnPlus.onclick = function(e){
+          e.preventDefault();
+          target_num.innerHTML = cnt++;
+        }
+
+        // 5. .btnMinus 를 클릭하면 일반 태그 이므로 .target_num -> innerHTML 로 접근 cnt--
+        btnMinus.onclick = function(e){
+          e.preventDefault();
+          target_num.innerHTML = cnt--;
+        }
+      });
+    </script>
+  </div>
+  <!--     -->
+  <!--     -->
+  <hr/>
+  <div class="card-body">
+    <h4>EX</h4>
+    <div class="w-25  bg-success  rounded  p-2  mx-auto text-white  text-center target_box">
+      <h1>ROTATE</h1>
+    </div>
+    <div class="w-25 text-center m-2">
+      <a href="#" class="btnLeft   btn btn-outline-success">LEFT ROTATE</a>
+      <a href="#" class="btnRight  btn btn-outline-success">RIGHT ROTATE</a>
+    </div>
+    <script>
+      window.addEventListener("load", function(){
+        let cnt = 1;
+        let btnLeft = document.querySelector(".btnLeft"); //1. .btnLeft 찾기 -querySelector
+        let btnRight = document.querySelector(".btnRight"); //2. .btnRight 찾기 -querySelector
+        let target_box = document.querySelector(".target_box"); //3. .target_box 찾기 -querySelector
+
+        //4. .btnLeft 클릭시 왼쪽 회전 45 - transform = rotate(45deg)
+        //   style - `rotate(${--cnt*45}deg)`
+        btnLeft.onclick = function(e){
+          e.preventDefault();
+          target_box.style.transform = `rotate(${--cnt*45}deg)` ;
+        };
+        
+        //5. .btnRight 클릭시 오른쪽 회전 45 - transform = rotate(-45deg)
+        //   style - `rotate(${++cnt*45}deg)`
+        btnRight.onclick = function(e){
+          e.preventDefault();
+          target_box.style.transform = `rotate(${++cnt*45}deg)`;
+        };
+      });
+    </script>
+  </div>
+
+  <hr/>
+
+<div class="card-body">
+  <h4>EX3</h4>
+  <pre>
+<!-- 1. 문제: MOVE & COLOR 박스 만들기
+아래 조건을 만족하는 HTML + JavaScript 코드를 작성하시오.
+- 화면 중앙에 MOVE & COLOR라는 글자가 들어 있는 박스를 만든다.
+- 박스는 Bootstrap의 bg-warning 색상을 기본으로 가진다.
+- 박스 안의 글자는 흰색(text-white)이며 가운데 정렬한다.
+
+2. 박스 아래에 세 개의 버튼을 만든다.
+- MOVE LEFT 버튼: 박스를 왼쪽으로 50px씩 이동시킨다.
+- MOVE RIGHT 버튼: 박스를 오른쪽으로 50px씩 이동시킨다.
+- CHANGE COLOR 버튼: 박스의 배경색을 순서대로 바꾼다.
+(bg-warning → bg-success → bg-danger → bg-info → bg-primary → 다시 bg-warning)
+
+버튼 클릭 시 기본 동작(링크 이동)은 막아야 한다. (e.preventDefault() 사용)
+
+ 
+3. 출력 예시 화면:
+- 초기 화면: 노란색 박스(bg-warning)가 중앙에 위치한다.
+- MOVE LEFT 클릭 시 박스가 왼쪽으로 이동한다.
+- MOVE RIGHT 클릭 시 박스가 오른쪽으로 이동한다.
+- CHANGE COLOR 클릭 시 박스의 색상이 순서대로 바뀐다. -->
+  </pre>
+  <div class="w-25 bg-warning rounded p-2 mx-auto text-white text-center target_box2">
+    <h1>MOVE & COLOR</h1>
+  </div>
+  <div class="w-25 text-center m-2">
+    <a href="#" class="btnLeft2 btn btn-outline-warning">MOVE LEFT</a>
+    <a href="#" class="btnRight2 btn btn-outline-warning">MOVE RIGHT</a>
+    <a href="#" class="btnColor btn btn-outline-danger">CHANGE COLOR</a>
+  </div>
+
+  <script>
+  window.addEventListener("load", function(){
+    let cnt = 0;
+    let k = 0;
+    let btnLeft2 = document.querySelector(".btnLeft2");
+    let btnRight2 = document.querySelector(".btnRight2");
+    let btnColor = document.querySelector(".btnColor");
+    let target_box2 = document.querySelector(".target_box2");
+
+    btnLeft2.onclick = function(e){
+      e.preventDefault();
+      target_box2.style.transform = `translateX(${--cnt*45}px)`;
+    };
+
+    btnRight2.onclick = function(e){
+      e.preventDefault();
+      target_box2.style.transform = `translateX(${++cnt*45}px)`;
+    };
+
+    btnColor.onclick = function(e){
+      e.preventDefault();
+      //ver-1
+      // let arr = ["bg-warning","bg-success","bg-danger","bg-info","bg-primary"];
+      // target_box2.classList.remove(arr[k++]);
+      // if(k >= arr.length) k = 0;
+      // target_box2.classList.add(arr[k]);
+
+      e.preventDefault();
+      let colorIndex = 0; 
+      let colors = ["bg-warning", "bg-success", "bg-danger", "bg-info", "bg-primary"];
+      let box       = document.querySelector(".target_box2");
+      let btnColor  = document.querySelector(".btnColor");
+      btnColor.addEventListener("click", function(e){
+        box.classList.remove(colors[colorIndex]);
+        // 기존 색상 제거 후 새로운 색상 적용
+        colorIndex = (colorIndex + 1) % colors.length;
+        box.classList.add(colors[colorIndex]);
+      });
+    };
+  });
+  </script>
+</div>
+<hr/>
+<div class="card-body">
+  <h4>EX4: 수동 이미지 슬라이더</h4>
+  <pre>
+1. 문제: 수동 이미지 슬라이더 만들기
+다음 조건을 만족하는 HTML + JavaScript 코드를 작성하시오.
+- 화면 중앙에 이미지 슬라이더 박스를 만든다.
+- 박스 안에는 하나의 이미지를 표시하며, 크기는 600px × 350px으로 한다.
+- 이미지는 배열에 저장된 여러 개의 URL 중 하나를 보여준다.
+- 박스 아래에 두 개의 버튼을 만든다.
+◀ PREV 버튼: 이전 이미지를 보여준다.
+NEXT ▶ 버튼: 다음 이미지를 보여준다.
+
+- 버튼 클릭 시 기본 동작(링크 이동)은 막아야 한다. (e.preventDefault() 사용)
+
+2. 동작 조건:
+- images 배열에 4개의 이미지 URL을 저장한다.
+- index 변수를 이용해 현재 이미지를 추적한다.
+- PREV 버튼 클릭 시 index를 감소시키고, NEXT 버튼 클릭 시 index를 증가시킨다.
+- 배열의 끝에 도달하면 다시 처음으로 돌아가도록 순환 처리한다.
+
+3. 출력 예시 화면:
+- 초기 화면: 첫 번째 이미지가 중앙에 표시된다.
+- PREV 버튼 클릭 시 이전 이미지가 표시된다.
+- NEXT 버튼 클릭 시 다음 이미지가 표시된다.
+- 끝까지 이동하면 다시 처음 이미지로 돌아간다.
+
+  </pre>
+  <!-- 슬라이드 영역 -->
+  <div class="slider-box mx-auto" style="width:600px; height:350px; overflow:hidden; position:relative;">
+    <img src="https://picsum.photos/600/350?random=1" class="slider-img w-100 h-100" alt="slide">
+    <img src="https://picsum.photos/600/350?random=2" class="slider-img w-100 h-100" alt="slide">
+    <img src="https://picsum.photos/600/350?random=3" class="slider-img w-100 h-100" alt="slide">
+    <img src="https://picsum.photos/600/350?random=4" class="slider-img w-100 h-100" alt="slide">
+  </div>
+
+  <!-- 버튼 -->
+  <div class="m-3">
+    <a href="#" class="btnPrev btn btn-outline-primary">◀ PREV</a>
+    <a href="#" class="btnNext btn btn-outline-primary">NEXT ▶</a>
+  </div>
+</div>
+
+<script> 
+  window.addEventListener("load", function(){
+    let idx = 0;
+    let btnPrev = document.querySelector(".btnPrev");
+    let btnNext = document.querySelector(".btnNext");
+    let imgs = document.querySelectorAll(".slider-img"); // images 배열
+    
+    showImgs();
+
+    btnPrev.onclick = function(e){
+      e.preventDefault();
+      idx = (idx - 1 + imgs.length) % imgs.length;
+      showImgs();
+    }
+
+    btnNext.onclick = function(e){
+      e.preventDefault();
+      idx = (idx + 1) % imgs.length;
+      showImgs();
+    }
+
+    function showImgs(){
+      for(let i = 0; i < imgs.length; i++){
+        if( idx != i ) imgs[i].style.display = "none";
+        else imgs[i].style.display = "";
+      }
+    }
+  });
+</script>
+
+</div>
+</body>
+</html>
