@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title>DBDBIG</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<!--                                    -->
+<!--                                    -->
+<!--                                    -->
+<!--                                    -->
+<!--                                    -->
+<div class="p-3 bg-primary text-white ">
+  <h1>008. 유용한 기능  </h1>
+  <ol>
+    <li>빈칸검사</li>
+    <li>css 적용</li>
+    <li>속성 적용</li>
+  </ol>
+</div><!-- end navi  -->
+
+<div class="container card  my-3">
+  <h3  class="card-header">008. 유용한 기능 - STEP1. 빈칸검사</h3>
+  <div class="card-body">
+    <h4>STEP1. 빈칸검사 </h4>
+    <pre>
+    1. #blank 버튼 클릭 시 #blank_target 입력값이 비어있다면 '빈칸입니다. 확인해주세요' 알림창을 띄운다.
+    2. 빈칸일 경우 focus를 input으로 이동시킨다.
+    </pre>    
+    <div class="row">
+      <div class="col"><input type="text"    id="blank_target"  class="form-control"  placeholder="input에서는 value" /></div>
+      <div class="col"><input type="button"  value="BLANK 검사"  title="blank_target"  id="blank"  class="btn btn-outline-primary" /></div>
+    </div>
+     <script>
+      window.addEventListener("load", function(){
+        let blank = document.getElementById("blank");
+        blank.onclick = function() {
+          let blank_target = document.getElementById("blank_target");
+          if(blank_target.value == "") {
+            alert("빈칸입니다. 확인해주세요");
+            blank_target.focus();
+          }
+        };
+      });
+     </script>
+    </div><!-- end card-body  -->
+  <!--     -->
+  <!--     -->
+  <hr/>
+  <div class="card-body">
+    <h4>EX- 빈칸유효성검사</h4>
+    <pre>
+      Q1. #plus_form 안에 있는 input type="text"들의 배경색을 하얀색으로 변경
+      Q2. #divide 버튼을 클릭하면 빈칸검사
+      Q3. 빈칸이 아니라면 소수점 둘째자리 나누기 결과를 출력함.
+    </pre>
+    <form  action=""  method="post"  id="plus_form">
+        <fieldset>
+        <legend>JAVASCRIPT DIVIDE </legend>
+        <div><input type="button" value="나누기 결과" id="divide" title="나누기 프로그램입니다."  class="btn btn-success"/>	</div>
+        <div  class="my-3">
+            <label  for="one">숫자입력:</label>
+            <input type="text" id="one" name="one"  class="form-control"/>
+        </div>
+        <div class="my-3">
+            <label  for="two">숫자입력:</label>
+            <input type="text" id="two" name="two" class="form-control"/>
+        </div>
+        <div class="my-3">
+            <label  for="result">나누기 결과 : </label>
+            <input type="text" id="result" name="result" readonly class="form-control"/>
+        </div>
+        </fieldset>
+    </form>
+    <script>
+      window.addEventListener("load", function(){
+        let plus_form = document.getElementById("plus_form");
+        let list = plus_form.querySelectorAll("input[type='text']");
+        // Q1. #plus_form 안에 있는 input type="text"들의 배경색을 하얀색으로 변경
+        for(let n of list) n.style.backgroundColor = "#e8e8e8";
+        // Q2. #divide 버튼을 클릭하면 빈칸검사
+        document.getElementById("divide").onclick = function() {
+          let one = document.getElementById("one").value;
+          let two = document.getElementById("two").value;
+
+          if(one == "") alert("첫번째 숫자가 빈칸입니다.");
+          else if(two == "") alert("두번째 숫자가 빈칸입니다.");
+          else {
+            // Q3. 빈칸이 아니라면 소수점 둘째자리 나누기 결과를 출력함.
+            document.getElementById("result").value = (one/two).toFixed(2);
+          }
+        };
+
+      });
+    </script>
+  </div><!-- end card-body  -->
+</div><!-- end container  -->
+<br/>
+<br/>
+<br/>
+<br/>
+<hr/>
+<!--                          -->
+<!--                          -->
+<div class="container card  my-3">
+  <h3  class="card-header">008. 유용한 기능 - STEP2. css 적용</h3>
+  <div class="card-body">
+    <h4>STEP2. css 적용 </h4>
+    <pre>
+    1. #fn_css 버튼 클릭 시 btn-success 클래스가 있다면 제거한다.
+    2. #fn_css 버튼 클릭 시 btn-success 클래스가 없다면 추가한다.
+    3. 또는 classList.toggle()을 활용하여 btn-success 클래스를 토글한다.
+    </pre>    
+    <input type="button" value="네비게이터"  id="fn_css"  title="버튼을 클릭하세요" class="btn btn-outline-primary"      />
+     <script>
+      window.addEventListener("load", function(){
+        document.getElementById("fn_css").onclick = function() {
+          // 1.#fn_css 버튼 클릭 시 btn-success 클래스가 없다면 추가한다.
+          // if(!this.classList.contains("btn-success")) this.classList.add("btn-success");
+          // 2.#fn_css 버튼 클릭 시 btn-success 클래스가 있다면 제거한다.
+          // else this.classList.remove("btn-success");
+          
+          // 3.classList.toggle()을 활용하여 btn-success 클래스를 토글한다.
+          this.classList.toggle("btn-success");
+        }
+      });
+     </script>
+    </div><!-- end card-body  -->
+  <!--     -->
+  <!--     -->
+  <hr/>
+  <div class="card-body">
+    <h4>EX</h4>
+    <pre>
+    1.  #fn_css_test 버튼에  클릭 시  btn-outline-success 가 있다면 btn-outline-danger로
+    2.  #fn_css_test 버튼에  클릭 시  btn-outline-danger  가 있다면 btn-outline-success로
+    </pre>
+    <input type="button" value="SUCCESS-DANGER TOGGLE"  id="fn_css_test"  title="버튼을 클릭하세요" class="btn btn-outline-success"      />
+    <script>
+      window.addEventListener("load", function(){
+        document.getElementById("fn_css_test").onclick = function() {
+          if(this.classList.contains("btn-outline-success")) {
+            // 1.  #fn_css_test 버튼에  클릭 시  btn-outline-success 가 있다면 btn-outline-danger로
+            this.classList.remove("btn-outline-success");
+            this.classList.add("btn-outline-danger");
+          } else if (this.classList.contains("btn-outline-danger")){
+            // 2.  #fn_css_test 버튼에  클릭 시  btn-outline-danger  가 있다면 btn-outline-success로
+            this.classList.remove("btn-outline-danger");
+            this.classList.add("btn-outline-success");
+          }
+        }
+      });
+    </script>
+  </div><!-- end card-body  -->
+</div><!-- end container  -->
+
+<br/>
+<br/>
+<br/>
+<br/>
+<hr/>
+<!--                          -->
+<!--                          -->
+<div class="container card  my-3">
+  <h3  class="card-header">008. 유용한 기능 - STEP3. 속성 적용</h3>
+  <div class="card-body">
+    <h4>STEP3. 속성 적용 </h4>
+    <pre>
+    1.  #attr_basic 이미지를 클릭 시 현재 src 속성을 알림창으로 출력한다.
+    2.  클릭 후 src 속성을 img/b02.jpg 로 변경한다.  (https://picsum.photos/200/200?random=2)
+    </pre>    
+    <p><img src="https://picsum.photos/200/200?random=1"  alt="attribute 테스트1"   id="attr_basic"  style="width:200px"/></p>
+    <script>
+      window.addEventListener("load", function(){
+        document.getElementById("attr_basic").onclick = function() {
+          // 1.  #attr_basic 이미지를 클릭 시 현재 src 속성을 알림창으로 출력한다
+          alert(this.alt);
+          // 2.  클릭 후 src 속성을 img/b02.jpg 로 변경한다.  (https://picsum.photos/200/200?random=2)
+          this.src = "https://picsum.photos/200/200?random=2";
+        }
+      });
+    </script>
+  </div><!-- end card-body  -->
+  <!--     -->
+  <!--     -->
+  <hr/>
+  <div class="card-body">
+    <h4>EX</h4>
+    <pre>..오잉?
+    1.  #fn_css_test 버튼에  클릭 시  btn-outline-success 가 있다면 btn-outline-danger로
+    2.  #fn_css_test 버튼에  클릭 시  btn-outline-danger  가 있다면 btn-outline-success로
+    </pre>
+    <a href="https://www.daum.net"    title="네이버포털사이트로 바로가기"  target="_blank" class="btn btn-success  gonaver">네이버</a>
+    <script>
+      window.addEventListener("load", function(){
+        document.querySelector(".gonaver").onclick = function(e) {
+          alert(this.title);
+          // title과 a태그 는 네이버 포털 이동인데 주소가 다음?
+          this.href = "https://www.naver.com";
+        }
+      });
+    </script>
+  </div><!-- end card-body  -->
+</div><!-- end container  -->
+
+
+
+</body>
+</html>

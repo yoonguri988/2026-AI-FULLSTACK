@@ -77,17 +77,19 @@
     </div>
 </section>
 <!-- INFO: 내 소개 -->
-<section>
-    <div class="container py-5" id="about">
+<section class="my-5">
+    <div class="container p-5 rounded" id="about">
         <h3 class="myhidden">ABOUT ME</h3>
         <div class="row">
             <div class="col-sm-3">
-                <p class="picture py-3"><img class="w-100" src="./img/its_me.jpg" alt="내 프로필 사진"/></p>
+                <p class="py-3" id="picture"><img class="w-100" src="./img/its_me.jpg" alt="내 프로필 사진"/></p>
             </div>
             <div class="col-sm-9">
-                <h4>It's-A Me, Developer 최윤정</h4>
-                <h4>#효율중시 #협업 #데이터 시각화 #UI/UX 개선 #컴포넌트 설계</h4>
-                <h4>설명</h4>
+                <h4>It's-A Me, Developer 최윤정</h4> <!-- 나를 한마디로 정의 -->
+                <br/>
+                <h4>#효율중시 #협업</h4> <!-- Keyword 작성: 5가지 추천-->
+                <br/>
+                <h4 class="myhidden">설명</h4>
                 <ul>
                     <li>저는 사용자가 막히는 순간을 코드로 해결하는 개발자 입니다.<br>
             기능을 만드는 것보다 그 기능을 실제로 잘 쓰이는지가 더 중요하다는 것을 배웠습니다.</li>
@@ -98,6 +100,7 @@
             백엔드의 맥락을 이해하기 때문에, 프론트엔드에서 더 합리적인 판단을 내릴 수 있습니다.</li>
                     <li>(예시3)</li>
                 </ul>
+                <br/>
                 <h4>최종 학력 및 자격증</h4>
                 <ul>
                     <li class="badge bg-secondary fs-6">정보처리기사</li>
@@ -148,7 +151,7 @@
 <!-- EXPERIENCE: 내 이력 -->
 <section class="py-5 m-3" id="skills">
     <h3 class="text-center pb-5 fs-3 fw-bold">My <span>Skills</span></h3>
-    <div class="container">
+    <div class="container text-center">
         <div class="row">
             <div class="col-sm-4">
                 <h4>FRONT-END</h4>
@@ -180,25 +183,25 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
-            <ul>
+            <ul class="exp_title">
               <li>
                 <p>AI 활용 풀스택 개발자 교육 이수</p>
-                <p>2026.03 - 2026.10</p>
+                <p class="exp_date">2026.03 - 2026.10</p>
               </li>
             </ul>
             </div>
             <div class="col-sm-8">
-                <ol>
+                <ol class="exp_content">
                         <li>
-                            <p>프로젝트 <span class="date">2020.07 - 2020.09</span></p>
+                            <p class="title">프로젝트 <span class="date">2020.07 - 2020.09</span></p>
                             <p>프론트엔드부터 백엔드까지 웹 개발 전반의 기술을 프로젝트 중심으로 체계적으로 습득</p>
                         </li>
                         <li>
-                            <p>식당 예약 플랫폼 <span class="date">2020.05 - 2020.06</span></p>
+                            <p class="title">식당 예약 플랫폼 <span class="date">2020.05 - 2020.06</span></p>
                             <p>프론트엔드부터 백엔드까지 웹 개발 전반의 기술을 프로젝트 중심으로 체계적으로 습득</p>
                         </li>
                         <li>
-                            <p>은행 시스템 프로젝트 <span class="date">2020.03 - 2020.04</span></p>
+                            <p class="title">은행 시스템 프로젝트 <span class="date">2020.03 - 2020.04</span></p>
                             <p>프론트엔드부터 백엔드까지 웹 개발 전반의 기술을 프로젝트 중심으로 체계적으로 습득</p>
                         </li>
                 </ol>
@@ -207,21 +210,21 @@
         <hr>
         <div class="row">
             <div class="col-sm-4">
-            <ul>
+            <ul class="exp_title">
               <li>
                 <p>(주) 위세아이텍</p>
-                <p class="date">2020.04 - 2022.11</p>
+                <p class="exp_date">2020.04 - 2022.11</p>
               </li>
             </ul>
             </div>
             <div class="col-sm-8">
-                <ol>
+                <ol class="exp_content">
                             <li>
-                                <p>데이터 시각화 플랫폼 <span class="date">2020.08 - 2020.11</span></p>
+                                <p class="title">데이터 시각화 플랫폼 <span class="date">2020.08 - 2020.11</span></p>
                                 <p>기업 내에서 발생하는 데이터에 대해 통계적으로 분석하고 시각화하는 플랫폼 개발</p>
                             </li>
                             <li>
-                                <p>WiseMeta, WiseDQ Solution 개발 <span class="date">2020.08 - 2020.11</span></p>
+                                <p class="title">WiseMeta, WiseDQ Solution 개발 <span class="date">2020.08 - 2020.11</span></p>
                                 <p>JavaScript, RDB, Spring 기반의 메타 데이터 기반의 메타데이터 관리, 데이터 품질 관리 Web Solution</p>
                             </li>
                 </ol>
@@ -300,13 +303,13 @@
 <section class="bg-light py-5 m-3 rounded" id="contact">
     <h3 class="text-center pb-5 fs-3 fw-bold">My <span>Contact</span></h3>
     <div class="container">
-        <div class="text-center">
+        <!-- <div class="text-center">
           <h4>EMAIL</h4>
           <p>cyjjeong98@gmail.com</p>
           <h4>GITHUB</h4>
           <p>https://github.com/yoonguri988/2026-AI-FULLSTACK</p>
-        </div>
-        <!-- <form action="/action_page.php">
+        </div> -->
+        <form action="/action_page.php">
         <div class="mb-3 mt-3">
             <label for="title" class="form-label">제목:</label>
             <input type="title" class="form-control" id="title" placeholder="제목을 적어주세요!" name="title">
@@ -315,13 +318,13 @@
             <label for="comment">Comments:</label>
             <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
         </div>
-        <button type="submit" class="btn btn-success">메일 보내기</button>
-        </form> -->
+        <button type="submit" class="btn btn-primary">메일 보내기</button>
+        </form>
     </div>
 </section>
 <!-- FOOTER: 문서의 마무리 -->
 <!-- Q1. 글자를 페이지의 정중앙 / 배경색 좋아하는 색상 -->
-<footer class="py-3 text-center bg-light">
+<footer class="py-3 text-center">
     © copyrights JJEONG 2026 all. rights reserved
 </footer>
 </body>

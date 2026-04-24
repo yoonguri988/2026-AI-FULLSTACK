@@ -29,6 +29,12 @@ public class User {
 		return 0;
 	} 
 	
+	@Override
+	public String toString() {
+		return "User [email=" + email + ", password=" + password + ", name=" + name + ", height=" + height + ", weight="
+				+ weight + ", activityLevel=" + activityLevel + ", targetCalories=" + targetCalories + "]";
+	}
+	
 	// getter, setter
 	public String getEmail() {
 		return this.email;
@@ -71,9 +77,5 @@ public class User {
 	}
 	public void setTargetCalories(double targetCalories) {
 		this.targetCalories = targetCalories;
-	}
-	public String toString() {
-		String result = String.format("[name=%s, height=%.2f, weight=%.2f, activityLevel=%d, targetCalories=%.2f]", name, height, weight, activityLevel, targetCalories);
-		return result;
 	}
 }

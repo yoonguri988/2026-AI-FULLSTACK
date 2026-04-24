@@ -12,6 +12,12 @@ public class Food {
 		return result;
 	}
 	
+	@Override
+	public String toString() {
+		return "Food [name=" + name + ", calories=" + calories + ", carbs=" + carbs + ", protein=" + protein + ", fat="
+				+ fat + "]";
+	}
+	
 	//getter, setter
 	public String getName() {
 		return this.name;
@@ -42,10 +48,5 @@ public class Food {
 	}
 	public void setFat(double fat) {
 		this.fat = fat;
-	}
-	
-	public String toString() {
-		String result = String.format("[name=%s, calories=%.2f, carbs=%.2f, protein=%.2f, fat=%.2f]", name, calories, carbs, protein, fat);
-		return result;
 	}
 }

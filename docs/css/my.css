@@ -5,9 +5,13 @@
     background-color: #ffffff;
 
     /* light */
-    --color-primary:#547792;
-    --color-primary-plum: #dda0dd;
-
+    --color-primary:#0689d8;
+    --color-primary-purple: #685bc7;
+    /* #1428a0: Navy */
+    /* #0057b8: Blue */
+    /* #0689d8: DarkSkyBlue */
+    /* #00a9e0: SkyBlue */
+    /* #75787b: Gray */
     --color-light-default: #ffffff;
     --color-light-50: #f9fafb;
     --color-light-100: #f3f4f6;
@@ -36,11 +40,6 @@ header, nav {
     color: var(--color-primary);
 }
 
-/* picture */
-.picture {
-    width: 200px;
-    filter: drop-shadow(20px 20px 0 var(--color-primary));
-}
 
 h3 span {
     color: var(--color-primary);
@@ -52,37 +51,43 @@ div#demo {
     /* line-height: 350px; text 일때만 */
 }
 
-/* div#demo img {
-    object-fit: cover;
-} */
-
-/* .mybg {
-    background-color: transparent;
-} */
-
-/* body {
-    background-image: linear-gradient(135deg, gold, pink 80%, plum);
-    background-repeat: repeat;
-} */
-
-/*  배경 body에 fixed 하고 원하는 배경 부분만 투명하게 */
-body {
-    /* background-image: url(../img/mmmm_04_bg.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom;
-    background-attachment: fixed; */
+ul {
+    list-style: none;
+    margin: 0; padding: 0;
 }
 
-/* transform + transition */
-/* .mybg:hover {
-    transform: translateY(-30px);
-    transition: all 2s;
-} */
-
-h3 {
-    transition: all 0.3s;
+/* about 내 소개 */
+#about {
+    background-color: var(--color-light-50);
 }
-/* h3:hover {
-    transform: translateY(-10px);
-} */
+
+/* picture */
+#picture {
+    filter: drop-shadow(10px 10px 0 var(--color-primary));
+}
+
+/* EXPERIENCE: 내 이력 */
+.exp_title {
+    font-weight: 900;
+    color: var(--color-light-700);
+}
+.exp_title .exp_date {
+    font-weight: 500;
+    color: var(--color-light-400);
+}
+
+.exp_content .title {
+    font-weight: 900;
+    color: var(--color-light-700);
+}
+
+.exp_content .date {
+    font-weight: 500;
+    color: var(--color-light-400);
+}
+
+
+/* footer */
+footer {
+    background-color: var(--color-light-100);
+}
