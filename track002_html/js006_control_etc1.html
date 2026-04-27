@@ -401,14 +401,34 @@
            title="어린이의 나이를 0~5세사이만 입력하세요."
     />
     <script>
+      //version-1
+      /* window.addEventListener("load", function(){
+         let ageBtn = document.getElementById("age");
+         ageBtn.onclick = function(){
+           let age = -1;
+           while(age < 0 || age > 5){
+             age = prompt("어린이의 나이를 0~5세사이만 입력하세요");
+           }
+           alert(`어린이의 나이는 ${age}세 입니다.`);
+         }
+       });
+      */
+
+      //version-2
       window.addEventListener("load", function(){
         let ageBtn = document.getElementById("age");
         ageBtn.onclick = function(){
-          let age = -1;
-          while(age < 0 || age > 5){
-            age = prompt("어린이의 나이를 0~5세사이만 입력하세요");
+          ageFn();
+        }
+
+        function ageFn(){
+          let answer = -1;
+          let result = "0~5세 사이가 아닙니다."
+          while( !(answer >= 0 && answer <= 5)) { // 0~5세 사이가 아니라면
+            answer = prompt("어린이의 나이는 0~5사이만 입력가능");
+            if(answer >= 0 && answer <= 5) {result = "어린이의 나이는 "+ answer; }
+            alert(result);
           }
-          alert(`어린이의 나이는 ${age}세 입니다.`);
         }
       });
     </script>
@@ -428,7 +448,7 @@
       +,-,*,/를 입력받지 못하면 무한반복으로 다시 입력받게 하시오.
     4. 각 연산에 맞게 계산기를 구현하시오. (+,-,*,/)
     </pre>
-    <form action="" method="post"  id="calc_form">
+    <form action="#" method="post"  id="calc_form">
       <fieldset>
       <legend class="myhidden"> 계산기 </legend>
           <p class="">
@@ -456,39 +476,73 @@
     </form>
     <script>
       window.addEventListener("load", function(){
-        document.getElementById("calc").onclick = function(){
-          let result = 0;
-          let val1 = -1;
-          let op = "";
-          let val2 = -1;
-          
-          //1. 빈칸검사를 하시오.
-          //2. 숫자1는 0~100 사이의 숫자를 입력받지 못하면 무한반복으로 다시 입력받게 하시오.
-          while(val1 == "" || Number.isNaN(val1)|| val1 < 0 || val1 > 100 ){
-            val1 = Number(prompt("1. 숫자1 : 0~100 사이의 숫자를 입력하세요"));
-          };
-          //3. 연산자는 +,-,*,/를 입력받지 못하면 무한반복으로 다시 입력받게 하시오.
-          while(op == "" || !( op == "+" || op == "-" || op == "*" || op == "/")){
-            op = prompt("2. 연산자: +,-,*,/를 입력해주세요");
+        //1. 대상
+        let btn = document.getElementById("calc");
+        let target = document.querySelectorAll("#calc_form input");
+        console.log(target);
+        let num1 = -1, num2 = -1, op = ' ', result = 0;
 
+        btn.addEventListener("click", function() {
+          //2. 입력 (0~100 사이 무한반복, 빈칸검사)
+          for(;;){
+            if(!(num1 >= 0 && num1 <= 100) | num1 == ""){ //0~100사이가 아니거나 빈문자열
+              num1 = prompt("1. 정수 입력 0~100");
+            } else if(!(num2 >= 0 && num2 <= 100) | num2 == ""){
+              num2 = prompt("2. 정수 입력 0~100");
+            } else if(!( op == "+" || op == "-" || op == "*" || op == "/")| op == "" ){
+              op = prompt("3. 연산자 입력 (+,-,*,/)");
+            } else{ break; }
           }
-          //4. 숫자2는 0~100 사이의 숫자를 입력받지 못하면 무한반복으로 다시 입력받게 하시오.
-          while( val2 == "" ||Number.isNaN(val2)|| val2 < 0 || val2 > 100 ){
-            val2 = Number(prompt("3. 숫자2 : 0~100 사이의 숫자를 입력하세요"));
-          };
-          //5. 각 연산에 맞게 계산기를 구현하시오. (+,-,*,/)
+          //3. 처리
           switch(op){
-            case"+": result = Number(val1)+Number(val2); break;
-            case"-": result = Number(val1)-Number(val2); break;
-            case"*": result = Number(val1)*Number(val2); break;
-            case"/": result = Number(val1)/Number(val2); break;
+              case '+' : result = Number(num1) + Number(num2); break;
+              case '-' : result = Number(num1) - Number(num2); break;
+              case '*' : result = Number(num1) * Number(num2); break;
+              case '/' : result = Number(num1) / Number(num2); break;
           }
-          //6. 결과 확인 및 결과 화면에 출력
-          document.getElementById("num1").value = val1;
-          document.getElementById("abc").value = op;
-          document.getElementById("num2").value = val2;
-          document.getElementById("result1").value = result.toFixed(2);
-        };
+          //4. 각 value 각각 셋팅
+            targets[1].value = num1;
+            targets[2].value = op;
+            targets[3].value = num2;
+            targets[4].value = op!='/'? result: result.toFixed(2); //소수점 2
+        });
+        // document.getElementById("calc").onclick = function(){
+        //   let result = 0;
+        //   let val1 = -1;
+        //   let op = "";
+        //   let val2 = -1;
+          
+        //   //1. 빈칸검사를 하시오.
+        //   //2. 숫자1는 0~100 사이의 숫자를 입력받지 못하면 무한반복으로 다시 입력받게 하시오.
+        //   while(val1 == "" || Number.isNaN(val1) || val1 < 0 || val1 > 100 ){
+        //     val1 = Number(prompt("1. 숫자1 : 0~100 사이의 숫자를 입력하세요"));
+        //     console.log(Number.isNaN(val1));
+        //     console.log(val1 == "");
+        //     console.log(val1 < 0);
+        //     console.log(val1 > 100);
+        //   };
+        //   //3. 연산자는 +,-,*,/를 입력받지 못하면 무한반복으로 다시 입력받게 하시오.
+        //   while(op == "" || !( op == "+" || op == "-" || op == "*" || op == "/")){
+        //     op = prompt("2. 연산자: +,-,*,/를 입력해주세요");
+
+        //   }
+        //   //4. 숫자2는 0~100 사이의 숫자를 입력받지 못하면 무한반복으로 다시 입력받게 하시오.
+        //   while( val2 == "" ||Number.isNaN(val2)|| val2 < 0 || val2 > 100 ){
+        //     val2 = Number(prompt("3. 숫자2 : 0~100 사이의 숫자를 입력하세요"));
+        //   };
+        //   //5. 각 연산에 맞게 계산기를 구현하시오. (+,-,*,/)
+        //   switch(op){
+        //     case"+": result = Number(val1)+Number(val2); break;
+        //     case"-": result = Number(val1)-Number(val2); break;
+        //     case"*": result = Number(val1)*Number(val2); break;
+        //     case"/": result = Number(val1)/Number(val2); break;
+        //   }
+        //   //6. 결과 확인 및 결과 화면에 출력
+        //   document.getElementById("num1").value = val1;
+        //   document.getElementById("abc").value = op;
+        //   document.getElementById("num2").value = val2;
+        //   document.getElementById("result1").value = result.toFixed(2);
+        // };
       });
     </script>
 </div> <!-- end contianer  -->
