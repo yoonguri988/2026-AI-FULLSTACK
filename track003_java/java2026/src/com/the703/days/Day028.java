@@ -1,23 +1,20 @@
 package com.the703.days;
 
 public class Day028 {
-
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
 	}
-
 }
 
 
 /*
 Q1. 빈칸 채우기
-1.  List는 순서가 [ ] 구조로 데이터를 관리하며, 중복을 []
+1.  List는 순서가 [ 기차 ] 구조로 데이터를 관리하며, 중복을 [ 허용 ]
     - 주요 메서드: add, get, size, remove, contains
-2. Set은 순서가[ ] 구조로 데이터를 관리하며,  중복을 []
-    - 주요 메서드: 
-3. Map은 [____]와 [____]의 쌍으로 데이터를 관리한다. 
-    - 주요 메서드: 
+2. Set은 순서가[ 없으며, 주머니 ] 구조로 데이터를 관리하며,  중복을 [허용X]
+    - 주요 메서드: add, getX -> 향상된 for문/iterator, size, remove, contains
+3. Map은 [ key ]와 [ value ]의 쌍으로 데이터를 관리한다. 
+    - 주요 메서드: put, get(key), size, remove, contains
  
 ---
 
