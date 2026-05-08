@@ -9,7 +9,7 @@ class TooManyIterationsException extends RuntimeException {
 }
 
 public class InputHandler {
-	private static int MAX_NUM = 1000000;
+	private static int MAX_NUM = 10;
 	private static Scanner scan = new Scanner(System.in);
 
 	public int getInt(String inputMsg) {
@@ -23,7 +23,7 @@ public class InputHandler {
 				System.out.println("숫자만 입력해주세요.");
 			}
 			if(num >= MAX_NUM) {
-				throw new TooManyIterationsException("너무 많은 시도로 인해 중단합니다.");
+				throw new TooManyIterationsException("너무 많은 잘못된 시도로 인해 중단합니다.");
 			}
 			num++;
 		}
@@ -40,7 +40,7 @@ public class InputHandler {
 				System.out.println("숫자만 입력해주세요.");
 			}
 			if(num >= MAX_NUM) {
-				throw new TooManyIterationsException("너무 많은 시도로 인해 중단합니다.");
+				throw new TooManyIterationsException("너무 많은 잘못된 시도로 인해 중단합니다.");
 			}
 			num++;
 		}
