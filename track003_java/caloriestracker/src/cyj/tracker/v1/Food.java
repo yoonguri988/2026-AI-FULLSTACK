@@ -10,7 +10,7 @@ public class Food {
 	public Food() { super(); }
 
 	public String getSummmary(){ //음식의 영양 성분을 한 줄로 요약해 반환
-		String result = String.format("%d의 영양 성분(%.2fkcal): 탄수화물(%.2fg), 단백질(%.2fg), 지방(%.2fg)", name, calories, carbs, protein, fat);
+		String result = String.format("%s의 영양 성분(%.2fkcal): 탄수화물(%.2fg), 단백질(%.2fg), 지방(%.2fg)", name, calories, carbs, protein, fat);
 		return result;
 	}
 	

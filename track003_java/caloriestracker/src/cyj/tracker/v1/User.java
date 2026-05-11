@@ -4,6 +4,7 @@ public class User {
 	private String email;
 	private String password;
 	private String name;
+	private int age;
 	private double height;
 	private double weight;
 	// 기초대사량(BMR)에 곱하여 하루 총 에너지 소비량(TDEE)을 계산하는 수치
@@ -16,10 +17,10 @@ public class User {
 		this.email = email;
 		this.password = password;
 	}
-	public User(String email, String password, String name, double height, double weight) {
-		this.email = email;
-		this.password = password;
+	public User(String email, String password, String name, int age, double height, double weight) {
+		this(email, password);
 		this.name = name;
+		this.age = age;
 		this.height = height;
 		this.weight = weight;
 	}
@@ -33,8 +34,9 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "User [email=" + email + ", password=" + password + ", name=" + name + ", height=" + height + ", weight="
-				+ weight + ", activityLevel=" + activityLevel + ", targetCalories=" + targetCalories + "]";
+		return "User [email=" + email + ", password=" + password + ", name=" + name + ", age=" + age + ", height="
+				+ height + ", weight=" + weight + ", activityLevel=" + activityLevel + ", targetCalories="
+				+ targetCalories + "]";
 	}
 	
 	// getter, setter
@@ -55,6 +57,12 @@ public class User {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
 	}
 	public double getHeight() {
 		return height;
