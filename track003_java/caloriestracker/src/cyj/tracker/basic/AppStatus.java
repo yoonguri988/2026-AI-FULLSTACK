@@ -1,4 +1,4 @@
-package cyj.tracker.v1;
+package cyj.tracker.basic;
 
 public class AppStatus {
 	private boolean running = true;

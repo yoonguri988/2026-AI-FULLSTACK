@@ -1,4 +1,4 @@
-package cyj.tracker.v1;
+package cyj.tracker.user;
 
 public class UserServiceImpl implements UserService {
 	private final UserRepository userRepo;
@@ -11,6 +11,11 @@ public class UserServiceImpl implements UserService {
 	public boolean isExists(User user) {
 		User existUser = userRepo.selectByUserId(user.getEmail());
 		return existUser != null && existUser.getPassword().equals(user.getPassword());
+	}
+	
+	@Override
+	public boolean isAdmin(User user) {
+		return user.getEmail().equals("admin")? true: false;
 	}
 	
 	@Override
@@ -32,4 +37,5 @@ public class UserServiceImpl implements UserService {
 	public User deleteUser(User user) {
 		return userRepo.deleteByUserId(user.getEmail());
 	}
+
 }

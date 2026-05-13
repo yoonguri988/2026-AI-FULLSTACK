@@ -1,6 +1,9 @@
-package cyj.tracker.v1;
+package cyj.tracker.user;
 
-public class UserSearchFunction implements Function {
+import cyj.tracker.basic.TrackerFunction;
+import cyj.tracker.basic.InputHandler;
+
+public class UserSearchFunction implements TrackerFunction {
 	private User user;
 	private final InputHandler handler = new InputHandler();
 	private final UserService service;
@@ -32,8 +35,19 @@ public class UserSearchFunction implements Function {
 			System.out.println("■ 나이: " + res.getAge());
 			System.out.println("■ 키: " + res.getHeight());
 			System.out.println("■ 몸무게: " + res.getWeight());
+			
+			String str = switch(res.getActivityLevel()) {
+				case 0 -> "거의 운동 안 함"; 
+		        case 1 -> "가벼운 운동 (주 1-3회)"; 
+		        case 2 -> "보통 (주 3-5회)"; 
+		        case 3 -> "적극적 운동 (주 6-7회)";
+		        default -> "거의 운동 안 함";
+			};
+			System.out.println("■ 활동지표: " +str+"("+res.getActivityLevel()+")");
+			System.out.println("■ 하루 권장 칼로리: "+ res.getTargetCalories()+"kcal");
+			
 			System.out.println("--------------------\n");
-		}
+		}else {System.out.println("입력하신 이메일과 비밀번호는 존재하지 않습니다.");}
 	}
 	
 }

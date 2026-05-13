@@ -1,4 +1,4 @@
-package cyj.tracker.v1;
+package cyj.tracker.user;
 
 import java.util.Objects;
 
@@ -19,19 +19,29 @@ public class User {
 		this.email = email;
 		this.password = password;
 	}
-	public User(String email, String password, String name, int age, double height, double weight) {
+	public User(String email, String password, String name, int age, double height, double weight, int activityLevel, double targetCalories) {
 		this(email, password);
 		this.name = name;
 		this.age = age;
 		this.height = height;
 		this.weight = weight;
+		this.activityLevel = activityLevel;
+		this.targetCalories = targetCalories;
 	}
 	
-	int calculateBMR() { // 기초대사량 계산 로직
-		return 0;
+	double calculateBMR() { // 기초대사량 계산 로직
+		return 10 * this.weight + 6.25 * this.height-5 * age + 5;
 	} 
-	int calculateTargetCalories() {// 활동량을 고려한 목표 칼로리 설정
-		return 0;
+	double calculateTargetCalories() {// 활동량을 고려한 목표 칼로리 설정
+		double bmr = calculateBMR();
+		double multiplier = switch(this.activityLevel) {
+			case 0 -> 1.2;    // 거의 운동 안 함
+	        case 1 -> 1.375;  // 가벼운 운동 (주 1-3회)
+	        case 2 -> 1.55;   // 보통 (주 3-5회)
+	        case 3 -> 1.725;  // 적극적 운동 (주 6-7회)
+	        default -> 1.2;
+		};
+		return bmr * multiplier;
 	} 
 	
 	@Override
