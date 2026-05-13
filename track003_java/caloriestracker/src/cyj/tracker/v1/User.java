@@ -1,5 +1,7 @@
 package cyj.tracker.v1;
 
+import java.util.Objects;
+
 public class User {
 	private String email;
 	private String password;
@@ -31,6 +33,22 @@ public class User {
 	int calculateTargetCalories() {// 활동량을 고려한 목표 칼로리 설정
 		return 0;
 	} 
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(email);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(email, other.email);
+	}
 	
 	@Override
 	public String toString() {

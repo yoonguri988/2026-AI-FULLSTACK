@@ -5,6 +5,7 @@ public class UserRegisterFunction implements Function{
 	private final InputHandler handler = new InputHandler();
 	private final UserService service;
 	
+	
 	public UserRegisterFunction(UserService service) {
 		super();
 		this.service = service;
@@ -26,9 +27,9 @@ public class UserRegisterFunction implements Function{
 		this.user = new User(email, password, name, age, height, weight);
 	}
 
-	@Override
+	@Override 
 	public void execute() {
-		service.regUser(user);
+		User res = service.registerUser(user);
 	}
 
 }
