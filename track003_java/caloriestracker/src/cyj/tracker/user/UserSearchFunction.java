@@ -36,12 +36,14 @@ public class UserSearchFunction implements TrackerFunction {
 			System.out.println("■ 키: " + res.getHeight());
 			System.out.println("■ 몸무게: " + res.getWeight());
 			
-			String str = switch(res.getActivityLevel()) {
-				case 0 -> "거의 운동 안 함"; 
-		        case 1 -> "가벼운 운동 (주 1-3회)"; 
-		        case 2 -> "보통 (주 3-5회)"; 
-		        case 3 -> "적극적 운동 (주 6-7회)";
-		        default -> "거의 운동 안 함";
+			String str = "";
+			
+			switch(res.getActivityLevel()) {
+				case 0: str = "거의 운동 안 함"; break; 
+				case 1: str = "가벼운 운동 (주 1-3회)"; break; 
+				case 2: str = "보통 (주 3-5회)"; break; 
+				case 3: str = "적극적 운동 (주 6-7회)"; break; 
+				default: str = "거의 운동 안 함"; break; 
 			};
 			System.out.println("■ 활동지표: " +str+"("+res.getActivityLevel()+")");
 			System.out.println("■ 하루 권장 칼로리: "+ res.getTargetCalories()+"kcal");

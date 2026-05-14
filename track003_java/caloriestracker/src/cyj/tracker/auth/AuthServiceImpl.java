@@ -28,11 +28,12 @@ public class AuthServiceImpl implements AuthService {
 		this.currentUser = null;
 	}
 
-	//getter,setter
+	@Override
 	public User getCurrentUser() {
 		return currentUser;
 	}
 
+	@Override
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
 	}

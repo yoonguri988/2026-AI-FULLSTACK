@@ -1,5 +1,7 @@
 package cyj.tracker.food;
 
+import java.util.Objects;
+
 public class Food {
 	private String name; // 음식이름
 	private double calories;
@@ -8,6 +10,32 @@ public class Food {
 	private double fat; // 지방
 	
 	public Food() { super(); }
+	
+	public Food(String name, double calories, double carbs, double protein, double fat) {
+		super();
+		this.name = name;
+		this.calories = calories;
+		this.carbs = carbs;
+		this.protein = protein;
+		this.fat = fat;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Food other = (Food) obj;
+		return Objects.equals(name, other.name);
+	}
 
 	public String getSummmary(){ //음식의 영양 성분을 한 줄로 요약해 반환
 		String result = String.format("%s의 영양 성분(%.2fkcal): 탄수화물(%.2fg), 단백질(%.2fg), 지방(%.2fg)", name, calories, carbs, protein, fat);

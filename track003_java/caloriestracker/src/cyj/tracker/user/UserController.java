@@ -1,21 +1,24 @@
 package cyj.tracker.user;
 
-import cyj.tracker.auth.AuthLoginFunction;
 import cyj.tracker.auth.AuthService;
 import cyj.tracker.basic.AppStatus;
 import cyj.tracker.basic.InputHandler;
 import cyj.tracker.basic.TrackerFunction;
+import cyj.tracker.food.FoodRegisterFunction;
+import cyj.tracker.food.FoodService;
 
 public class UserController {
 	private final AppStatus status;
 	private final UserService service;
 	private final AuthService authService;
+	private final FoodService foodService;
 	private final InputHandler handler;
 
-	public UserController(AppStatus status, AuthService authService, UserService service, InputHandler handler) {
+	public UserController(AppStatus status, AuthService authService, UserService service, FoodService foodService, InputHandler handler) {
 		this.status = status;
 		this.service = service;
 		this.authService = authService;
+		this.foodService = foodService;
 		this.handler = handler;
 	}
 
@@ -49,6 +52,10 @@ public class UserController {
 			TrackerFunction udFunc = new UserDeleteFunction(service);
 			udFunc.input();
 			udFunc.execute();
+		} else if (num == 5) { // 음식 기록 하기
+			TrackerFunction frFunc = new FoodRegisterFunction(foodService, authService);
+			frFunc.input();
+			frFunc.execute();
 		} else if (num == 9) {
 			authService.logout();
 			System.out.println("로그아웃 합니다.");
