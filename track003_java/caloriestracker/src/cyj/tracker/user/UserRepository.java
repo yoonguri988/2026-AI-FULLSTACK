@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserRepository {
-	private Map<String, User> store = new HashMap<>();
+	private final Map<String, User> store = new HashMap<>();
 	private final String FOLDER_PATH = "src/cyj/tracker/data/";
 	private final String FILE_PATH = "users.txt";
 	
@@ -81,6 +81,7 @@ public class UserRepository {
 	}
 
 	public User selectByUserId(String email) {
+		loadUsers();
 		User res = store.get(email);
 		return res;
 	}

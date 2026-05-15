@@ -11,8 +11,10 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import cyj.tracker.user.User;
+
 public class FoodRepository {
-	private List<Food> foodList = new ArrayList<>();
+	private List<Food> foodList;
 	private final String FOLDER_PATH = "src/cyj/tracker/data/";
 	private final String FILE_PATH = "_food.txt";
 	private String currentEmail;
@@ -30,6 +32,7 @@ public class FoodRepository {
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
 			String line;
+			foodList = new ArrayList<>();
 			while((line = br.readLine()) != null) {
 				String[] data = line.split("\n");
 				for(String obj : data) {
@@ -73,12 +76,21 @@ public class FoodRepository {
 		saveFoodData();
 	}
 	
-	public List<Food> selectAll() {
+	public List<Food> selectAll(User currentUser) {
 		return foodList;
 	}
 	
 	public void deleteFood(Food food) {
         foodList.remove(food);
         saveFoodData();
+	}
+
+	public Food selectOneByName(String name) {
+		Food newFood = new Food(name);
+		Food res = null;
+		if(foodList.contains(newFood)) {
+			res = foodList.get(foodList.indexOf(newFood));
+		}
+		return res;
 	}
 }

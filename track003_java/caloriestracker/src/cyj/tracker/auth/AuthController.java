@@ -1,45 +1,45 @@
 package cyj.tracker.auth;
 
 import cyj.tracker.basic.AppStatus;
-import cyj.tracker.basic.InputHandler;
+import cyj.tracker.basic.AppView;
+import cyj.tracker.basic.TrackerController;
 import cyj.tracker.basic.TrackerFunction;
+import cyj.tracker.basic.TrackerService;
 import cyj.tracker.user.UserRegisterFunction;
 import cyj.tracker.user.UserService;
 
-public class AuthController {
+public class AuthController implements TrackerController {
 	private final AppStatus status;
-	private final AuthService service;
+	private final AuthService authService;
 	private final UserService userService;
-	private final InputHandler handler;
+	private AuthView authView = new AuthView();
+	private AppView appView = new AppView();
 
-	public AuthController(AppStatus status, AuthService service, UserService userService, InputHandler handler) {
+	public AuthController(AppStatus status, TrackerService service) {
 		this.status = status;
-		this.service = service;
-		this.userService = userService;
-		this.handler = handler;
+		this.authService = service.getAuthService();
+		this.userService = service.getUserService();
 	}
 
+	@Override
 	public void run() {
 		int num;
-		if (!service.isLoggedIn()) {
-			System.out.println("=== 🏃‍♀️ 영양소 / 칼로리 트래커 ‍‍🏃‍♂️ ===");
-			System.out.println("[1] 회원 가입");
-			System.out.println("[2] 로그인");
-			System.out.println("[9] 종료");
-			num = handler.getInt("👉 번호를 선택하세요: ");
+		if (!authService.isLoggedIn()) {
+			authView.init();
+			num = authView.getNum();
 
 			if (num == 1) {
 				TrackerFunction urFunc = new UserRegisterFunction(userService);
 				urFunc.input();
 				urFunc.execute();
 			} else if (num == 2) {
-				TrackerFunction login = new AuthLoginFunction(service);
+				TrackerFunction login = new AuthLoginFunction(authService);
 				login.input();
 				login.execute();
-				if(service.isLoggedIn()) return;
+				if(authService.isLoggedIn()) return;
 			} else if (num == 9) {
 				status.stop();
-				System.out.println("종료합니다.");
+				appView.stop();
 			}
 		}
 	}

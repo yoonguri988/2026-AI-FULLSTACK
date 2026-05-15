@@ -6,10 +6,18 @@ import cyj.tracker.user.UserService;
 import cyj.tracker.user.UserServiceImpl;
 
 public class AuthServiceImpl implements AuthService {
-	private UserRepository userRepo = new UserRepository();
-	private UserService service = new UserServiceImpl(userRepo);
+	private UserRepository repo;
+	private UserService service;
 	private User currentUser; // 현재 로그인된 사용자 객체
 	
+	
+
+	public AuthServiceImpl(UserRepository repo) {
+		super();
+		this.repo = repo;
+		service = new UserServiceImpl(repo);
+	}
+
 	@Override
 	public boolean isLoggedIn() {
 		return this.currentUser != null;
@@ -19,7 +27,7 @@ public class AuthServiceImpl implements AuthService {
 	public void login(String email, String password) {
 		User tryUser = new User(email, password);
 		if(service.isExists(tryUser)) {
-			this.currentUser = tryUser;
+			this.currentUser = service.searchUser(tryUser);
 		}
 	}
 
