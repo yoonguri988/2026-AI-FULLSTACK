@@ -2,7 +2,8 @@
 -- DDL(  정의어   )  CREATE, ALTER, DROP 
 -- DML(   )    ________, ________, ________ , ________ 
 -- DCL(   )     ________, ________
-
+:: 조작어 INSERT, SELECT, UPDATE, DELETE
+:: 제어어 GRANT, REVOKE
 
 2. 다음과 같이 테이블준비
 -- DB명     : mbasic    
@@ -18,10 +19,19 @@
 | age   | int          | NO   |     | NULL    |                |
 +-------+--------------+------+-----+---------+----------------+
 3 rows in set (0.00 sec)
-
+:: USE mbasic;
+:: CREATE TABLE userinfo (
+    no int primary key auto-increment,
+    name varchar(100) not null,
+    age int not null
+);
 
 3. 다음을 수정  
 -- 1. 이메일 필드 추가(add)       email varchar(100)
+:: ALTER TABLE 테이블명 ADD EMAIL VARCHAR(100);
 -- 2. 이메일 필드 수정(change)   email을 email2로  자료형은 varchar(50) 으로 
+:: ALTER TABLE 테이블명 CHANGE EMAIL EAMIL2 VARCHAR(50);
 -- 3. 이메일 필드 수정(modify)   email을 email2로  자료형은 varchar(50) 으로 
+:: ALTER TABLE 테이블명 MODIFIY EMAIL2 VARCHAR(50);
 -- 4. 이메일 필드 삭제(drop)   
+:: ALTER TABBLE 테이블명 DROP EMAIL;
