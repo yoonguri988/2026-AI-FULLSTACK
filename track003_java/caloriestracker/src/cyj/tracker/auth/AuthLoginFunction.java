@@ -1,16 +1,17 @@
 package cyj.tracker.auth;
 
 import cyj.tracker.basic.TrackerFunction;
+import cyj.tracker.basic.TrackerService;
 import cyj.tracker.user.User;
 
 public class AuthLoginFunction implements TrackerFunction {
-	private final AuthService service;
+	private final AuthService authService;
 	private User user;
 	private AuthView authView = new AuthView();
 	
-	public AuthLoginFunction(AuthService service) {
+	public AuthLoginFunction(TrackerService service) {
 		super();
-		this.service = service;
+		this.authService = service.getAuthService();
 	}
 
 	@Override
@@ -23,8 +24,8 @@ public class AuthLoginFunction implements TrackerFunction {
 
 	@Override
 	public void execute() {
-		service.login(this.user.getEmail(), this.user.getPassword());
-		if(!service.isLoggedIn()) authView.wrongLogin();
+		authService.login(this.user.getEmail(), this.user.getPassword());
+		if(!authService.isLoggedIn()) authView.wrongLogin();
 	}
 
 }

@@ -19,6 +19,12 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	public boolean isExistsByAdmin(User user) {
+		User existUser = userRepo.selectByUserId(user.getEmail());
+		return existUser != null;
+	}
+	
+	@Override
 	public User registerUser(User user) {
 		return userRepo.insertUser(user);
 	}

@@ -15,6 +15,11 @@ public class User {
 	
 	
 	public User() { super(); }
+	
+	public User(String email) {
+		this.email = email;
+	}
+	
 	public User(String email, String password) {
 		this.email = email;
 		this.password = password;
@@ -32,6 +37,7 @@ public class User {
 	double calculateBMR() { // 기초대사량 계산 로직
 		return 10 * this.weight + 6.25 * this.height-5 * age + 5;
 	} 
+	
 	double calculateTargetCalories() {// 활동량을 고려한 목표 칼로리 설정
 		double bmr = calculateBMR();
 		double multiplier = 0.0; 

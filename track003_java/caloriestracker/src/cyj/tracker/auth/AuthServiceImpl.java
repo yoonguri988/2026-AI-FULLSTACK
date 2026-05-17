@@ -45,6 +45,5 @@ public class AuthServiceImpl implements AuthService {
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
 	}
-	
-	
+
 }

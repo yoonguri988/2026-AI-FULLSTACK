@@ -4,25 +4,26 @@ import java.util.List;
 
 import cyj.tracker.auth.AuthService;
 import cyj.tracker.basic.TrackerFunction;
+import cyj.tracker.basic.TrackerService;
 import cyj.tracker.food.Food;
 import cyj.tracker.food.FoodService;
 
 public class TargetAnalysisFunction implements TrackerFunction {
 	private User currentUser;
 	private List<Food> foodList;
-	private final FoodService service;
+	private final FoodService foodService;
 	private final AuthService authService;
 	
-	public TargetAnalysisFunction(FoodService service, AuthService authService) {
+	public TargetAnalysisFunction(TrackerService service) {
 		super();
-		this.service = service;
-		this.authService = authService;
+		this.foodService = service.getFoodService();
+		this.authService = service.getAuthService();
 	}
 
 	@Override
 	public void input() {
 		currentUser = authService.getCurrentUser();
-		foodList = service.searchFood(currentUser);
+		foodList = foodService.searchFood(currentUser);
 	}
 
 	@Override

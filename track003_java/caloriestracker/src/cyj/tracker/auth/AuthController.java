@@ -10,34 +10,40 @@ import cyj.tracker.user.UserService;
 
 public class AuthController implements TrackerController {
 	private final AppStatus status;
-	private final AuthService authService;
-	private final UserService userService;
+	private final TrackerService service;
+	private TrackerFunction trackFunc;
 	private AuthView authView = new AuthView();
 	private AppView appView = new AppView();
 
 	public AuthController(AppStatus status, TrackerService service) {
 		this.status = status;
-		this.authService = service.getAuthService();
-		this.userService = service.getUserService();
+		this.service = service;
 	}
 
 	@Override
 	public void run() {
 		int num;
-		if (!authService.isLoggedIn()) {
+		if (!service.getAuthService().isLoggedIn()) {
 			authView.init();
 			num = authView.getNum();
 
-			if (num == 1) {
-				TrackerFunction urFunc = new UserRegisterFunction(userService);
-				urFunc.input();
-				urFunc.execute();
-			} else if (num == 2) {
-				TrackerFunction login = new AuthLoginFunction(authService);
-				login.input();
-				login.execute();
-				if(authService.isLoggedIn()) return;
-			} else if (num == 9) {
+			if(num != 9) {
+				if (num == 1) {
+					trackFunc = new UserRegisterFunction(service);
+				} else if (num == 2) {
+					trackFunc = new AuthLoginFunction(service);
+					if(service.getAuthService().isLoggedIn()) return;
+				} else {
+					trackFunc = null;
+				}
+				
+				if(trackFunc != null) {
+					trackFunc.input();
+					trackFunc.execute();
+				} else {
+					authView.printShowNotExistFunction();
+				}
+			} else {
 				status.stop();
 				appView.stop();
 			}

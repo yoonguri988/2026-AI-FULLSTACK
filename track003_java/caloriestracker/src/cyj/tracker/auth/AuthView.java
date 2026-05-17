@@ -6,7 +6,7 @@ public class AuthView {
 	private final InputHandler handler = new InputHandler();
 	
 	public void init() {
-		System.out.println("/n=== 🏃‍♀️ 영양소 / 칼로리 트래커 ‍‍🏃‍♂️ ===");
+		System.out.println("\n=== 🏃‍♀️ 영양소 / 칼로리 트래커 ‍‍🏃‍♂️ ===");
 		System.out.println("[1] 회원 가입");
 		System.out.println("[2] 로그인");
 		System.out.println("[9] 종료");
@@ -22,5 +22,9 @@ public class AuthView {
 	}
 	public void wrongLogin() {
 		System.out.println("❌ 이메일 또는 비밀번호가 틀립니다.");
+	}
+	
+	public void printShowNotExistFunction() {
+		System.out.println("해당 번호의 기능은 존재하지 않습니다.");
 	}
 }
