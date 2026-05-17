@@ -67,8 +67,10 @@ public class UserController implements TrackerController {
 	}
 	
 	private void useFunctionByUser(int num) {
-		if (num == 1) {// 회원 정보 등록
-			trackFunc = new UserRegisterFunction(service);
+		if (num == 2) {// 회원 정보 조회
+			trackFunc = new UserSearchFunction(service);
+		} else if (num == 3) { // 회원 정보 수정
+			trackFunc = new UserUpdateFunction(service);
 		} else if (num == 5) { // 음식 기록 하기
 			trackFunc = new FoodRegisterFunction(service);
 		} else if (num == 6) { // 음식 목록 조회하기

@@ -20,7 +20,8 @@ public class UserView {
 	}
 	public void init() {
 		System.out.println("\n=== 🏃‍♀️ 나의 기록 ‍‍🏃‍♂️ ===");
-		System.out.println("[1] 😉 회원 정보 조회");
+		System.out.println("[2] 😉 회원 정보 조회");
+		System.out.println("[3] ❓ 회원 정보 수정");
 		System.out.println("[5] 🍔 음식 기록하기");
 		System.out.println("[6] 🍕 음식 목록 조회하기");
 		System.out.println("[7] ❌ 음식 삭제");

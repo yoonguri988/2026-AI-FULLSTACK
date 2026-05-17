@@ -25,6 +25,7 @@ public class FoodServiceImpl implements FoodService {
 
 	@Override
 	public boolean isExists(Food food, User user) {
+		foodRepo.loadFoodData(user.getEmail());
 		Food existFood = foodRepo.selectOneByName(food.getName());
 		return existFood != null;
 	}
