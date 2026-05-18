@@ -25,7 +25,7 @@
 
 | 항목 | 내용 |
 |------|------|
-| Language | Java 17 |
+| Language | Java 11 |
 | IDE | Eclipse |
 | 빌드 방식 | Eclipse 내장 컴파일러 |
 | 데이터 저장 | In-Memory (HashMap) |

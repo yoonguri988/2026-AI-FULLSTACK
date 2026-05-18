@@ -47,7 +47,8 @@
 -- DDL(             )   
 -- DML(             )   
 -- DCL(  제어어   )  GRANT , REVOKE
-
+:: 정의어, CREATE-ALTER-DROP
+:: 조작어, INSERT-SELECT-UPDATE-DELETE
 
 -- STEP2) 
 -- Q1. userinfo 테이블을 복사해서 userinfo_ex 테이블을 만드시오.
@@ -61,6 +62,9 @@
 -- | age   | int          | NO   |     | NULL    |                |
 -- +-------+--------------+------+-----+---------+----------------+
 -- 3 rows in set (0.00 sec)
+
+-->
+create table userinfo_ex select * from user_info;
 
 -- mysql> select * from userinfo_ex;
 -- +----+--------+-----+
@@ -86,6 +90,8 @@
 -- |  5 | fifth    |  50 |
 -- |  6 | six   |  66 |
 -- +----+--------+-----+
+
+-->
 
 
 -- Q3. userinfo_re1 에 데이터 수정
