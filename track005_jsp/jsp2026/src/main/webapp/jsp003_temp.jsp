@@ -13,8 +13,7 @@
 </head>
 <body>
 	<div class="container card my-5">
-		<h3 class="card-header">템플릿설정</h3>
-		<p>window - preferences - 검색: jsp - jsp Files - Templates - add ■ New jsp</p>
+		<h3 class="card-header"></h3>
 	</div>
 </body>
 </html>
