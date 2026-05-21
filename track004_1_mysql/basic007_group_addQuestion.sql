@@ -79,11 +79,15 @@ group by ban;
 -- |     30 | MANAGER   | 2850.0000 |
 -- +--------+-----------+-----------+
 
-select * from
-
-(select deptno, job, max(sal) from emp
+select deptno, job, sal_max
+from (
+select deptno, job, max(sal) as sal_max ,
+       RANK() OVER (PARTITION BY deptno ORDER BY MAX(sal) DESC) as rnk
+from emp
 group by deptno, job
 ) t
+WHERE rnk = 1
+order by 1
 ;
 
 select deptno, job, avg(sal) from emp m

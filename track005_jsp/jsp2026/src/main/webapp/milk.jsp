@@ -282,7 +282,7 @@
 				<form action="jsp012_delete.jsp" method="post" onsubmit="return checkDel()">
 					<div class="my-3">
 						<label for="ono2">삭제할 우유번호</label>
-						<input type="text" name="ono" id="ono2" class="form-control"/>
+						<input type="number" name="ono" id="ono2" class="form-control"/>
 					</div>
 					<div class="my-3">
 						<button class="btn btn-warning text-white my-3">삭제하기</button>
