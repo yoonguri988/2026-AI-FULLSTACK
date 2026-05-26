@@ -2,6 +2,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="./inc/header.jsp" %>
+	<!-- 검색창 -->
+	<div class="container card mt-3">
+		<form id="searchForm" action="" method="get" onsubmit="return false;">
+		  <div class="my-3">
+		    <label for="search" class="form-label">검색창</label>
+			  <div class="input-group">
+			    <input type="text" class="form-control" id="search" name="search" onkeyup="searchKeyup()">
+			  	<button type="submit" class="btn btn-primary" id="searchBtn">검색</button>
+			  </div>
+		  </div>
+		</form>
+	</div>
 	<!--content-->
 	<section class="container my-5">
 		<h3>MultiBoard</h3>
@@ -28,7 +40,7 @@
 				
 				try{
 					conn = DriverManager.getConnection(url, "root", "1234");
-					String sql = "SELECT (SELECT COUNT(*) `CNT` FROM MVCBOARD1) `CNT`,"
+					String sql = "SELECT ROW_NUMBER() OVER (ORDER BY BNO ASC) AS ROWNUM,"
 					            +" BNO, BNAME, BTITLE, BCONTENT, BDATE, BHIT"
 					            +" FROM MVCBOARD1 ORDER BY BDATE DESC";
 					pstmt1 = conn.prepareStatement(sql);
@@ -39,10 +51,13 @@
 					int cnt = 0;
 					if(rs2.next()){ cnt = rs2.getInt("CNT"); } */
 					
+		            /* pstmt = conn.prepareStatement(sql , 
+		                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
+		                    ResultSet.CONCUR_READ_ONLY); */
+					
 					StringBuffer sb = new StringBuffer();
-					int cnt = 0;
 					while(rs1.next()){
-						if(cnt == 0) cnt = rs1.getInt("CNT");
+						int rownum = rs1.getInt("ROWNUM");
 						int bno = rs1.getInt("BNO");
 						String btitle = rs1.getString("BTITLE");
 						String bname = rs1.getString("BNAME");
@@ -51,7 +66,7 @@
 						
 
 						sb.append("<tr>");
-						sb.append(String.format("<td>%d</td>",cnt--));
+						sb.append(String.format("<td>%d</td>",rownum));
 						sb.append(String.format("<td><a href='detail.jsp?bno=%d'>%s</a></td>",bno,btitle));
 						sb.append(String.format("<td>%s</td>",bname));
 						sb.append(String.format("<td>%s</td>",bdate));
@@ -97,4 +112,29 @@
 			<a href="./write.jsp" title="글쓰기 폼" class="btn btn-primary">글쓰기</a>
 		</div>
 	</section>
+	
+	<script>
+	function searchKeyup() {
+		const searchInput = document.getElementById("search").value;
+		fetch("./board_select.jsp?search="+searchInput)
+		  .then((res)=>{
+			  if(!res.ok) throw Error("에러 코드: "+res.status);
+			  return res.json();
+		  })
+		  .then((data)=> {
+			  let htmlData = "";
+			  console.log(data);
+			  for(let v of data){
+				  htmlData += `<tr>
+				  			   <td>\${v.rownum}</td>
+				  			   <td><a href=\'detail.jsp?bno=\${v.bno}\'>\${v.btitle}</a></td>
+				  			   <td>\${v.bname}</td>
+				  			   <td>\${v.bdate}</td>
+				  			   <td>\${v.bhit}</td>
+				  			   </tr>`;
+			  }
+			  	document.getElementById("ResultBody").innerHTML = htmlData;
+		  });
+	}
+	</script>
 <%@include file="./inc/footer.jsp" %>

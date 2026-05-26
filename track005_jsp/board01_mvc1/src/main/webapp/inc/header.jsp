@@ -31,12 +31,26 @@
 				</button>
 				<div class="collapse navbar-collapse" id="mynavbar">
 					<ul class="navbar-nav ms-auto">
-						<li class="nav-item"><a class="nav-link"
-							href="javascript:void(0)">Link</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="javascript:void(0)">Link</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="javascript:void(0)">Link</a></li>
+						<li class="nav-item">
+							<%
+							String login = (String) session.getAttribute("email");
+							if(login != null){
+								out.println("<a class='nav-link' href='./logout.jsp'>LOGOUT</a>");								
+							} else {
+								out.println("<a class='nav-link' href='./login.jsp'>LOGIN</a>");								
+							}
+							
+							%>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="./join.jsp">JOIN</a></li>
+						<li class="nav-item">
+						<%
+							String loginNickName = (String) session.getAttribute("nickname");
+							if(loginNickName != null){
+								out.println("<a class='nav-link' href='./mypage.jsp'>"+loginNickName+"</a>");								
+							}
+						%>
+						</li>
 					</ul>
 				</div>
 			</div>

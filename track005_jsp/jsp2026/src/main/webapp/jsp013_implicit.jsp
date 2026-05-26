@@ -19,19 +19,19 @@
 	<div class="container card my-5">
 		<h3 class="card-header">001 내장 객체</h3>
 		<pre class="alert alert-info">
-		1.jsp 페이지가 웹 컨테이너에 의해
-		2.고정된 이름의 객체 컨테이너를 자동으로 구현
-		3.request(요청), response(응답), session(정보저장), out(출력)
+1.jsp 페이지가 웹 컨테이너에 의해
+2.고정된 이름의 객체 컨테이너를 자동으로 구현
+3.request(요청), response(응답), session(정보저장), out(출력)
 		</pre>
 
 		<h4>002. request - getParameter</h4>
 		<pre class="alert alert-warning">
-		1. 처리해주는 해결사: action ="jsp013_1.jsp"
-		2. 요청방식       : 주소표시창 노출
-		3. 보관용기이름    : query
-		= getParameter("name")
-		4. 출력내용:
-		검색어: 입력한값
+1. 처리해주는 해결사: action ="jsp013_1.jsp"
+2. 요청방식       : 주소표시창 노출
+3. 보관용기이름    : query
+	= getParameter("name")
+4. 출력내용:
+	검색어: 입력한값
 		</pre>
 		<form action="jsp013_1.jsp" method="get" onsubmit="return check()">
 			<div class="my-2">
@@ -52,12 +52,12 @@
 		</script>
 		<br /> <br />
 		<pre class="alert alert-danger">
-        1. 처리해주는 해결사 : action="jsp013_2.jsp"
-        2. 요청방식        : 주소표시창 노출
-        3. 보관용기이름     :  username / checkbox: option1
-        = getParameter("name")
-        4. 출력내용 :  
-        검색어 : 입력한값
+1. 처리해주는 해결사 : action="jsp013_2.jsp"
+2. 요청방식        : 주소표시창 노출
+3. 보관용기이름     :  username / checkbox: option1
+	= getParameter("name")
+4. 출력내용 :  
+	검색어 : 입력한값
         </pre>
 
 		<form action="jsp013_2.jsp" method="get" onsubmit="return checkbox()">
@@ -97,11 +97,11 @@
 		<hr />
 		<h4>003. response</h4>
 		<pre class="alert alert-secondary">
-		1. http 요청에 대한 응답 저장하는 객체
-		2. jsp에서 다른 페이지로 이동
-		    (1) sendRedirect      - 브라우저 url을 변경O, request/response객체가 유지 안됨
-		    (2) requestDispatcher - 위임(요청전달)
-		                            브라우저 url을 변경X, request/response객체가 유지 됨
+1. http 요청에 대한 응답 저장하는 객체
+2. jsp에서 다른 페이지로 이동
+	(1) sendRedirect      - 브라우저 url을 변경O, request/response객체가 유지 안됨
+	(2) requestDispatcher - 위임(요청전달)
+		               브라우저 url을 변경X, request/response객체가 유지 됨
 		</pre>
 		<%
 		//ver-1 알림창 처리X
@@ -115,12 +115,12 @@
 		//response.sendRedirect("jsp13_3.jsp");
 		%>
 		<pre class="alert alert-light">
-		jsp013_implicit.jsp (1) 
-		: 나이 입력 받는 폼
-			→  jsp013_4.jsp  처리 (2)
-			19세 미만이라면 -   jsp013_child.jsp
-	        19세 이상이라면 -  보여주는 주소표시창줄은   jsp013_4.jsp  
-	        	보이는화면은   jsp013_adult.jsp 
+jsp013_implicit.jsp (1) 
+: 나이 입력 받는 폼
+	→  jsp013_4.jsp  처리 (2)
+	19세 미만이라면 -  jsp013_child.jsp
+	19세 이상이라면 -  보여주는 주소표시창줄은   jsp013_4.jsp  
+	        	    보이는화면은   jsp013_adult.jsp 
 		</pre> 		
 		<form action="jsp013_4.jsp" method="get" onsubmit="return IsAudlt()">
 			<div class="my-2">
@@ -138,10 +138,47 @@
 	      }
 		</script>
 		<hr />
-		<h4>004. scope</h4>
-		
+		<h4>004. scope (내장 객체 유효범위)</h4>
+		<pre class="alert alert-success">
+1. application(웹애플리케이션이 실행되고 있는 동안, 서버가 꺼질때까지 유지) 
+	> session (특정 브라우저와 연결된 세션, 브라우저 종료시 소멸)
+		> request(form, a요청) 
+			> page (해당 jsp 페이지에서만)
+2. 객체.setAttribute("속성","값")   /   객체.getAttribute("속성")
+		</pre>
+		<%
+			application.setAttribute("name", "D.application-웹애플리케이션 실행");
+			    session.setAttribute("name", "C.    session-브라우저 종료/로그인 후 아이디 유지");
+			    request.setAttribute("name", "B.    request-a.jsp → b.jsp 요청할 때");
+			pageContext.setAttribute("name", "A.    현재 페이지에서만 유지");
+		%>
+		<table class="table table-striped">
+			<caption>SCOPE- 내장객체 유효범위</caption>
+			<tbody>
+			   <tr><th scope="row">page</th>        <td><%=pageContext.getAttribute("name") %></td></tr>
+			   <tr><th scope="row">request</th>     <td><%=request.getAttribute("name") %></td></tr>
+			   <tr><th scope="row">session</th>     <td><%=session.getAttribute("name") %></td></tr>
+			   <tr><th scope="row">application</th> <td><%=application.getAttribute("name") %></td></tr>         
+			</tbody>
+		</table>
+		<p><a href="jsp013_5.jsp" class="btn btn-danger">SCOPE2</a></p>
 		<hr />
 		<h4>005. error</h4>
+		<pre class="alert alert-success">
+error
+1.4XX: 클라이언트 오류
+  404 (페이지 없음) / 400 (Bad Quest)
+2.5XX: 서버 오류		
+  500 (내부서버오류) / 502 (서버과부하)
+  
+* 해결방안
+1. error 페이지 만들기
+2. [src]-[main]-[webapp]-[WEB-INF]-web.xml 에러처리 설정  
+		</pre>
+		<h4 class="card-header">1. ERROR 404 </h4>
+      	<p><a href="no.jsp" class="btn btn-danger">NO PAGE</a></p>
+	    <h4 class="card-header">2. ERROR 500 </h4>
+       <%--  <%   int i=40/0;  %> --%>
 	</div>
 </body>
 </html>
