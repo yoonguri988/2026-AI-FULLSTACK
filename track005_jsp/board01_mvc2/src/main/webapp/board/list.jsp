@@ -1,0 +1,75 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.sql.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@include file="../inc/header.jsp" %>
+	<!-- 검색창 -->
+	<div class="container card mt-3">
+		<form id="searchForm" action="" method="get" onsubmit="return false;">
+		  <div class="my-3">
+		    <label for="search" class="form-label">검색창</label>
+			  <div class="input-group">
+			    <input type="text" class="form-control" id="search" name="search" onkeyup="searchKeyup()">
+			  	<button type="submit" class="btn btn-primary" id="searchBtn">검색</button>
+			  </div>
+		  </div>
+		</form>
+	</div>
+	<!--content-->
+	<section class="container my-5">
+		<h3>MultiBoard</h3>
+		<table class="table table-striped table-bordered table-hover">
+			<caption>BOARD 목록</caption>
+			<!-- 표 제목 -->
+			<thead>
+				<tr>
+					<th scope="col">NO</th>
+					<!-- 세로 방향으로 읽어랑 -->
+					<th scope="col">TITLE</th>
+					<th scope="col">WRITER</th>
+					<th scope="col">DATE</th>
+					<th scope="col">HIT</th>
+				</tr>
+			</thead>
+			<tbody id="ResultBody">
+			<c:forEach var="board" items="${boardList}">
+				<tr>
+					<td>${board.rownum}</td>
+					<td><a href="BDetail?bno=${board.bno}" title="${board.btitle}">${board.btitle}</a></td>
+					<td>${board.bname}</td>
+					<td>${board.bdate}</td>
+					<td>${board.bhit}</td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+		<!-- 글쓰기 버튼 -->
+		<div class="text-end">
+			<a href="BWrite" title="글쓰기 폼" class="btn btn-primary">글쓰기</a>
+		</div>
+	</section>
+	
+	<script>
+	function searchKeyup() {
+		const searchInput = document.getElementById("search").value;
+		fetch("./BSelect?search="+searchInput)
+		  .then((res)=>{
+			  if(!res.ok) throw Error("에러 코드: "+res.status);
+			  return res.json();
+		  })
+		  .then((data)=> {
+			  let htmlData = "";
+			  for(let v of data){
+				  htmlData += `<tr>
+				  			   <td>\${v.rownum}</td>
+				  			   <td><a href=\'BDetail?bno=\${v.bno}\'>\${v.btitle}</a></td>
+				  			   <td>\${v.bname}</td>
+				  			   <td>\${v.bdate}</td>
+				  			   <td>\${v.bhit}</td>
+				  			   </tr>`;
+			  }
+			  	document.getElementById("ResultBody").innerHTML = htmlData;
+		  });
+	}
+	</script>
+<%@include file="../inc/footer.jsp" %>

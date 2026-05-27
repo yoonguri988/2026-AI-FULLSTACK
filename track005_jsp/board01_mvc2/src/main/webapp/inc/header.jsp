@@ -10,7 +10,7 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<link href="../css/board.css" rel="stylesheet">
+<link href="./css/board.css" rel="stylesheet">
 
 </head>
 <body>
@@ -24,7 +24,7 @@
 		<nav class="navbar navbar-expand-sm navbar-light bg-secondary">
 			<h2 class="myhidden">주메뉴</h2>
 			<div class="container-fluid">
-				<a class="navbar-brand" href="../index.jsp">Logo</a>
+				<a class="navbar-brand" href="index.jsp">Logo</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#mynavbar">
 					<span class="navbar-toggler-icon"></span>
