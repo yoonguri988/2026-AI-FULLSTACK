@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-
 /**
  * Servlet implementation class UMypage
  */
@@ -63,7 +61,6 @@ public class UMypage extends HttpServlet {
 			pstmt.setString(1, email);
 			
 			ResultSet rs = pstmt.executeQuery();
-			Gson gson = new Gson();
 			
 			while(rs.next()){
 				userInfo.put("nicknameKr", "닉네임");

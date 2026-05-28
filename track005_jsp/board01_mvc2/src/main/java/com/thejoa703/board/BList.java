@@ -1,11 +1,6 @@
 package com.thejoa703.board;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -24,16 +19,14 @@ public class BList extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BList() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+    public BList() { super(); }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
 		BoardDAO dao = new BoardDAO();
 		List<BoardDTO> boardList = dao.getBoards("");

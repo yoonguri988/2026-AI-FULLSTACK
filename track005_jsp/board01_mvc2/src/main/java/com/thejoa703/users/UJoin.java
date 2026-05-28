@@ -3,9 +3,6 @@ package com.thejoa703.users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

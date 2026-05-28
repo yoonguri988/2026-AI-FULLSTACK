@@ -42,41 +42,18 @@ public class UChkNickname extends HttpServlet {
 
 		String nickname = request.getParameter("nickname");
 
-		String url = "jdbc:mysql://localhost:3306/mbasic";
-		String user = "root";
-		String pass = "1234";
-		String sql = "SELECT * FROM USERS WHERE NICKNAME=?";
+		UserDAO dao = new UserDAO();
+		boolean isExists = dao.isExistsUserByNickname(nickname);
 
-		try{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			
-			Connection conn = DriverManager.getConnection(url, user, pass);
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, nickname);
-			
-			ResultSet rs = pstmt.executeQuery();
-			
-			boolean isDistinct = false;
-			while(rs.next()){
-				isDistinct = true;
-			}
-			
-			Gson gson = new Gson();
-			List<CheckMsgDTO> list = new ArrayList<>();
-			
-			if(isDistinct){
-				list.add(new CheckMsgDTO(false, "중복된 닉네임이 존재합니다.\n입력한 닉네임을 변경해주세요"));
-			} else {
-				list.add(new CheckMsgDTO(true, "사용가능한 닉네임입니다."));
-			}
-			out.println(gson.toJson(list));
-			
-			if(rs != null) rs.close();
-			if(pstmt != null) pstmt.close();
-			if(conn != null) conn.close();
-		} catch(Exception e){
-			e.printStackTrace();
+		Gson gson = new Gson();
+		List<CheckMsgDTO> list = new ArrayList<>();
+
+		if (isExists) {
+			list.add(new CheckMsgDTO(false, "중복된 닉네임이 존재합니다.\n입력한 닉네임을 변경해주세요"));
+		} else {
+			list.add(new CheckMsgDTO(true, "사용가능한 닉네임입니다."));
 		}
+		out.println(gson.toJson(list));
 	}
 
 	/**

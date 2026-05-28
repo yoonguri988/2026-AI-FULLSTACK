@@ -43,40 +43,19 @@ public class ULostEmail extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-
 		
 		String nickname = request.getParameter("nickname");
 		String moblie = request.getParameter("moblie");
-		
-		String url = "jdbc:mysql://localhost:3306/mbasic";
-		String user = "root";
-		String pass = "1234";
-		String sql = "SELECT * FROM USERS WHERE NICKNAME = ? AND MOBILE = ?";
-		
-		try{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(url, user, pass);
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, nickname);
-			pstmt.setString(2, moblie);
 			
-			ResultSet rs = pstmt.executeQuery();
-			
-			String email = null;
-			while(rs.next()){
-				email = rs.getString("email");
-			}
-			if(email != null){
-				out.println("<script> alert('이메일 조회 성공!\\n이메일: "+email+"'); location.href='ULogin';</script>");
-			} else {
-				out.println("<script> alert('해당 정보에 맞는 이메일이 존재하지 않습니다.'); location.href='UJoin';</script>");
-			}
-			if(rs != null) rs.close();
-			if(pstmt != null) pstmt.close();
-			if(conn != null) conn.close();
-		} catch(Exception e){
-			e.printStackTrace();
-		} 
-	}
+		UserDAO dao = new UserDAO();
+		UserDTO dto = dao.findUserByNickAndMoblie(new UserDTO(nickname, moblie, ""));
 
+		String email = dto.getEmail();
+
+		if (email != null) {
+			out.println("<script> alert('이메일 조회 성공!\\n이메일: " + email + "'); location.href='ULogin';</script>");
+		} else {
+			out.println("<script> alert('해당 정보에 맞는 이메일이 존재하지 않습니다.'); location.href='UJoin';</script>");
+		}
+	}
 }

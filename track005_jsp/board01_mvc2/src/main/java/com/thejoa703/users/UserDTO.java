@@ -36,6 +36,14 @@ public class UserDTO {
 		this.bpass = bpass;
 		this.email = email;
 	}
+	
+	//select - findUserByNickAndMoblie
+	public UserDTO(String nickname, String mobile, String bip) {
+		super();
+		this.nickname = nickname;
+		this.mobile = mobile;
+		this.bip = bip;
+	}
 
 	public UserDTO(int uno, String nickname, String email, String mobile, String udate, String bip) {
 		super();
