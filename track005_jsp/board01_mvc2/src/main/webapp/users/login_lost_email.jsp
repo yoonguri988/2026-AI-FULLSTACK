@@ -4,7 +4,7 @@
 	<div class="container card my-5">
 		<h3 class="card-header">로그인</h3>
 		<div class="alert alert-secondary my-3">
-			<form action="login_lost_email_action.jsp" method="post" onsubmit="return checkForm()">
+			<form action="ULostEmail" method="post" onsubmit="return checkForm()">
 				<div class="mb-3 mt-3">
 					<label for="nickname" class="form-label">닉네임</label> 
 					<input

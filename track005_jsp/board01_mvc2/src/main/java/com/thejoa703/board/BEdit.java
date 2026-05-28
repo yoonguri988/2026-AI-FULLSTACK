@@ -19,98 +19,59 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/BEdit")
 public class BEdit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public BEdit() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public BEdit() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		int bno = Integer.parseInt(request.getParameter("bno"));
 
-		String url = "jdbc:mysql://localhost:3306/mbasic";
-		String user = "root";
-		String pass = "1234";
-		String sql = "SELECT * FROM MVCBOARD1 WHERE BNO=? ";
-		
-		String btitle = "";
-		String bname = "";
-		String bcontent = "";
-		
-		try{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(url, user, pass);
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, bno);
-			ResultSet rs = pstmt.executeQuery(); 
-			
-			while(rs.next()){
-				btitle = rs.getString("BTITLE");
-				bname = rs.getString("BNAME");
-				bcontent = rs.getString("BCONTENT");
-				
-				request.setAttribute("board", new BoardDTO(bno, btitle, bname, bcontent));
-			}
-			
-			if(rs != null) rs.close();
-			if(pstmt != null) pstmt.close();
-			if(conn != null) conn.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		
+		BoardDAO dao = new BoardDAO();
+		BoardDTO dto = dao.getBoard(bno);
+
+		request.setAttribute("board", dto);
 		request.getRequestDispatcher("board/edit.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		
+
 		PrintWriter out = response.getWriter();
-		
-		String bno = request.getParameter("bno");
+
+		int bno = Integer.parseInt(request.getParameter("bno"));
+		String bname = request.getParameter("bname");
 		String bpass = request.getParameter("bpass");
 		String btitle = request.getParameter("btitle");
 		String bcontent = request.getParameter("bcontent");
-		
-		String url = "jdbc:mysql://localhost:3306/mbasic";
-		String user = "root";
-		String pass = "1234";
-		String sql = "UPDATE MVCBOARD1 SET BTITLE=?, BCONTENT=? WHERE BNO = ? AND BPASS = ?";
-		try{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(url, user, pass);
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, btitle);
-			pstmt.setString(2, bcontent);
-			pstmt.setString(3, bno);
-			pstmt.setString(4, bpass);
-			
-			int res = pstmt.executeUpdate();
-			if(res > 0){
-				out.println("<script>");
-				out.println("alert('글쓰기 수정 성공!');");
-				out.println("location.href='BDetail?bno="+bno+"';");
-				out.println("</script>");
-			} else {
-				out.println("<script>");
-				out.println("alert('실패, 관리자에게 문의 바랍니다!');");
-				out.println("location.href='BEdit?bno="+bno+"';");
-				out.println("</script>");
-			}
-			if(pstmt != null) pstmt.close();
-			if(conn != null) conn.close(); 
-		} catch(Exception e) {
-			e.printStackTrace();
+
+		BoardDAO dao = new BoardDAO();
+		int rs = dao.updateBoard(new BoardDTO(bno, bname, bpass, btitle, bcontent));
+		if (rs > 0) {
+			out.println("<script>");
+			out.println("alert('글쓰기 수정 성공!');");
+			out.println("location.href='BDetail?bno=" + bno + "';");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('실패, 관리자에게 문의 바랍니다!');");
+			out.println("location.href='BEdit?bno=" + bno + "';");
+			out.println("</script>");
 		}
 	}
 

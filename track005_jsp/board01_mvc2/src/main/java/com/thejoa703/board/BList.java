@@ -34,39 +34,9 @@ public class BList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-
-		String url = "jdbc:mysql://localhost:3306/mbasic";
-		String sql = "SELECT ROW_NUMBER() OVER (ORDER BY BNO ASC) AS ROWNUM,"
-				    +"       BNO, BNAME, BTITLE, BCONTENT, BDATE, BHIT"
-				    +"  FROM MVCBOARD1 "
-				    +" ORDER BY BDATE DESC";
-		String user = "root";
-		String pass = "1234";
 		
-		List<BoardDTO> boardList = new ArrayList<>();
-		try{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			
-			Connection conn = DriverManager.getConnection(url, user, pass);
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
-			
-			while(rs.next()){
-				int rownum = rs.getInt("ROWNUM");
-				int bno = rs.getInt("BNO");
-				String btitle = rs.getString("BTITLE");
-				String bname = rs.getString("BNAME");
-				String bdate = rs.getString("BDATE");
-				int bhit = rs.getInt("BHIT");
-				
-				boardList.add(new BoardDTO(rownum, bno, btitle, bname, bdate, bhit));
-			}
-			if(rs != null) rs.close();
-			if(pstmt != null) pstmt.close();
-			if(conn != null) conn.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		BoardDAO dao = new BoardDAO();
+		List<BoardDTO> boardList = dao.getBoards("");
 		request.setAttribute("boardList", boardList);
 		
 		request.getRequestDispatcher("board/list.jsp").forward(request, response);

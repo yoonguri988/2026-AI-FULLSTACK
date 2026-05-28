@@ -1,11 +1,6 @@
-package com.thejoa703.board;
+package com.the703.servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,42 +8,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class BDetail
+ * Servlet implementation class Milk
  */
-@WebServlet("/BDetail")
-public class BDetail extends HttpServlet {
+@WebServlet("/MilkInsert")
+public class Jsp019 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BDetail() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+    public Jsp019() { super(); }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
-		
-		int bno = Integer.parseInt(request.getParameter("bno"));
-		
-		BoardDAO dao = new BoardDAO();
-		BoardDTO dto = dao.getBoard(bno);
-		
-		request.setAttribute("board", dto);
-		request.getRequestDispatcher("board/detail.jsp?bno="+bno).forward(request, response);
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("jsp018_milk.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		//1. 데이터 넘겨 받기
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		
+		String oname = request.getParameter("oname");
+		String onum = request.getParameter("onum");
+		
+		//2. sql 처리
+		
+		//3. 처리결과 + 경로 > jsp019_index.jsp
+		response.sendRedirect("jsp019_index.jsp?oname="+oname);
 	}
 
 }

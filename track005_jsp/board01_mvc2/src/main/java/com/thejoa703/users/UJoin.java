@@ -1,7 +1,8 @@
-package com.thejoa703.board;
+package com.thejoa703.users;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,16 +14,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class BDelete
+ * Servlet implementation class UJoin
  */
-@WebServlet("/BDelete")
-public class BDelete extends HttpServlet {
+@WebServlet("/UJoin")
+public class UJoin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BDelete() {
+    public UJoin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,9 +32,7 @@ public class BDelete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int bno = Integer.parseInt(request.getParameter("bno"));
-		request.setAttribute("bno", bno);
-		request.getRequestDispatcher("board/delete.jsp?bno="+bno).forward(request, response);
+		request.getRequestDispatcher("users/join.jsp").forward(request, response);
 	}
 
 	/**
@@ -44,20 +43,24 @@ public class BDelete extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		int bno = Integer.parseInt(request.getParameter("bno"));
+		String nickname = request.getParameter("nickname");
 		String bpass = request.getParameter("bpass");
+		String email = request.getParameter("email");
+		String mobile = request.getParameter("mobile");
+		String bip = InetAddress.getLocalHost().getHostAddress();
 		
-		BoardDAO dao = new BoardDAO();
-		int res = dao.deleteBoard(new BoardDTO(bno, bpass));
-		if (res > 0) {
+		UserDAO dao = new UserDAO();
+		int rs = dao.regUser(new UserDTO(nickname,bpass,email,mobile,bip));
+
+		if (rs > 0) {
 			out.println("<script>");
-			out.println("alert('글 삭제 성공!');");
-			out.println("location.href='BList'");
+			out.println("alert('회원가입 성공!');");
+			out.println("location.href='ULogin'");
 			out.println("</script>");
 		} else {
 			out.println("<script>");
-			out.println("alert('실패, 잘못된 비밀번호 입력입니다.');");
-			out.println("location.href='BDelete?bno=" + bno + "';");
+			out.println("alert('회원가입 실패, 관리자에게 문의해주세요.');");
+			out.println("location.href='UJoin'");
 			out.println("</script>");
 		}
 	}

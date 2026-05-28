@@ -4,7 +4,7 @@
 	<div class="container card my-5">
 		<h3 class="card-header">회원가입</h3>
 		<div class="alert alert-secondary my-3">
-			<form action="join_action.jsp" method="post" onsubmit="return checkForm()">
+			<form action="UJoin" method="post" onsubmit="return checkForm()">
 				<div class="mb-3 mt-3">
 					<label for="nickname" class="form-label">닉네임</label> 
 					<div class="input-group">
@@ -85,15 +85,14 @@
 		}
 		
 		function distinctNick(){
-			//alert("중복확인");
 			const nickname = document.getElementById("nickname").value;
-			fetch("./user_chk_nickname.jsp?nickname="+nickname)
+			fetch("UChkNickname?nickname="+nickname)
 				.then((res)=>{
 				  if(!res.ok) throw Error("에러 코드: "+res.status);
 				  return res.json();
 				})
 				.then((data)=>{
-					isDistNickname = data[0].isDistNickname;
+					isDistNickname = data[0].isDist;
 					alert(data[0].message);
 				})
 		}
@@ -103,15 +102,14 @@
 		}
 		
 		function distinctEmail(){
-			//alert("중복확인");
 			const email = document.getElementById("email").value;
-			fetch("./user_chk_email.jsp?email="+email)
+			fetch("UChkEmail?email="+email)
 				.then((res)=>{
 				  if(!res.ok) throw Error("에러 코드: "+res.status);
 				  return res.json();
 				})
 				.then((data)=>{
-					isDistEmail = data[0].isDistEmail;
+					isDistEmail = data[0].isDist;
 					alert(data[0].message);
 				})
 		}

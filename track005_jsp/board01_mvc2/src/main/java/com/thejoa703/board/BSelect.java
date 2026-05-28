@@ -41,46 +41,12 @@ public class BSelect extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		String search = request.getParameter("search");
-
-		String url = "jdbc:mysql://localhost:3306/mbasic";
-		String user = "root";
-		String pass = "1234";
-		String sql = "SELECT ROW_NUMBER() OVER (ORDER BY BNO ASC) AS ROWNUM,"
-			       +" BNO, BNAME, BTITLE, BCONTENT, BDATE, BHIT"
-			       +" FROM MVCBOARD1"
-			       +" WHERE BTITLE LIKE ? OR BCONTENT LIKE ?"
-			       +" ORDER BY BDATE DESC";
-
-		try{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(url, user, pass);
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+search+"%");
-			pstmt.setString(2, "%"+search+"%");
-			ResultSet rs = pstmt.executeQuery();
-			
-			Gson gson = new Gson();
-			List<BoardDTO> list = new ArrayList<>();
-			
-			while(rs.next()){
-				int rownum = rs.getInt("ROWNUM");
-				int bno = rs.getInt("BNO");
-				String btitle = rs.getString("BTITLE");
-				String bname = rs.getString("BNAME");
-				String bdate = rs.getString("BDATE");
-				int bhit = rs.getInt("BHIT");
-				
-				list.add(new BoardDTO(rownum,bno,btitle,bname,bdate,bhit));
-			}
-			String jsonResponse = gson.toJson(list);
-			out.println(jsonResponse);
 		
-			if(rs != null) rs.close();
-			if(pstmt != null) pstmt.close();
-			if(conn != null) conn.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		Gson gson = new Gson();
+		BoardDAO dao = new BoardDAO();
+		List<BoardDTO> boardList = dao.getBoards(search);
+		String jsonResponse = gson.toJson(boardList);
+		out.println(jsonResponse);
 	}
 
 	/**

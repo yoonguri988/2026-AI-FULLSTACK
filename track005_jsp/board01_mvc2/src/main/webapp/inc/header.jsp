@@ -35,19 +35,19 @@
 							<%
 							String login = (String) session.getAttribute("email");
 							if(login != null){
-								out.println("<a class='nav-link' href='../users/logout.jsp'>LOGOUT</a>");								
+								out.println("<a class='nav-link' href='ULogout'>LOGOUT</a>");								
 							} else {
-								out.println("<a class='nav-link' href='../users/login.jsp'>LOGIN</a>");								
+								out.println("<a class='nav-link' href='ULogin'>LOGIN</a>");								
 							}
 							
 							%>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="../users/join.jsp">JOIN</a></li>
+						<li class="nav-item"><a class="nav-link" href="UJoin">JOIN</a></li>
 						<li class="nav-item">
 						<%
 							String loginNickName = (String) session.getAttribute("nickname");
 							if(loginNickName != null){
-								out.println("<a class='nav-link' href='../users/mypage.jsp'>"+loginNickName+"</a>");								
+								out.println("<a class='nav-link' href='UMypage'>"+loginNickName+"</a>");								
 							}
 						%>
 						</li>

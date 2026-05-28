@@ -2,55 +2,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../inc/header.jsp" %>
-<%
-	String email = (String) session.getAttribute("email");
-			
-	Class.forName("com.mysql.cj.jdbc.Driver");
-	String url = "jdbc:mysql://localhost:3306/mbasic";
-	String user = "root";
-	String pass = "1234";
-	String sql = "SELECT * FROM USERS WHERE EMAIL = ?";
-				
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null; 
-	
-	String nickname = "";
-	String moblie = "";
-	
-	try{
-		conn = DriverManager.getConnection(url, user, pass);
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, email);
-		
-		rs = pstmt.executeQuery();
-		
-		while(rs.next()){
-			nickname = rs.getString("NICKNAME");
-			moblie = rs.getString("MOBILE");
-		}
-	} catch(Exception e) {
-		e.printStackTrace();
-	} finally {
-		rs.close();
-		pstmt.close();
-		conn.close(); 
-	}
-%>
-
 	<div class="container card my-5">
 		<h3 class="card-header">회원정보 수정</h3>
 		<div class="alert alert-secondary my-3">
-			<form action="./user_edit_action.jsp" method="post" onsubmit="return checkForm()">
+			<form action="UEdit" method="post" onsubmit="return checkForm()">
 				<div class="mb-3 mt-3">
 					<label for="email" class="form-label">이메일</label> 
-					<input type="email" value="<%=email %>" 
+					<input type="email" value="${user.email }" 
 						class="form-control" id="email" placeholder="이메일을 입력하세요"
 						name="email" readonly>
 				</div>
 				<div class="mb-3">
 					<label for="nickname" class="form-label">닉네임</label> 
-					<input type="text" value="<%=nickname %>" 
+					<input type="text" value="${user.nickname }" 
 						class="form-control" id="nickname" placeholder="이름을 입력하세요"
 						name="nickname">
 				</div>
@@ -61,7 +25,7 @@
 				</div>
 				<div class="mb-3">
 					<label for="mobile" class="form-label">휴대폰번호</label> 
-					<input type="text" value="<%=moblie %>" 
+					<input type="text" value="${user.mobile }" 
 						class="form-control" id="mobile"
 						placeholder="휴대폰번호를 입력하세요" name="mobile">
 				</div>

@@ -4,7 +4,7 @@
 	<div class="container card my-5">
 		<h3 class="card-header">비밀번호 재설정</h3>
 		<div class="alert alert-secondary my-3">
-			<form action="login_lost_pass_action.jsp" method="post" onsubmit="return checkForm()">
+			<form action="ULostPass" method="post" onsubmit="return checkForm()">
 				<div class="mb-3 mt-3">
 					<label for="email" class="form-label">이메일</label> 
 					<input

@@ -1,28 +1,30 @@
-package com.thejoa703.board;
+package com.thejoa703.users;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class BDelete
+ * Servlet implementation class UEdit
  */
-@WebServlet("/BDelete")
-public class BDelete extends HttpServlet {
+@WebServlet("/UEdit")
+public class UEdit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BDelete() {
+    public UEdit() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,9 +33,18 @@ public class BDelete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int bno = Integer.parseInt(request.getParameter("bno"));
-		request.setAttribute("bno", bno);
-		request.getRequestDispatcher("board/delete.jsp?bno="+bno).forward(request, response);
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		
+		HttpSession session = request.getSession();
+		
+		String email = (String) session.getAttribute("email");
+
+		UserDAO dao = new UserDAO();
+		UserDTO dto = dao.searchUser(new UserDTO("", email));
+
+		request.setAttribute("user", dto);
+		request.getRequestDispatcher("users/user_edit.jsp").forward(request, response);
 	}
 
 	/**
@@ -44,21 +55,17 @@ public class BDelete extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		int bno = Integer.parseInt(request.getParameter("bno"));
+		String email = request.getParameter("email");
 		String bpass = request.getParameter("bpass");
-		
-		BoardDAO dao = new BoardDAO();
-		int res = dao.deleteBoard(new BoardDTO(bno, bpass));
-		if (res > 0) {
-			out.println("<script>");
-			out.println("alert('글 삭제 성공!');");
-			out.println("location.href='BList'");
-			out.println("</script>");
+		String nickname = request.getParameter("nickname");
+		String mobile = request.getParameter("mobile");
+
+		UserDAO dao = new UserDAO();
+		int rs = dao.updateUser(new UserDTO(nickname, bpass, email, mobile));
+		if (rs > 0) {
+			out.println("<script> alert('회원 정보가 수정 되었습니다.'); location.href='UMypage';</script>");
 		} else {
-			out.println("<script>");
-			out.println("alert('실패, 잘못된 비밀번호 입력입니다.');");
-			out.println("location.href='BDelete?bno=" + bno + "';");
-			out.println("</script>");
+			out.println("<script> alert('회원 정보 수정 실패, 비밀번호를 확인하세요'); location.href='UEdit';</script>");
 		}
 	}
 }

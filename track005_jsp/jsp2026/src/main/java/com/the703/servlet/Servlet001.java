@@ -1,11 +1,6 @@
-package com.thejoa703.board;
+package com.the703.servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class BDetail
+ * Servlet implementation class Servlet001
  */
-@WebServlet("/BDetail")
-public class BDetail extends HttpServlet {
+@WebServlet("/Hi")
+public class Servlet001 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BDetail() {
+    public Servlet001() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,23 +26,16 @@ public class BDetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
-		
-		int bno = Integer.parseInt(request.getParameter("bno"));
-		
-		BoardDAO dao = new BoardDAO();
-		BoardDTO dto = dao.getBoard(bno);
-		
-		request.setAttribute("board", dto);
-		request.getRequestDispatcher("board/detail.jsp?bno="+bno).forward(request, response);
+		// http://localhost:8080/jsp2026/Servlet001
+		// http://localhost:8080/jsp2026/Hi
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		System.out.println(".......................... do Post");
 		doGet(request, response);
 	}
 
