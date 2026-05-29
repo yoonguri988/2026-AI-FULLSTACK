@@ -11,7 +11,7 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<link href="./css/board.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/board.css" rel="stylesheet">
 
 </head>
 <body>
@@ -33,12 +33,12 @@
 				<div class="collapse navbar-collapse" id="mynavbar">
 					<ul class="navbar-nav ms-auto">
 						<c:if test="${empty sessionScope.email }">
-							<li class="nav-item"><a class='nav-link' href='LoginView.do'>LOGIN</a></li>
-							<li class="nav-item"><a class="nav-link" href="JoinView.do">JOIN</a></li>
+							<li class="nav-item"><a class='nav-link' href='${pageContext.request.contextPath}/user/LoginView.do'>LOGIN</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/user/JoinView.do">JOIN</a></li>
 						</c:if>
 						<c:if test="${not empty sessionScope.email }">
-							<li class="nav-item"><a class='nav-link' href='Logout.do'>LOGOUT</a></li>
-							<li class="nav-item"><a class='nav-link'href='MypageView.do'>${sessionScope.nickname }</a></li>
+							<li class="nav-item"><a class='nav-link' href='${pageContext.request.contextPath}/user/Logout.do'>LOGOUT</a></li>
+							<li class="nav-item"><a class='nav-link'href='${pageContext.request.contextPath}/user/MypageView.do'>${sessionScope.nickname }</a></li>
 						</c:if>
 					</ul>
 				</div>

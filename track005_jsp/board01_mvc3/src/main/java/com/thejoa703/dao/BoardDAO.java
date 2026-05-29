@@ -1,6 +1,6 @@
-package com.thejoa703.board;
+package com.thejoa703.dao;
 
-import com.thejoa703.board.BoardDTO;
+import com.thejoa703.dto.BoardDTO;
 import com.thejoa703.comm.DBConn;
 
 import java.sql.Connection;

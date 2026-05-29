@@ -2,10 +2,6 @@ package com.thejoa703.users;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 /**
  * Servlet implementation class UMypage
@@ -45,43 +42,25 @@ public class UMypage extends HttpServlet {
 		
 		if(email == null){
 			out.println("<script> alert('로그인 상태가 아니라 마이페이지에 접근이 불가합니다.'); location.href='login.jsp';</script>");
+		} else {
+			Map<String, String> userInfo = new HashMap<>();
+			UserDAO dao = new UserDAO();
+			UserDTO dto = dao.searchUser(new UserDTO("", email));
+			
+			userInfo.put("nicknameKr", "닉네임");
+			userInfo.put("nickname", dto.getNickname());
+			userInfo.put("emailKr", "이메일");
+			userInfo.put("email", dto.getEmail());
+			userInfo.put("mobileKr", "휴대폰");
+			userInfo.put("mobile", dto.getMobile());
+			userInfo.put("udateKr", "가입일");
+			userInfo.put("udate", dto.getUdate());
+			userInfo.put("bipKr", "가입IP");
+			userInfo.put("bip", dto.getBip());
+			
+			request.setAttribute("user", userInfo);
 		}
 		
-		String url = "jdbc:mysql://localhost:3306/mbasic";
-		String user = "root";
-		String pass = "1234";
-		String sql = "SELECT * FROM USERS WHERE EMAIL = ?";
-		
-		Map<String, String> userInfo = new HashMap<>();
-		
-		try{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(url, user, pass);
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, email);
-			
-			ResultSet rs = pstmt.executeQuery();
-			
-			while(rs.next()){
-				userInfo.put("nicknameKr", "닉네임");
-				userInfo.put("nickname", rs.getString("NICKNAME"));
-				userInfo.put("emailKr", "이메일");
-				userInfo.put("email", rs.getString("EMAIL"));
-				userInfo.put("mobileKr", "휴대폰");
-				userInfo.put("mobile", rs.getString("MOBILE"));
-				userInfo.put("udateKr", "가입일");
-				userInfo.put("udate", rs.getString("UDATE"));
-				userInfo.put("bipKr", "가입IP");
-				userInfo.put("bip", rs.getString("BIP"));
-			}
-			
-			if(rs != null) rs.close();
-			if(pstmt != null) pstmt.close();
-			if(conn != null) conn.close(); 
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("user", userInfo);
 		
 		request.getRequestDispatcher("/users/mypage.jsp").forward(request, response);
 	}

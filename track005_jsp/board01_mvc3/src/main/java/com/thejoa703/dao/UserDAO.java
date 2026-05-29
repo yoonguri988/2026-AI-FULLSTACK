@@ -1,11 +1,11 @@
-package com.thejoa703.users;
+package com.thejoa703.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.thejoa703.comm.DBConn;
-import com.thejoa703.users.UserDTO;
+import com.thejoa703.dto.UserDTO;
 
 public class UserDAO {
 	public int regUser(UserDTO user) {
