@@ -6,6 +6,9 @@ eclipse/
 portfolio/
 track005_jsp/tomcat9.0/
 track005_jsp/Servers/
+track006_spring/Servers/
+track006_spring/ex1/
+track006_spring/spring001_di/target/
 
 # 빌드 결과물 무시
 /bin/

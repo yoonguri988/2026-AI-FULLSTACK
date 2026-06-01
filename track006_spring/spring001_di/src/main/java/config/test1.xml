@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<bean id="vanilla" class="com.company.ioc1.Vanilla"/>
+	<bean id="chocolate" class="com.company.ioc1.Chocolate"/>
+	
+	<bean id="iceCreamShop" class="com.company.ioc1.IceCreamShop">
+		<property name="shopName" value="SweetHouse" />
+		<property name="iceCream" ref="vanilla" />
+	</bean>
+	
+	<bean id="iceCreamShop2" class="com.company.ioc1.IceCreamShop">
+		<constructor-arg index="0" value="SweetHouse2" />
+		<constructor-arg index="1" ref="chocolate" />
+	</bean>
+</beans>
