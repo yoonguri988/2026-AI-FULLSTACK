@@ -649,7 +649,8 @@ order by sal;
 -- +-------+--------+-----------+------+------------+------+------+--------+
 -- 14 rows in set (0.00 sec)
 select * from emp
-where exists (select dname from dept where deptno = 10);
+where deptno = 10 
+and exists (select dname from dept where deptno = 10);
 
 -- SELECT *
 --   FROM EMP
