@@ -33,13 +33,13 @@ public class ModelTest001 {
 		//dto.setNo(15); dto.setEmail("hello@gmail.com"); dto.setAge(100);
 		//System.out.println(userinfo.update(dto));
 		//3. 한명 검색
-		System.out.println(userinfo.select(15));
+//		System.out.println(userinfo.select(15));
 		//2. 삽입
 		//UserInfoDto dto = new UserInfoDto();
 		//dto.setEmail("hi@gmail.com"); dto.setAge(10);
 		//userinfo.insert(dto);
 		//1. 전체 검색
-		//System.out.println(userinfo.selectAll());
+		System.out.println(userinfo.selectAll());
 	}
 
 	@Ignore //@Test

@@ -47,10 +47,17 @@
 <!-- STEP1 dataSource    ■SimpleDriverDataSource : setter 
 	Driver driver, String url, String username, String password-->
 	<context:property-placeholder location="classpath:config/db.properties" />
-	<bean id="dataSource" 
+	<!-- <bean id="dataSource" 
 	      class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass"   value="${db.driverClass}" />
 		<property name="url"      value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+	</bean> -->
+	<bean id="dataSource" 
+	      class="com.zaxxer.hikari.HikariDataSource">
+		<property name="driverClassName"   value="${db.driverClass}" />
+		<property name="jdbcUrl"      value="${db.url}" />
 		<property name="username" value="${db.username}" />
 		<property name="password" value="${db.password}" />
 	</bean>
