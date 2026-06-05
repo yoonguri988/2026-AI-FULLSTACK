@@ -11,6 +11,8 @@ public interface BoardMapper {
 	public int insert(BoardDto dto);
 	public int update(BoardDto dto);
 	public int delete(int bno);
+	public int updateBhitByBno(int bno);
+	public BoardDto selectOneByBpass(BoardDto dto);
 }
 /*
 mysql> desc mvcboard2;

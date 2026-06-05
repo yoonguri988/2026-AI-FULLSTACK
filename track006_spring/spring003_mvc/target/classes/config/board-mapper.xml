@@ -10,13 +10,21 @@
   select * from mvcboard2 where bno = #{bno}
   </select>
   <insert id="insert" parameterType="BoardDto">
-  insert into mvcboard2 (bname, bpass,btitle, bcontent, bip) 
-         values (#{bname}, #{bpass}, #{btitle}, #{bcontent}, #{bip})
+  insert into mvcboard2 (bname, bpass,btitle, bcontent, bip, bfilePath) 
+         values (#{bname}, #{bpass}, #{btitle}, #{bcontent}, #{bip}, #{bfilePath})
   </insert>
   <update id="update" parameterType="BoardDto">
-  update mvcboard2 set btitle=#{btitle}, bcontent=#{bcontent}, bip=#{bip} where bno = #{bno}
+  update mvcboard2 set btitle=#{btitle}, bcontent=#{bcontent} 
+  where bno = #{bno} 
   </update>
   <delete id="delete" parameterType="int">
   delete from mvcboard2 where bno = #{bno}
   </delete>
+  <update id="updateBhitByBno" parameterType="int">
+  update mvcboard2 set bhit= bhit+1 
+  where bno = #{bno} 
+  </update>
+  <select id="selectOneByBpass" parameterType="BoardDto" resultType="BoardDto">
+  select * from mvcboard2 where bno = #{bno} and bpass= #{bpass}
+  </select>
 </mapper>

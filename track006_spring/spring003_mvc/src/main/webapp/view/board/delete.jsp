@@ -13,7 +13,7 @@
       	</div> 
       	<div  class="my-3  text-end"> 
       		<button type="reset"   class="btn btn-outline-primary"  title="글취소">취소</button>
-      		<a href=""             class="btn btn-outline-success"  title="목록보러가기">목록</a>
+      		<a href="${pageContext.request.contextPath}/board/list.do"             class="btn btn-outline-success"  title="목록보러가기">목록</a>
       		<button type="submit"  class="btn btn-primary"  title="글삭제">글삭제</button>
       	</div>
       </form> 

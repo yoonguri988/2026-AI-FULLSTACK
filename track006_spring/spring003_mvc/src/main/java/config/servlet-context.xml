@@ -11,17 +11,26 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd">
 
-	<!-- MVC Controller: annotation-driven: @Controller, @RequestMapping
-                         default-servlet-handler: 이미지나 정적리소스 -->
-	<context:component-scan base-package="com.the703" />
+	<!-- MVC Controller: annotation-driven: @Controller, @RequestMapping default-servlet-handler: 
+		이미지나 정적리소스 -->
+	<context:component-scan
+		base-package="com.the703" />
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler />
-	
-	<!-- View Resolver:  -->
-	<bean id="viewResolver" 
-	      class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-	      <property name="prefix" value="/view/"/>
-	      <property name="suffix" value=".jsp"/>
+
+	<!-- View Resolver: -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- 파일 업로드 설정 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="52428800" />       <!-- 전체 50MB -->
+		<property name="maxUploadSizePerFile" value="10485760" /> <!-- 개별 10MB -->
+		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 
 </beans>

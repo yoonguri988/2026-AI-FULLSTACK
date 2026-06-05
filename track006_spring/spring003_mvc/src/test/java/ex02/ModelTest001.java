@@ -18,6 +18,7 @@ import com.the703.dao.BoardMapper;
 import com.the703.dao.TestMapper;
 import com.the703.dao.UserInfoMapper;
 import com.the703.dto.BoardDto;
+import com.the703.service.BoardService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:config/root-context.xml")
@@ -26,13 +27,42 @@ public class ModelTest001 {
 	@Autowired DataSource dataSource;
 	@Autowired SqlSession sqlSession;
 	
-	@Autowired TestMapper test;
-	@Autowired BoardMapper board;
-	@Autowired UserInfoMapper userinfo;
+//	@Autowired TestMapper test;
+//	@Autowired BoardMapper board;
+//	@Autowired UserInfoMapper userinfo;
+	
+	@Autowired BoardService service;
 	
 	@Test
+	public void test5() {
+		// 삭제 6
+		BoardDto dto = new BoardDto();
+		dto.setBno(6); dto.setBpass("dddd");
+		System.out.println(service.delete(dto));
+		
+		//수정 - 20
+		dto = new BoardDto();
+		dto.setBno(20); dto.setBpass("1111");
+		dto.setBtitle("수정-service-첫번째 글쓰기"); dto.setBcontent("수정-service-내용");
+		System.out.println(service.edit(dto));
+		
+		//검색
+		System.out.println(service.detail(20));
+		
+		//삽입 - 20
+//		BoardDto dto = new BoardDto();
+//		dto.setBname("first"); dto.setBpass("1111");
+//		dto.setBtitle("service-첫번째 글쓰기"); dto.setBcontent("service-내용");
+//		System.out.println(service.insert(dto));
+		
+		//전체 리스트
+		System.out.println(service.selectAll());
+	}
+	
+	
+	@Ignore //@Test
 	public void usersTest() {
-		System.out.println(userinfo.selectAll());
+		//System.out.println(userinfo.selectAll());
 	}
 	
 	@Ignore //@Test
@@ -41,7 +71,7 @@ public class ModelTest001 {
 	public void test2() { System.out.println(sqlSession);}
 	
 	@Ignore //@Test
-	public void test1() { System.out.println(test.now());}
+	public void test1() { /* System.out.println(test.now()); */}
 	
 	@Ignore	//@Test
 	public void test() throws UnknownHostException {
@@ -61,6 +91,6 @@ public class ModelTest001 {
 		
 //		System.out.println(board.select(17));
 		
-		System.out.println(board.selectAll());
+		//System.out.println(board.selectAll());
 	}
 }

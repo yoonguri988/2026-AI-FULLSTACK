@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="./css/board.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/board.css" rel="stylesheet">
 </head>
 <body>
     <!--  header  -->
@@ -32,20 +32,20 @@
                 <%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
                 <c:if test="${empty  sessionScope.email}">
                     <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/LoginAction">Login</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/users/login.do">Login</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/JoinAction">Join</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/users/join.do">Join</a>
                     </li>
                 </c:if>
                 
                 <c:if test="${not empty  sessionScope.email}">
                     <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/MyAction">${sessionScope.email}</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/users/mypage.do">${sessionScope.email}</a>
                     </li>
 
                     <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/Logout">Logout</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/users/logout.do">Logout</a>
                     </li>
                 </c:if>
                 

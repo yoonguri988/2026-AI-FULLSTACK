@@ -10,14 +10,18 @@
   	select * from users where uno= #{uno}
   </select>
   <insert id="insert" parameterType="UserInfoDto">
-  	insert into users (nickname, bpass, email, moblie, bip)
-  	       values (#{nickname}, #{bpass}, #{email}, #{moblie}, #{bip})
+  	insert into users (nickname, bpass, email, mobile, bip)
+  	       values (#{nickname}, #{bpass}, #{email}, #{mobile}, #{bip})
   </insert>
   <update id="update" parameterType="UserInfoDto">
-  	update users set nickname=#{nickname}, moblie=#{moblie}, bip=#{bip}
+  	update users set nickname=#{nickname}, mobile=#{mobile}, bip=#{bip}
   	where uno = #{uno}
   </update>
   <delete id="delete" parameterType="int">
   	delete from users where uno= #{uno}
   </delete>
+  
+  <select id="selectOneByDto" resultType="UserInfoDto" parameterType="UserInfoDto">
+  	select * from users where email = #{email} and bpass = #{bpass}
+  </select>
 </mapper>
