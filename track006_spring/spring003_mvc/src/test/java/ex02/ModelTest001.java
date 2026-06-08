@@ -2,6 +2,7 @@ package ex02;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.HashMap;
 
 import javax.sql.DataSource;
 
@@ -32,8 +33,20 @@ public class ModelTest001 {
 //	@Autowired UserInfoMapper userinfo;
 	
 	@Autowired BoardService service;
+	@Autowired BoardMapper boardMapper;
 	
 	@Test
+	public void test6() {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start",0);
+		map.put("end",10);
+		System.out.println(boardMapper.select10(map));
+		
+		//1. 전체 갯수
+		System.out.println(boardMapper.selectCnt());
+	}
+	
+	@Ignore // @Test
 	public void test5() {
 		// 삭제 6
 		BoardDto dto = new BoardDto();
@@ -44,7 +57,7 @@ public class ModelTest001 {
 		dto = new BoardDto();
 		dto.setBno(20); dto.setBpass("1111");
 		dto.setBtitle("수정-service-첫번째 글쓰기"); dto.setBcontent("수정-service-내용");
-		System.out.println(service.edit(dto));
+		//System.out.println(service.edit(dto));
 		
 		//검색
 		System.out.println(service.detail(20));

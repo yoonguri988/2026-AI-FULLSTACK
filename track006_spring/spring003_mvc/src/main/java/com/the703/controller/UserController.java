@@ -4,6 +4,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -57,8 +59,12 @@ public class UserController {
 		return url;
 	}
 	
-//	@RequestMapping(value="users/mypage.do", method = RequestMethod.GET)
-//	public String 
+	@RequestMapping(value="users/mypage.do", method = RequestMethod.GET)
+	public String mypage(HttpSession session, Model model) {
+		String email = (String) session.getAttribute("email");
+		model.addAttribute("user", service.selectOneByEmail(email));
+		return "users/mypage";
+	}
 	
 
 }

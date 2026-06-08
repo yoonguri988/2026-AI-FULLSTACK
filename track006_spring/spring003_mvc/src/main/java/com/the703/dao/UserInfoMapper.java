@@ -13,4 +13,5 @@ public interface UserInfoMapper {
 	public int delete(int bno);
 	
 	public UserInfoDto selectOneByDto(UserInfoDto dto);
+	public UserInfoDto selectOneByEmail(String email);
 }

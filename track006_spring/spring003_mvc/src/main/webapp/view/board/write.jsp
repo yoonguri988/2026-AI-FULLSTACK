@@ -7,7 +7,8 @@
    <div class="container  my-5">
       <h3>글 등록</h3>
       <!--  	1. 처리 : write_action.jsp  2. 데이터 주소표시창줄 노출 x  3. 보관용기이름 file이름   -->
-      <form  action ="${pageContext.request.contextPath }/board/write.do"  method="post"   onsubmit="return checkForm()" enctype="multipart/form-data">
+      <form  action ="${pageContext.request.contextPath }/board/write.do"  method="post"   onsubmit="return checkForm()" 
+             enctype="multipart/form-data">
       	<div  class="my-3">
       		<label for="bname"   class="form-label">이름</label>
       		<input type="text"   class="form-control"    id="bname"  name="bname"  />
@@ -21,8 +22,8 @@
       		<input type="text"   class="form-control"    id="btitle"  name="btitle"  />
       	</div>
       	<div  class="my-3">
-      		<label for="bfile"  class="form-label">파일</label>
-      		<input type="file"   class="form-control"    id="bfile"  name="bfile"  />
+      		<label for="file"  class="form-label">파일</label>
+      		<input type="file"   class="form-control"    id="file"  name="file"  />
       	</div>
       	<div  class="my-3">
       		<label for="bcontent"  class="form-label">내용</label>

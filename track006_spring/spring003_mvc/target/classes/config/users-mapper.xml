@@ -20,8 +20,10 @@
   <delete id="delete" parameterType="int">
   	delete from users where uno= #{uno}
   </delete>
-  
   <select id="selectOneByDto" resultType="UserInfoDto" parameterType="UserInfoDto">
   	select * from users where email = #{email} and bpass = #{bpass}
+  </select>
+  <select id="selectOneByEmail" resultType="UserInfoDto" parameterType="string">
+  	select * from users where email = #{email}
   </select>
 </mapper>

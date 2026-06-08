@@ -343,3 +343,34 @@ RequesMapping 경로          해당 view 설정
 /board/detail.do          /view/board/detailjsp    (상세보기)
 /board/edit.do            /view/board/edit.jsp     (수정하기폼)
 /board/delete.do          /view/board/delete.jsp   (삭제하기폼)
+
+---
+
+3) 글 수정에서 이미지 업로드 추가 - 글 수정 안올리며 이전 이미지
+
+3. Paging?
+cmd)
+    insert   into mvcboard2 (bname , bpass , btitle ,  bcontent , bip ,  bfile)
+   select   bname , bpass , btitle ,  bcontent , bip ,  bfile  from  mvcboard2;
+100개이상
+
+진행2. Paging 컴포넌트 만들기
+ Paging 1 - Model 1) Mapper
+1) 최신글을 기준으로 10개씩 가져오기
+select * from mvcboard2 
+order by bno des
+limit 10   -- 한 번에 가져올 행 수
+offset 0   -- 앞에서 건너뛸 행 수
+;
+select * from mvcboard2 order by bno desc limit 0, 10;
+select * from mvcboard2 order by bno desc limit 10, 10;
+select * from mvcboard2 order by bno desc limit 20, 10;
+
+2) 전체 게시글 갯수
+select count(*) from mvcboard2;
+
+Paging 2 - Model 2) PagingUtil
+
+Paging 3 - Controller) BoardController 사용
+
+Paging 4 - 4) Mapper

@@ -16,5 +16,5 @@ public class BoardDto {
 	private String bdate;
 	private int bhit;
 	private String bip;
-	private String bfilePath;
+	private String bfile;
 }

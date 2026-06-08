@@ -15,23 +15,23 @@
     <tbody>
       <tr>
         <th scope="row">닉네임</th>
-        <td>${nickname}</td>
+        <td>${user.nickname}</td>
       </tr>
       <tr>
         <th scope="row">이메일</th>
-        <td>${email}</td>
+        <td>${user.email}</td>
       </tr>
       <tr>
         <th scope="row">휴대폰</th>
-        <td>${mobile}</td>
+        <td>${user.mobile}</td>
       </tr>
       <tr>
         <th scope="row">가입일</th>
-        <td>${udate}</td>
+        <td>${user.udate}</td>
       </tr>
       <tr>
         <th scope="row">가입IP</th>
-        <td>${bip}</td>
+        <td>${user.bip}</td>
       </tr>
     </tbody>
   </table>

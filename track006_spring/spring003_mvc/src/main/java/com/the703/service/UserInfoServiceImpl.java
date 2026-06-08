@@ -46,5 +46,10 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public UserInfoDto selectOneByDto(UserInfoDto dto) {
 		return dao.selectOneByDto(dto);
 	}
+	
+	@Override
+	public UserInfoDto selectOneByEmail(String email) {
+		return dao.selectOneByEmail(email);
+	}
 
 }

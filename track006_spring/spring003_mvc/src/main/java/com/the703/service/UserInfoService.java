@@ -12,4 +12,5 @@ public interface UserInfoService {
 	public int delete(int uno);
 
 	public UserInfoDto selectOneByDto(UserInfoDto dto);
+	public UserInfoDto selectOneByEmail(String Email);
 }
