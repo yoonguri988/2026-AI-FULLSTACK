@@ -35,7 +35,7 @@ window.addEventListener("load", function(){
             <tbody>
 				<c:forEach var="dto" items="${list}" varStatus="status">
 				<tr>
-					<td>${paging.listtotal - (paging.current-1) * paging.onepagelist - status.index}</td>
+					<td>${paging.listtotal - paging.pstartno - status.index}</td>
 					<td><a href="${pageContext.request.contextPath}/board/detail.do?bno=${dto.bno}" title="${dto.btitle }">${dto.btitle }</a></td>
 					<td>${dto.bname }</td>
 					<td>${dto.bdate }</td>
@@ -46,11 +46,11 @@ window.addEventListener("load", function(){
             <tfoot>
             <tr><td colspan="5">
             <ul class="pagination justify-content-center">
-			  <%-- 이전 버튼 --%>
-			  <li class="page-item <c:if test='${!paging.hasPrev}'>disabled</c:if>">
+			  <!-- 이전 -->
+			  <li class="page-item <c:if test='${!(paging.start > 1)}'>disabled</c:if>">
 			    <a class="page-link"
 			       href="<c:choose>
-			         <c:when test='${paging.hasPrev}'>?pstartno=${paging.prev}</c:when>
+			         <c:when test='${paging.start > 1}'>?pstartno=${paging.start - 1}</c:when>
 			         <c:otherwise>#</c:otherwise>
 			       </c:choose>">이전</a>
 			  </li>
@@ -59,11 +59,11 @@ window.addEventListener("load", function(){
     				<a href="?pstartno=${i}" class="page-link">${i}</a>
     			</li>
         	</c:forEach>
-			  <%-- 다음 버튼 --%>
-			  <li class="page-item <c:if test='${!paging.hasNext}'>disabled</c:if>">
+			  <!-- 다음 글이 있다면 - 하단의 전체 > end -->
+			  <li class="page-item <c:if test='${!(paging.end < paging.pagetotal)}'>disabled</c:if>">
 			    <a class="page-link"
 			       href="<c:choose>
-			         <c:when test='${paging.hasNext}'>?pstartno=${paging.next}</c:when>
+			         <c:when test='${paging.end < paging.pagetotal}'>?pstartno=${paging.end+1}</c:when>
 			         <c:otherwise>#</c:otherwise>
 			       </c:choose>">다음</a>
 			  </li>

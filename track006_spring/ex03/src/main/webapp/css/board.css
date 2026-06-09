@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+.myhidden {
+    position: absolute; left: -9999%; width: 1px; height: 1px; overflow: hidden;
+    border: 0; white-space: nowrap; /* 줄 방지 */ 
+    clip: rect(0,0,0,0); /* 요소를 잘라서 시각적으로 완전히 숨김 - 구형 브라우저 호환 */
+}
+
+header, nav, footer {
+    background-image: linear-gradient(135deg, #f7cac9, #92a8d1);
+}
+
+/* 각 디바이스에 맞게 원하는 사이즈 지정해서 CSS 적용 */
+@media (max-width: 575px) { /* 575px 미만 */
+    .myvisual { display: none; }
+}@charset "UTF-8";
