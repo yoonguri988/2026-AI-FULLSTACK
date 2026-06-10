@@ -12,16 +12,16 @@ desc userinfo_e;
  
  desc mvcboard2;
  
- 
+ select * from users;
 
  
  alter table mvcboard2 change column BFILEPATH BFILE varchar(500) default 'the703.png';
 
 alter table mvcboard2 add bfile varchar(500) default 'the703.png';
 
-select * from users;
+select * from users where email='b@b';
 
-
+delete from users where uno = '24';
 
 create table authorities (
  email varchar(50) not null,

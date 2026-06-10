@@ -13,7 +13,7 @@
     <link href="./css/board.css" rel="stylesheet">
 </head>
 <body>
-<div class="container my-3 bg-info text-white">
+<div class="container my-3 py-3 bg-info text-white text-center">
 	<h3>security</h3>
 	<a href="${pageContext.request.contextPath }/security/all"
 	   class="btn btn-warning">all-모든사람 접근가능</a>

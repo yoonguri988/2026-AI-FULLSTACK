@@ -31,7 +31,15 @@ public class ModelTest002 {
 
 	
 	/* security  */
-	@Test public void test3() {
+	@Test
+	public void test4() {
+		AuthDto dto2 = new AuthDto();
+		dto2.setEmail("a@a");
+		System.out.println(service.readAuth(dto2));
+	}
+	
+	@Ignore //@Test 
+	public void test3() {
 		AuthDto dto2 = new AuthDto();
 		dto2.setEmail("a@a");
 		System.out.println(userMapper.readAuth(dto2));

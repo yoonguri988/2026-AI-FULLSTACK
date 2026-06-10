@@ -16,7 +16,7 @@ public interface UserMapper {
 	
 	//VERSION-1
 	//public UserDto selectOneByDto(UserDto dto);
-	//public UserDto selectOneByEmail(String email);
+	public UserDto findByEmailUserInfo(String email);
 	
 	// ADD
 	//public int      insert(UserDto dto);
@@ -24,6 +24,7 @@ public interface UserMapper {
 	public UserDto  findByUno(   int  uno);
 	public String   findByEmail( String email);
 	
+	/* security */
 	public int insertAuth(AuthDto dto);
 	public AuthListDto readAuth(AuthDto dto);
 }

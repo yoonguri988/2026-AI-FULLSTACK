@@ -35,7 +35,7 @@ public class ModelTest001 {
 //	@Autowired BoardService service;
 //	@Autowired BoardMapper boardMapper;
 	
-	@Ignore //@Test
+	@Test
 	public void test6() {
 //		HashMap<String, Integer> map = new HashMap<String, Integer>();
 //		map.put("start",0);

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.the703.dto.UserDto;
@@ -52,10 +53,4 @@ public class UserController {
 	public String mypage(HttpSession session, Model model) {
 		return "";
 	}
-	
-	//아이디 중복 검사 기능
-	public String checkEmail(String email) {
-		return "";
-	}
-
 }

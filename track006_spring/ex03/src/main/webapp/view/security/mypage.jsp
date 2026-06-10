@@ -13,26 +13,11 @@
   <table class="table table-bordered table-striped">
     <caption>UserInfo</caption>
     <tbody>
-      <tr>
-        <th scope="row">닉네임</th>
-        <td>${user.nickname}</td>
-      </tr>
-      <tr>
-        <th scope="row">이메일</th>
-        <td>${user.email}</td>
-      </tr>
-      <tr>
-        <th scope="row">휴대폰</th>
-        <td>${user.mobile}</td>
-      </tr>
-      <tr>
-        <th scope="row">가입일</th>
-        <td>${user.udate}</td>
-      </tr>
-      <tr>
-        <th scope="row">가입IP</th>
-        <td>${user.bip}</td>
-      </tr>
+      <tr> <th scope="row">닉네임</th> <td>${dto.nickname}</td> </tr>
+      <tr> <th scope="row">이메일</th> <td>${dto.email}</td> </tr>
+      <tr> <th scope="row">휴대폰</th> <td>${dto.mobile}</td> </tr>
+      <tr> <th scope="row">가입일</th> <td>${dto.udate}</td> </tr>
+      <tr> <th scope="row">가입IP</th> <td>${dto.bip}</td> </tr>
     </tbody>
   </table>
 </div>

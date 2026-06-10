@@ -5,14 +5,19 @@ import java.net.UnknownHostException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.the703.dao.UserMapper;
+import com.the703.dto.AuthDto;
+import com.the703.dto.AuthListDto;
 import com.the703.dto.UserDto;
 
 @Service
 public class UserServiceImpl implements UserService {
 	@Autowired UserMapper dao;
+	@Autowired @Qualifier ("passwordEncoder") PasswordEncoder pwencoder;
 	
 	@Override
 	public List<UserDto> list() {
@@ -26,6 +31,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int insert(UserDto dto) {
+		AuthDto auth = new AuthDto();
+		auth.setEmail(dto.getEmail()); auth.setBpass(dto.getBpass()); auth.setAuth("ROLE_MEMBER");
+		dao.insertAuth(auth);// 권한 추가
+		
+		dto.setBpass(pwencoder.encode(dto.getBpass()));
 		try {
 			dto.setBip(InetAddress.getLocalHost().getHostAddress());
 		} catch (UnknownHostException e) { e.printStackTrace(); }
@@ -48,15 +58,15 @@ public class UserServiceImpl implements UserService {
 //		return dao.selectOneByDto(dto);
 //	}
 //	
-//	@Override
-//	public UserDto selectOneByEmail(String email) {
-//		return dao.selectOneByEmail(email);
-//	}
-//
-//	@Override
-//	public boolean isDupEmail(String email) {
-//		return dao.selectOneByEmail(email) != null ? true : false;
-//	}
+	@Override
+	public UserDto findByEmailUserInfo(String email) {
+		return dao.findByEmailUserInfo(email);
+	}
+
+	@Override
+	public boolean isDupByEmail(String email) {
+		return dao.findByEmailUserInfo(email) != null ? true : false;
+	}
 
 	@Override
 	public int findLogin(UserDto dto) {
@@ -71,5 +81,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String findByEmail(String email) {
 		return dao.findByEmail(email);
+	}
+
+	@Override
+	public AuthListDto readAuth(AuthDto dto) {
+		return dao.readAuth(dto);
 	}
 }

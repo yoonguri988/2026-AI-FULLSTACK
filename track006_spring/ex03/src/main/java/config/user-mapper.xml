@@ -24,10 +24,10 @@
   <select id="selectOneByDto" resultType="UserDto" parameterType="UserDto">
   	select * from users where email = #{email} and bpass = #{bpass}
   </select>
-  <select id="selectOneByEmail" resultType="UserDto" parameterType="string">
+-->
+  <select id="findByEmailUserInfo" resultType="UserDto" parameterType="string">
   	select * from users where email = #{email}
   </select> 
--->
   
   <!-- ADD -->
   <select id="findLogin" resultType="int" parameterType="UserDto">

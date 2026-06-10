@@ -10,19 +10,51 @@
 	3) 보관데이터   : nickname , bpass , email , mobile
 	4) 처리경로     : 처리후 로그인 폼으로 (LoginAction - Get)   
    --> 
-  <form action="" method="post" onsubmit="return checkForm()">
+  <form action="${pageContext.request.contextPath}/security/join" method="post" onsubmit="return checkForm()">
+  <input type="hidden"   name="${_csrf.parameterName}"    value="${_csrf.token}"/>
     <div class="my-3">
       <label for="nickname" class="form-label">닉네임</label>
       <input type="text" class="form-control" id="nickname" name="nickname" />
     </div>
     <div class="my-3">
       <label for="bpass" class="form-label">비밀번호</label>
-      <input type="password" class="form-control" id="bpass" name="bpass" />
+      <input type="password" class="form-control" id="bpass" name="bpass"/>
     </div>
     <div class="my-3">
       <label for="email" class="form-label">이메일</label>
-      <input type="email" class="form-control" id="email" name="email" onblur="checkEmail()"/>
+      <input type="email" class="form-control" id="email" name="email"/>
     </div>
+    <div class="my-3 alert alert-warning target"></div>
+    <script>
+    window.addEventListener("load",function(){
+    	let email= document.getElementById("email");
+    	let target = document.querySelector(".target");
+    	email.addEventListener("keyup", function(e){
+    		//console.log(e.target.value);
+    		let value = e.target.value.trim(); // 공백빼기
+    		if(value != ""){//빈칸아니면 서버에 요청
+    			fetch("${pageContext.request.contextPath}/doubleEmail?email="+encodeURIComponent(value))
+    			  .then(response => response.json()) //json 으로 응답
+    			  .then(data => {
+    				  if(data.exists){
+	    				  target.textContent="이미 사용중인 이메일입니다.";
+	    	              target.className ="my-3 alert alert-danger target";
+    				  }else {
+	    				  target.textContent="사용가능한 이메일입니다.";
+	    	              target.className ="my-3 alert alert-success target";
+    				  }
+    			  }) 
+    			  .catch(err => {
+    				  target.textContent="서버오류입니다.";
+    	              target.className ="my-3 alert alert-info target";
+    			  }); 
+    		} else{ //빈칸이면 메시지유지
+                target.textContent="아이디 중복검사는 필수입니다.";
+                target.className ="my-3 alert alert-warning target";
+    		} 
+    	});
+    });
+    </script>
     <div class="my-3">
       <label for="mobile" class="form-label">휴대폰</label>
       <input type="text" class="form-control" id="mobile" name="mobile" />
@@ -46,23 +78,6 @@ function checkForm(){
   if(email.value.trim()==""){ alert("이메일을 입력하세요"); email.focus(); return false; }
   if(mobile.value.trim()==""){ alert("휴대폰 번호를 입력하세요"); mobile.focus(); return false; }
   return true;
-}
-
-function checkEmail() {
-	const contextPath = '${pageContext.request.contextPath}';
-    let emailInput = document.getElementById("email");
-    let email = emailInput.value.trim();
-    // 서버에 중복 체크 요청
-    fetch(contextPath+'/users/checkEmail.do?email=' + email)
-        .then(response => response.json())
-        .then(data => {
-            if (data.duplicate) {
-                alert("이미 사용 중인 이메일입니다.");
-            }
-        })
-        .catch(error => {
-            console.error("중복 체크 오류:", error);
-        });
 }
 </script>
 
