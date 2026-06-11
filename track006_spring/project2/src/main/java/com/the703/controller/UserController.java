@@ -14,6 +14,11 @@ import com.the703.service.UserService;
 public class UserController {
 	@Autowired UserService service;
 	
+	@RequestMapping("/")
+	public String index() {
+		return "redirect:/users/login";
+	}
+	
 	@RequestMapping(value="/users/join", method = RequestMethod.GET)
 	public String join() { return "users/join"; }
 	

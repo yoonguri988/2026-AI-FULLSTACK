@@ -32,20 +32,20 @@
                 <%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
                 <c:if test="${empty  sessionScope.email}">
                     <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/LoginAction">Login</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/users/login">Login</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/JoinAction">Join</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/users/join">Join</a>
                     </li>
                 </c:if>
                 
                 <c:if test="${not empty  sessionScope.email}">
                     <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/MyAction">${sessionScope.email}</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/users/mypage">${sessionScope.email}</a>
                     </li>
 
                     <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/Logout">Logout</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/users/logout">Logout</a>
                     </li>
                 </c:if>
                 
