@@ -76,7 +76,7 @@
     				target.className = "my-3 alert alert-info target";
     			  });
     		} else {
-    			target.textContent = "아이디 중복 검사는 필수 입니다.";
+    			target.textContent = "이메일 중복 검사는 필수 입니다.";
     			target.className = "my-3 alert alert-warning target";
     		}
     	});

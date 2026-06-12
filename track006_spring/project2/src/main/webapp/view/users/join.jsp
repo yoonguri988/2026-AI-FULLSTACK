@@ -16,6 +16,7 @@
       <label for="nickname" class="form-label">닉네임</label>
       <input type="text" class="form-control" id="nickname" name="nickname" />
     </div>
+    <div class="my-3 alert alert-warning targetNick"></div>
     <div class="my-3">
       <label for="bpass" class="form-label">비밀번호</label>
       <input type="password" class="form-control" id="bpass" name="bpass" />
@@ -24,6 +25,10 @@
       <label for="email" class="form-label">이메일</label>
       <input type="email" class="form-control" id="email" name="email" />
     </div>
+    <div class="my-3 alert alert-warning target"></div>
+    <script>
+    
+    </script>
     <div class="my-3">
       <label for="mobile" class="form-label">휴대폰</label>
       <input type="text" class="form-control" id="mobile" name="mobile" />
