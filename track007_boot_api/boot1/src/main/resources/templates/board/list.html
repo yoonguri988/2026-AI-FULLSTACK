@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<!-- #1. layout 렌더링 -->
+<head lang="ko">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+			<span th:text="${success}"></span>
+			<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+			<strong>Success!</strong> This alert box could indicate a successful
+			or positive action.
+		</div>
+		<div class="container card  my-5 p-4">
+			<h3 class="card-header">MBTI QUEST BOARD</h3>
+			<table class="table table-striped table-bordered table-hover">
+				<caption>mbti</caption>
+				<thead>
+					<tr>
+						<th scope="col">NO</th>
+						<th scope="col">TITLE</th>
+						<th scope="col">NAME</th>
+						<th scope="col">DATE</th>
+						<th scope="col">HIT</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="dto, i : ${list}">
+						<td th:text="${paging.listtotal - ((paging.current -1)*paging.onepagelist) - i.index}"></td>
+						<td>
+							<a th:href="@{/board/detail(id=${dto.id})}" th:text="${dto.btitle}"></a>
+						</td>
+						<td th:text="${dto.appUserId}"></td>
+						<td th:text="${dto.createdAt}"></td>
+						<td th:text="${dto.bhit}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- <div th:text="${paging}"></div> -->
+			<ul class="pagination justify-content-center">
+			<!-- 이전 -->
+			<li class="page-item" th:classappend="${paging.start <= 1} ? 'disabled': ''">
+		      <a class="page-link"
+		         th:href="@{/board/list(pageNo=${paging.start - 1})}">&lt;</a>
+		    </li>
+			<!-- 숫자 -->
+			<!-- paging.start, paging.end -->
+			<li class="page-item"
+		        th:each="pageNum : ${#numbers.sequence(paging.start, paging.end)}"
+		        th:classappend="${paging.current == pageNum? 'active': ''}">
+		      <a class="page-link"
+		         th:href="@{/board/list(pageNo=${pageNum})}"
+		         th:text="${pageNum}"></a>
+		    </li>
+			<!-- 이후 -->
+			 <li class="page-item" th:classappend="${paging.end >= paging.pagetotal} ? 'disabled': ''">
+		      <a class="page-link"
+		         th:href="@{/board/list(pageNo=${paging.end + 1})}">&gt;</a>
+		    </li>
+			</ul>
+			<p class="text-end">
+				<a th:href="@{/board/write}" class="btn btn-primary">글쓰기</a>
+			</p>
+			<p class="text-end alert alert-primary">로그인을 하면 글쓰기가능합니다.</p>
+		</div>
+	</div>
+</body>
+<!-- [ mbtiBoard - list.jsp ]  -->
