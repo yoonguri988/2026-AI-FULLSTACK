@@ -7,39 +7,49 @@
 	INSERT INTO appuser (APP_USER_ID, EMAIL, PASSWORD, MBTI_TYPE_ID, CREATED_AT, UFILE, MOBILE, NICKNAME, PROVIDER, PROVIDER_ID)
 	VALUES (appuser_seq.nextval, #{email}, #{password}, #{mbtiTypeId}, sysdate, #{ufile}, #{mobile}, #{nickname}, #{provider}, #{providerId})
 	</insert>
-	<select id="readAuthByEmail" resultType="AppUserAuthDto" parameterType="AppUserDto">
+	
+	<resultMap id="AppUserAuthResultMap" type="AppUserAuthDto">
+	    <result property="email" column="email"/>
+	    <result property="password" column="password"/>  
+	    <collection property="authList" ofType="com.the703.dto.AuthDto">
+	        <result property="auth" column="auth"/>
+	    </collection>
+	</resultMap>
+	
+	<select id="readAuthByEmail" resultMap="AppUserAuthResultMap" parameterType="AppUserDto">
 	SELECT u.email, u.password, a.auth
 	FROM appuser u
 	LEFT JOIN authorities a
 	ON a.EMAIL = u.EMAIL
 	WHERE u.EMAIL = #{email} 
-	AND u.PASSWORD = #{password}
 	</select>
 	<select id="findByEmail" resultType="AppUserDto" parameterType="AppUserDto">
 	SELECT * FROM appuser where email = #{email}
 	</select>
 	<select id="iddoubleByEmail" resultType="int" parameterType="AppUserDto">
-	SELECT count(*) FROM appuser where email = #{email};
+	SELECT count(*) FROM appuser where email = #{email}
 	</select>
 	<update id="updateAppUser" parameterType="AppUserDto">
 	update appuser
-	set password=#{password},
-	mbti_type_id=#{mbti_type_id},
-	ufile=#{ufile},
-	nickname=#{nickname},
-	mobile=#{mobile},
-	provider=#{provider},
-	provider_id= #{providerId}
-	where app_user_id = #{appUserId};
+	<set>
+      <!-- <if test="password != null">password=#{password},</if> -->
+      <if test="mbtiTypeId != null">mbti_type_id=#{mbtiTypeId},</if>
+      <if test="ufile != null">ufile=#{ufile},</if>
+      <if test="nickname != null">nickname=#{nickname},</if>
+      <if test="mobile != null">mobile=#{mobile},</if>
+      <if test="provider != null">provider=#{provider},</if>
+      <if test="providerId != null">provider_id=#{providerId},</if>
+    </set>
+	where app_user_id = #{appUserId}
 	</update>
 	<delete id="deleteAppUser" parameterType="AppUserDto">
-	DELETE FROM  appuser WHERE email = #{email}
+	DELETE FROM appuser WHERE email = #{email}
 	</delete>
 	<delete id="deleteAuth" parameterType="AppUserDto">
 	DELETE FROM  authorities WHERE email = #{email}
 	</delete>
 	<insert id="insertAuth" parameterType="AppUserDto">
 	INSERT INTO authorities (AUTH_ID, EMAIL, AUTH)
-	VALUES (authorities_seq.nextval, #{email} , #{auth});
+	VALUES (authorities_seq.nextval, #{email} , #{auth})
 	</insert>
 </mapper>
