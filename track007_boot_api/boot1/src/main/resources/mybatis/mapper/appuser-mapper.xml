@@ -5,7 +5,7 @@
 <mapper namespace="com.the703.dao.AppUserDao">
 	<insert id="insertAppUser" parameterType="AppUserDto">
 	INSERT INTO appuser (APP_USER_ID, EMAIL, PASSWORD, MBTI_TYPE_ID, CREATED_AT, UFILE, MOBILE, NICKNAME, PROVIDER, PROVIDER_ID)
-	VALUES (appuser_seq.nextval, #{email}, #{password}, #{mbtiTypeId}, sysdate, #{ufile}, #{mobile}, #{nickname}, #{provider}, #{providerId})
+	VALUES (appuser_seq.nextval, #{email}, #{password}, #{mbtiTypeId}, sysdate, #{ufile, jdbcType=VARCHAR}, #{mobile}, #{nickname}, #{provider}, #{providerId})
 	</insert>
 	
 	<resultMap id="AppUserAuthResultMap" type="AppUserAuthDto">
@@ -34,7 +34,7 @@
 	<set>
       <!-- <if test="password != null">password=#{password},</if> -->
       <if test="mbtiTypeId != null">mbti_type_id=#{mbtiTypeId},</if>
-      <if test="ufile != null">ufile=#{ufile},</if>
+      <if test="ufile != null">ufile=#{ufile, jdbcType=VARCHAR},</if>
       <if test="nickname != null">nickname=#{nickname},</if>
       <if test="mobile != null">mobile=#{mobile},</if>
       <if test="provider != null">provider=#{provider},</if>
@@ -43,7 +43,7 @@
 	where app_user_id = #{appUserId}
 	</update>
 	<delete id="deleteAppUser" parameterType="AppUserDto">
-	DELETE FROM appuser WHERE email = #{email}
+	DELETE FROM appuser WHERE app_user_id = #{appUserId}
 	</delete>
 	<delete id="deleteAuth" parameterType="AppUserDto">
 	DELETE FROM  authorities WHERE email = #{email}

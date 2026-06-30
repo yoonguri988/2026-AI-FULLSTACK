@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	layout:decorate="~{fragments/layout}">
 <div layout:fragment="content">
 
-	<!-- 알림메시지 -->
- 
-    
+	<!-- 알림메시지 --> 
+	<div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+		<span th:text="${successMessage}"></span>
+		<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+	</div>
+	
+	<div th:if="${errorMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+		<span th:text="${errorMessage}"></span>
+		<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+	</div>
+	
     <h2 class="mb-4">회원가입</h2> 
-    <form   action=""    method="post"  enctype="multipart/form-data"   class="needs-validation" novalidate>
+    <form   th:action="@{/users/join}"    method="post"  enctype="multipart/form-data"   class="needs-validation" novalidate>
         <input type="hidden" name="provider" value="local"  id="provider">
         
         <div class="mb-3"> 
@@ -45,6 +54,41 @@
         이미 계정이 있으신가요?
         <a>로그인</a>
     </p> 
+    <script>
+    window.addEventListener("load", function() {
+    	// id = email
+    	// class = iddouble_result
+    	let email = document.getElementById("email");
+    	let target = document.querySelector(".iddouble_result");
+    	
+    	email.addEventListener("keyup", function(e){
+    		let value = e.target.value.trim();
+    		//console.log(value);
+    		
+    		if(value != ""){
+    			// fetch().then().then()
+    			fetch(`iddouble?email=${encodeURIComponent(value)}`) // 1. 경로
+    			  .then(res=>res.json()) //2. json
+    			  .then(data=>{
+    				   if(data.exists){
+	    				  target.textContent = '이미 사용중인 이메일 입니다.';
+	    	    		  target.className = 'my-3 alert alert-danger iddouble_result';
+    				   } else {
+	    				  target.textContent = '사용 가능한 이메일 입니다.';
+	    	    		  target.className = 'my-3 alert alert-success iddouble_result';
+    				   }
+    			  })
+    			  .catch(err=>{
+    				  target.textContent = '서버 오류 입니다.';
+    	    		  target.className = 'my-3 alert alert-info iddouble_result';
+    			  })
+    		}else {
+    			target.textContent = '이메일 중복 검사는 필수 입니다.';
+    			target.className = 'my-3 alert alert-warning iddouble_result';
+    		}
+    	});
+    });
+    </script>
 </div>
 </body>
 </html>

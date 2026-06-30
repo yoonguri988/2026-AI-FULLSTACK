@@ -24,11 +24,22 @@
 		</div>
 		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 			<div class="container-fluid">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" th:href="@{/users/logout}">로그아웃</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/users/login}">LOGIN</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/users/join}">JOIN</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/board/list}">Quest Board</a></li>
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item"><a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/board/list}">BOARD</a></li>
+				</ul>
+				<ul class=" d-flex navbar-nav">
+					<li class="nav-item"><a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/users/login}">LOGIN</a></li>
+					<li class="nav-item"><a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/users/join}">JOIN</a></li>
+					<li class="nav-item" sec:authorize="isAuthenticated()">
+						<form th:action="@{/users/logout}" method="post">
+							<button type="submit" class="nav-link" >LOGOUT</button>
+						</form>
+						<!-- <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/users/logout}">LOGOUT</a> -->
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/users/mypage}"
+						                    sec:authentication="principal.username">마이페이지</a>
+						</li>
 				</ul>
 			</div>
 		</nav>

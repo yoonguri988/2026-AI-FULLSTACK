@@ -16,8 +16,8 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http//1. 허용경로
-		    .authorizeHttpRequests(auth -> auth.requestMatchers("users/join","users/login","api/**").permitAll()
-		    		                           .requestMatchers("users/mypage","users/update","users/delete").authenticated()
+		    .authorizeHttpRequests(auth -> auth.requestMatchers("/users/join","/users/login","/users/iddouble","/api/**").permitAll()
+		    		                           .requestMatchers("/users/mypage","/users/update","/users/delete").authenticated()
 		    		                           .anyRequest().permitAll()
 		    		              )
 		    //2. 로그인처리

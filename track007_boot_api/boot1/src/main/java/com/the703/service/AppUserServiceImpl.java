@@ -23,6 +23,8 @@ public class AppUserServiceImpl implements AppUserService{
 
 	@Transactional @Override
 	public int insert(MultipartFile file, AppUserDto dto) {
+		dto.setMbtiTypeId(1);          // 확장버전: mbti
+		dto.setProviderId("the703-1"); // UUID 추가
 		// 이미지 업로드
 		dto.setUfile("the703.png");
 		if(!file.isEmpty()) { //파일 존재 유무 확인
