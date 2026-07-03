@@ -22,11 +22,18 @@
 					<tbody>
 						<tr>
 							<td  rowspan="4"  class="text-center fw-bold fs-3 table-primary"   style="width: 25%;">
+							<div   th:if="${dto != null  and  dto.provider != 'the703'}">
+							<img th:if="${dto.ufile != null}"
+							     th:src="@{|${dto.ufile}|}" alt="" class="w-75"/>
+							</div>
+							
+							<div   th:if="${dto != null  and  dto.provider == 'the703'}">
 							<img th:if="${dto.ufile != null}"
 							     th:src="@{|/upload/${dto.ufile}|}" alt="" class="w-75"/>
 							     
 							<img th:unless="${dto.ufile != null}"
 							     th:src="@{/upload/the703.png}" alt="" class="w-75"/>
+							</div>
 							</td>
 						</tr>
 						<tr>

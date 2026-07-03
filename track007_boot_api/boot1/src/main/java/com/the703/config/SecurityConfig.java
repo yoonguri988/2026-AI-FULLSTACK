@@ -8,9 +8,16 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.the703.oauth2.OAuth2UserService;
+
+import lombok.RequiredArgsConstructor;
+
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+	
+	private final OAuth2UserService oAuth2UserService;
 
 	// http 경로 설정
 	@Bean
@@ -34,6 +41,11 @@ public class SecurityConfig {
 		    		                .clearAuthentication(true)
 		    		                .permitAll()
 		    	   )
+		    //oauth2 - social
+		    .oauth2Login(oauth2 ->oauth2.loginPage("/users/login")
+                                        .defaultSuccessUrl("/users/mypage", true)
+                                        .userInfoEndpoint(userinfo -> userinfo.userService(oAuth2UserService))
+ 		    		    )
 		    //4. csrf 예외처리
 		    .csrf(csrf -> csrf.ignoringRequestMatchers("/users/join", "/users/update", "/users/delete"));
 		return http.build();

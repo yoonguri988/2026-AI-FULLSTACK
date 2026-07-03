@@ -30,7 +30,8 @@ grant create table to scott; -- ★
 -- 컬럼명 자료형 옵션
 create table dept(
     deptno number primary key,
-
+    dname varchar2(14),
+    loc varchar2(13)
 );
 --2. DML (CRUD)
 
