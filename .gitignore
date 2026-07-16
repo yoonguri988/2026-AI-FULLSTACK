@@ -23,4 +23,8 @@ track006_spring/spring001_di/target/
 Thumbs.db
 
 track007_boot_api/boot1/src/main/resources/application-oauth.properties
+
+# node - react
 track008_1_nodereact/back/node_modules
+track008_1_nodereact/front/node_modules
+track008_1_nodereact/front/.next
