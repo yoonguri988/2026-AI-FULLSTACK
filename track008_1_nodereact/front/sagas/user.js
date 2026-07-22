@@ -16,6 +16,12 @@ import reducer, {
     LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAILURE,
     UPDATE_NICKNAME_REQUEST, UPDATE_NICKNAME_SUCCESS, UPDATE_NICKNAME_FAILURE,
     DELETE_USER_REQUEST, DELETE_USER_SUCCESS, DELETE_USER_FAILURE,
+    LOAD_MY_INFO_REQUEST,
+    LOAD_MY_INFO_SUCCESS,
+    LOAD_MY_INFO_FAILURE,
+    CHECK_EMAIL_SUCCESS,
+    CHECK_EMAIL_FAILURE,
+    CHECK_EMAIL_REQUEST,
 } from '../reducers/user'; // 액션 타입 불러오기
 
 const client = axios.create({
@@ -159,8 +165,8 @@ function* watchUpdateNickname() {
 // ---------- 사용자 삭제 ----------
 // watchDeleteUser
 // delete: /user/{id} 
-export function deleteUserApi(data) {
-    return client.delete(`/user/${data.id}`);
+export function deleteUserApi(id){
+    return client.delete(`/user/${id}`);
 }
 export function* deleteUser(action) {
     try {
@@ -183,6 +189,61 @@ function* watchDeleteUser() {
     // return { ...state, isLoading: true, error: null }; 
 }
 
+export function loadMyInfoApi() {
+    return client.get('/user'); // 세션 쿠키 기반으로 "나"를 조회하는 API
+}
+export function* loadMyInfo() {
+    try {
+        const result = yield call(loadMyInfoApi);
+        const user = {
+            id: result.data.APP_USER_ID,
+            email: result.data.EMAIL,
+            nickname: result.data.NICKNAME,
+        };
+        yield put({ type: LOAD_MY_INFO_SUCCESS, data: user });
+    } catch (err) {
+        yield put({ type: LOAD_MY_INFO_FAILURE, error: err.response?.data || err.message });
+    }
+}
+function* watchLoadMyInfo() {
+    yield takeLatest(LOAD_MY_INFO_REQUEST, loadMyInfo);
+}
+
+// 이메일 중복 확인
+export function checkEmailApi(email) {
+    return client.post('/user/check-email',  null, { params: { email } });
+}
+export function* checkEmailInfo(action) {
+    try {
+        const { email } = action.data;
+        const result = yield call(checkEmailApi, email);
+        yield put({
+            type: CHECK_EMAIL_SUCCESS,
+            data: {
+                isAvailable: result.data.isAvailable,
+                message: result.data.message,
+            },
+        });
+    } catch (err) {
+        // 409 등 에러 응답도 isAvailable: false로 판단해야 하는 경우가 많음
+        const errData = err.response?.data;
+        if (errData) {
+            yield put({
+                type: CHECK_EMAIL_FAILURE,
+                data: {
+                    isAvailable: errData.isAvailable ?? false,
+                    message: errData.message,
+                },
+            });
+        } else {
+            yield put({ type: CHECK_EMAIL_FAILURE, error: err.message });
+        }
+    }
+}
+function* watchCheckEmail() {
+    yield takeLatest(CHECK_EMAIL_REQUEST, checkEmailInfo);
+}
+
 export default function* userSaga() {
     yield all([
         fork(watchLogin),
@@ -191,5 +252,8 @@ export default function* userSaga() {
         fork(watchLoadUsers),
         fork(watchUpdateNickname),
         fork(watchDeleteUser),
+        fork(watchLoadMyInfo),
+        // 이메일 중복 확인
+        fork(watchCheckEmail),
     ]);
 }

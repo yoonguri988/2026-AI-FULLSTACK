@@ -23,6 +23,7 @@ async function createUser(email, password, nickname, mobile, mbtiTypeId, ufile) 
             `, {email, password:hashedPassword, nickname, mobile, mbtiTypeId, ufile}, options); // sql, 사용자입력값, 옵션
     }catch(err){
         console.log(`createUser Error`, err);
+        throw err;
     }finally {
         if(conn) await conn.close();
     }
@@ -43,6 +44,7 @@ async function findUserByEmail(email) {
         return result.rows[0]; // 결과 처리
     }catch(err){
         console.log(`findUserByEmail Error`, err);
+        throw err;
     }finally {
         if(conn) await conn.close();
     }
@@ -60,6 +62,7 @@ async function findUserById(id) {
         return result.rows[0]; // 결과 처리
     }catch(err){
         console.log(`findUserById Error`, err);
+        throw err;
     }finally {
         if(conn) await conn.close();
     }
@@ -97,6 +100,7 @@ async function getAllUsers() {
         return result.rows; // 결과 처리
     }catch(err){
         console.log(`getAllUsers Error`, err);
+        throw err;
     }finally {
         if(conn) await conn.close();
     }
@@ -116,6 +120,7 @@ async function updateUserNickname(nickname, id) {
             `, {nickname, id}, options); // 실행
     }catch(err){
         console.log(`updateUserNickname Error`, err);
+        throw err;
     }finally {
         if(conn) await conn.close();
     }
@@ -133,10 +138,12 @@ async function deleteUser(id) {
             `, {id}, options); // 실행
     }catch(err){
         console.log(`deleteUser Error`, err);
+        throw err;
     }finally {
         if(conn) await conn.close();
     }
 }
+
 // 8. 닉네임조회
 // SELECT APP_USER_ID, EMAIL, NICKNAME 
 // FROM APPUSER 
@@ -153,6 +160,7 @@ async function findUserByNickname(nickname) {
         return result.rows[0]; // 결과 처리
     }catch(err){
         console.log(`findUserByNickname Error`, err);
+        throw err;
     }finally {
         if(conn) await conn.close();
     }

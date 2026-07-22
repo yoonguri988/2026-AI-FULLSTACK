@@ -13,3 +13,5 @@ import user from './user';             // 사용자 관련 상태를 관리하�
 const rootReducer = combineReducers({
     user, //post
 });
+
+export default rootReducer;

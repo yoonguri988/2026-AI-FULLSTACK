@@ -328,3 +328,48 @@ post : /user/logout
 get  : /user/
 patch: /user/{id}/nickname 
 delete: /user/{id} 
+
+7. 개발 (reducer - saga - view) (3) store
+
+```
+front/
+├── store/                  # ✅ Redux 스토어 설정 폴더
+│   ├── configureStore.js   # Redux 스토어 설정
+│   └── configureStore.test.js # 스토어 테스트 코드
+```
+
+
+8. View
+
+```
+front/
+├── pages/
+│   ├── _app.js             # 전체 앱의 공통 설정 (Redux Provider, 글로벌 스타일 등)
+│   ├── index.js            # 메인 페이지
+│   ├── login.js            # 로그인 페이지
+│   ├── signup.js           # 회원가입 페이지
+│   └── users.js            # 사용자 목록 또는 정보 페이지 
+```
+
+1. `userSelector` -> Redux Store에서 사용자 상태 가져오기
+ - 상태조회 : 스토어저장된 전역상태(State) react에서 가져오기
+ - useSelect((state)=> state.user)
+2. `useEffect`    -> 로그인 여부 확인 및 사용자 목록 불러오기
+ - 생명주기 및 부수효과처리
+ - 부품 맨 처음 나올때/사라질떄, 특정 상태 변경시
+3. `dispatch`     -> 액션 발생(로그인, 사용자 삭제,,,)
+ - 알림: 스토어 한테 이러한 액션 발생 알리기
+ - store.dispatch({type: LOG_IN_REQUEST});
+
+
+실습0) back - app.js
+```js
+app.use(express.json()); // json
+app.use(express.urlencoded({extended: true})); // form 데이터 처리
+app.use(cors({
+  origin: 'http://localhost:3000' ,   // 프론트엔드 주소를 명시
+  credentials: true                   // 쿠키/세션 허용
+}));
+```
+
+실습1) _app.js
