@@ -225,5 +225,35 @@ router.post('/check-email', async(req, res) => {
     }
 })
 
+/**
+ * @swagger
+ * /user/check-nickname:
+ *   post:
+ *     summary: 닉네임 중복검사
+ *     description: 해당 닉네임이 존재하는지 중복 확인을 진행합니다.
+ *     parameters:
+ *       - in: query
+ *         name: nickname
+ *         required: true
+ *         schema: { type: string }
+ *     responses:
+ *       200:
+ *         description: 사용가능한 닉네임
+ *       409:
+ *         description: 이미 사용중인 닉네임
+ * 
+ */
+router.post('/check-nickname', async(req, res) => {
+    try{  
+        const nickname = req.query.nickname;
+        const user = await findUserByNickname(nickname); // 쿼리스트링으로 이메일 받음
+        if(user) return res.status(409).json({isAvailable:false, message:'이미 사용중인 닉네임입니다.'});
+        return res.status(200).json({isAvailable:true, message : '사용 가능한 닉네임입니다.'});
+    }catch(err){
+        console.error(' Error' , err);
+        res.status(500).json({message:'findUserByNickname 서버오류'});
+    }
+})
+
 //3. export
 module.exports = router;

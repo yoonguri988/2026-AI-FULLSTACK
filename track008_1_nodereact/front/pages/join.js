@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'; // 전역상태, 상태알림
 import { useState, useEffect } from 'react'; // 변수 상태 변경, 이벤트 변경
 import { useRouter } from 'next/router'; // 경로
-import { SIGN_UP_REQUEST, RESET_SIGNUP_DONE, CHECK_EMAIL_REQUEST } from '../reducers/user';
+import { SIGN_UP_REQUEST, RESET_SIGNUP_DONE, CHECK_EMAIL_REQUEST, CHECK_NICKNAME_REQUEST } from '../reducers/user';
 
 // useSelector  - 전역상태
 // useState     - 변수
@@ -13,7 +13,7 @@ export default function JoinPage() {
     //1. 코드
     const dispatch = useDispatch();
     const router = useRouter();
-    const {me, isLoading, error, signUpDone, isAvailable, emailCheckMessage} = useSelector((state) => state.user);
+    const {me, isLoading, error, signUpDone, isAvalEmail, emailCheckMessage, isAvalNick, nicknameCheckMessage} = useSelector((state) => state.user);
     // 변수, 변수 셋팅 함수
     // 3. 변수 상태 변경 - react dom (useState)
     const [email, setEmail] = useState(''); // let email = ''
@@ -47,11 +47,23 @@ export default function JoinPage() {
             alert('이메일을 입력해주세요.');
             return;
         }
+
+        // 이메일 형식 검사
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]/;
+        if (!emailRegex.test(email.trim())) {
+            alert('올바른 이메일 형식이 아닙니다.');
+            return;
+        }
+
         dispatch({ type: CHECK_EMAIL_REQUEST, data: { email } });
     }
     // 닉네임 중복 확인
-    const checkNickname = () =>{
-       
+    const checkNickname = () => {
+        if(!nickname.trim()){
+            alert('닉네임을 입력해주세요.');
+            return;
+        }
+        dispatch({ type: CHECK_NICKNAME_REQUEST, data: { nickname } });
     }
 
     // 로그인시 me 값이 있다면
@@ -86,8 +98,8 @@ export default function JoinPage() {
                        value={email} onChange={(e)=>{setEmail(e.target.value);}}/>
                 <button type="button" className="btn btn-secondary" onClick={() => checkEmail()}>중복확인</button>
             </div>
-            {emailCheckMessage && isAvailable === true && <div className="alert alert-success">{emailCheckMessage}</div>}
-            {emailCheckMessage && isAvailable === false && <div className="alert alert-danger">{emailCheckMessage}</div>}
+            {emailCheckMessage && isAvalEmail === true && <div className="alert alert-success">{emailCheckMessage}</div>}
+            {emailCheckMessage && isAvalEmail === false && <div className="alert alert-danger">{emailCheckMessage}</div>}
             {/* 비밀번호 입력 */}
             <div className="mb-3">
                 <input type="password" className="form-control" placeholder="비밀번호" title="비밀번호입력"
@@ -99,6 +111,8 @@ export default function JoinPage() {
                        value={nickname} onChange={(e)=>{setNickname(e.target.value);}}/>
                 <button type="button" className='btn btn-secondary' onClick={() => checkNickname()}>중복확인</button>
             </div>
+            {nicknameCheckMessage && isAvalNick === true && <div className="alert alert-success">{nicknameCheckMessage}</div>}
+            {nicknameCheckMessage && isAvalNick === false && <div className="alert alert-danger">{nicknameCheckMessage}</div>}
             {/* 버튼 입력 */}
             <div className="mb-3">
                 <button type="submit" className="btn btn-primary w-100" disabled={isLoading}>회원가입</button>

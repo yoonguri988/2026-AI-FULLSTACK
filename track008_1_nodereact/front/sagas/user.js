@@ -16,12 +16,9 @@ import reducer, {
     LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAILURE,
     UPDATE_NICKNAME_REQUEST, UPDATE_NICKNAME_SUCCESS, UPDATE_NICKNAME_FAILURE,
     DELETE_USER_REQUEST, DELETE_USER_SUCCESS, DELETE_USER_FAILURE,
-    LOAD_MY_INFO_REQUEST,
-    LOAD_MY_INFO_SUCCESS,
-    LOAD_MY_INFO_FAILURE,
-    CHECK_EMAIL_SUCCESS,
-    CHECK_EMAIL_FAILURE,
-    CHECK_EMAIL_REQUEST,
+    LOAD_MY_INFO_REQUEST, LOAD_MY_INFO_SUCCESS, LOAD_MY_INFO_FAILURE,
+    CHECK_EMAIL_REQUEST, CHECK_EMAIL_SUCCESS, CHECK_EMAIL_FAILURE,
+    CHECK_NICKNAME_REQUEST, CHECK_NICKNAME_SUCCESS, CHECK_NICKNAME_FAILURE,
 } from '../reducers/user'; // 액션 타입 불러오기
 
 const client = axios.create({
@@ -209,7 +206,9 @@ function* watchLoadMyInfo() {
     yield takeLatest(LOAD_MY_INFO_REQUEST, loadMyInfo);
 }
 
-// 이메일 중복 확인
+// ---------- 이메일 중복 확인 ----------
+// watchCheckEmail
+// : /user/{id} 
 export function checkEmailApi(email) {
     return client.post('/user/check-email',  null, { params: { email } });
 }
@@ -244,6 +243,41 @@ function* watchCheckEmail() {
     yield takeLatest(CHECK_EMAIL_REQUEST, checkEmailInfo);
 }
 
+// 닉네임 중복 확인
+export function checkNicknameApi(nickname) {
+    return client.post('/user/check-nickname',  null, { params: { nickname } });
+}
+export function* checkNicknameInfo(action) {
+    try {
+        const { nickname } = action.data;
+        const result = yield call(checkNicknameApi, nickname);
+        yield put({
+            type: CHECK_NICKNAME_SUCCESS,
+            data: {
+                isAvailable: result.data.isAvailable,
+                message: result.data.message,
+            },
+        });
+    } catch (err) {
+        // 409 등 에러 응답도 isAvailable: false로 판단해야 하는 경우가 많음
+        const errData = err.response?.data;
+        if (errData) {
+            yield put({
+                type: CHECK_NICKNAME_FAILURE,
+                data: {
+                    isAvailable: errData.isAvailable ?? false,
+                    message: errData.message,
+                },
+            });
+        } else {
+            yield put({ type: CHECK_NICKNAME_FAILURE, error: err.message });
+        }
+    }
+}
+function* watchCheckNickname() {
+    yield takeLatest(CHECK_NICKNAME_REQUEST, checkNicknameInfo);
+}
+
 export default function* userSaga() {
     yield all([
         fork(watchLogin),
@@ -255,5 +289,7 @@ export default function* userSaga() {
         fork(watchLoadMyInfo),
         // 이메일 중복 확인
         fork(watchCheckEmail),
+        // 닉네임 중복 확인
+        fork(watchCheckNickname),
     ]);
 }

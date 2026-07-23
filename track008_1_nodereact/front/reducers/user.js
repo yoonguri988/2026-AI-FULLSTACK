@@ -41,6 +41,10 @@ export const CHECK_EMAIL_REQUEST = 'CHECK_EMAIL_REQUEST';
 export const CHECK_EMAIL_SUCCESS = 'CHECK_EMAIL_SUCCESS';
 export const CHECK_EMAIL_FAILURE = 'CHECK_EMAIL_FAILURE';
 
+export const CHECK_NICKNAME_SUCCESS = 'CHECK_NICKNAME_SUCCESS';
+export const CHECK_NICKNAME_FAILURE = 'CHECK_NICKNAME_FAILURE';
+export const CHECK_NICKNAME_REQUEST = 'CHECK_NICKNAME_REQUEST';
+
 //2. 초기상태
 export const initialState = {
     me: null,          // 로그인 사용자 정보 {id, email, nickname}
@@ -48,8 +52,12 @@ export const initialState = {
     isLoading: false,  // api 요청 중 여부
     error: null,       // 에러 메시지
     signUpDone: false, // 회원가입 완료 여부
-    isAvailable: false, // 중복확인 여부
+
+    // version -1
+    isAvalEmail: false, // 중복확인 여부
     emailCheckMessage: null, // 중복확인 여부 메시지
+    isAvalNick: false, // 중복확인 여부
+    nicknameCheckMessage: null, // 닉네임 중복확인 여부 메시지
 };
 
 //3. reducer 함수
@@ -64,6 +72,7 @@ const reducer = (state=initialState, action) => { // 현재상태, 요청액션
         case DELETE_USER_REQUEST:
         case LOAD_MY_INFO_REQUEST:
         case CHECK_EMAIL_REQUEST:
+        case CHECK_NICKNAME_REQUEST:
             return { ...state, isLoading: true, error: null}; 
 
         // 성공액션 -> 상태업데이트
@@ -95,8 +104,15 @@ const reducer = (state=initialState, action) => { // 현재상태, 요청액션
             return {
                 ...state,
                 isLoading: false,
-                isAvailable: action.data.isAvailable,
+                isAvalEmail: action.data.isAvailable,
                 emailCheckMessage: action.data.message,
+            };
+        case CHECK_NICKNAME_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                isAvalNick: action.data.isAvailable,
+                nicknameCheckMessage: action.data.message,
             };
 
         // 실패액션 -> 에러메시지저장
@@ -113,8 +129,15 @@ const reducer = (state=initialState, action) => { // 현재상태, 요청액션
             return {
                 ...state,
                 isLoading: false,
-                isAvailable: action.data?.isAvailable ?? false,
+                isAvalEmail: action.data?.isAvailable ?? false,
                 emailCheckMessage: action.data?.message ?? action.error,
+            };
+        case CHECK_NICKNAME_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                isAvalNick: action.data?.isAvailable ?? false,
+                nicknameCheckMessage: action.data?.message ?? action.error,
             };
 
 
