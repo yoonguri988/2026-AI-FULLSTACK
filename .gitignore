@@ -28,3 +28,7 @@ track007_boot_api/boot1/src/main/resources/application-oauth.properties
 track008_1_nodereact/back/node_modules
 track008_1_nodereact/front/node_modules
 track008_1_nodereact/front/.next
+
+track008_1_nodereact/back-t/node_modules
+track008_1_nodereact/front-t/node_modules
+track008_1_nodereact/front-t/.next
