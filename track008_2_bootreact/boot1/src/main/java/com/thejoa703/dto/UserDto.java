@@ -25,7 +25,7 @@ public class UserDto {
 		private String password;
 		private String nickname;
 		private String mobile;
-		private Integer mbtiType;
+		private Integer mbtiTypeId;
 		private String role;
 		
 		public UserResponseDto(AppUser user) { // insert, update 결과물
@@ -35,7 +35,7 @@ public class UserDto {
 			this.password = user.getPassword();
 			this.nickname = user.getNickname();
 			this.mobile = user.getMoblie();
-			this.mbtiType = user.getMbtiType();
+			this.mbtiTypeId = user.getMbtiTypeId();
 			this.role = user.getRole();
 		}
 		

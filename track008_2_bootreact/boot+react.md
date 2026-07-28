@@ -172,7 +172,8 @@ file:
 #  port: 8484s
 ```
 
-※ (db:table) -> dto -> mapper -> service -> controller -> view
+※ (db:table) -> mapper     -> dto  -> service -> controller -> view
+※ @Entity    -> repository -> dto  -> service -> controller -> view
 - [x] 4. entity (테이블을 객체로 처리 @Entity)
   back1
    └ src/main/java
@@ -218,9 +219,115 @@ DTO class
        └─ PostRepository
 https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
 
-- [ ] 7. Service
-- [ ] 8. Controller
-- [ ] 9. View
+- [x] 7. Service
+  back1
+   └ src/main/java
+     └ com.thejoa703.service
+       ─ UserService
+       ─ PostService
 
+★ 더티 체킹
+
+더티 체킹(Dirty Checking)은 JPA에서 트랜잭션이 끝나는 시점에 조회했던 엔티티의 값이 변경되었다면, 별도의 save()나 update() 쿼리 없이 알아서 데이터베이스에 UPDATE 쿼리를 날려주는 기능입니다.
+
+★ 동작 방식  
+> 1. postRepository.findById(postId)로 엔티티를 조회하면, JPA는 이 시점의 최초 상태를 스냅샷으로 만들어 영속성 컨텍스트에 저장합니다.
+> 2. post.setContent(content)로 엔티티의 값을 수정합니다.
+> 3. 메서드가 정상 종료되어 @Transactional 트랜잭션이 커밋될 때, JPA는 최초 스냅샷과 현재 엔티티의 상태를 비교(체킹)합니다.
+> 4. 값이 다르면 변경된 부분을 감지하고 자동으로 UPDATE 쿼리를 생성해서 데이터베이스에 반영합니다.
+
+- [x] 8. Controller
+```
+back1
+  └ src/main/java
+  └ com.thejoa703.controller
+  ─ UserController
+  ─ PostController
+
+  1. User Api    - 사용자 관련 API
+  - POST   /api/users        회원가입
+  - GET    /api/users/{id}   사용자 단건조회
+
+  2. Post API     - 게시글 관련 API
+  - GET        /api/posts/{id}      게시글 단건 조회
+  - PUT        /api/posts/{id}      게시글 수정
+  - DELETE     /api/posts/{id}      게시글 삭제
+  - GET        /api/posts           전체 게시글 조회
+  - POST       /api/posts           게시글 작성
+```
+※ Swagger는 갱신 안되므로 서버 다시 재부팅
+
+- [x] 9. View
+1. 회원가입
+   ↓
+2. 마이페이지
+   ↓
+3. 글쓰기
+   ↓
+4. 글수정   
+   ↓
+5. 글삭제    
+
+Step1) 프로젝트 만들기
+```
+mkdir front1
+cd front1
+npm init
+```
+
+Step2) 기본 셋팅(store)
+```
+npm install
+```
+```md
+front/
+├── .next/                  # Next.js 빌드 결과물 (자동 생성, 배포 시 사용)
+├── components/         # 재사용 가능한 UI 컴포넌트 폴더
+│   └── Layout.js         # 페이지 공통 레이아웃 컴포넌트
+├── node_modules/       # 설치된 npm 패키지들
+├── pages/                  # Next.js 라우팅 기반 페이지 폴더
+│   ├── posts/             
+│      └──new.js       #  글쓰기 파일
+│   ├── _app.js             # 전체 앱의 공통 설정 (Redux Provider, 글로벌 스타일 등)
+│   ├── join.js              # 회원가입
+│   ├── mypage.js         # 마이페이지
+│   └── index.js            # 메인 페이지
+├── reducers/               # Redux 리듀서 폴더
+│   ├── __tests__/       
+│      ├── postr.test.js        # 게시판 테스트 코드 
+│      └── user.test.js        # 리듀서 테스트 코드
+│   ├── index.js            # 루트 리듀서 (combineReducers)
+│   ├── authReducer.js             # 사용자 관련 리듀서
+│   └── postReducer.js             # 게시판 관련 리듀서 
+├── sagas/                  # Redux-Saga 폴더
+│   ├── __tests__/       
+│      ├── postr.test.js        # 게시판 사가 테스트 코드
+│      └── user.test.js        #  유저   사가  테스트 코드
+│   ├── index.js            # 루트 사가
+│   ├── user.js             # 사용자 관련 사가
+│   └── post.js             # 게시판 관련 사가 
+├── store/                  # Redux 스토어 설정 폴더
+│   ├── configureStore.js   # Redux 스토어 설정
+│   └── configureStore.test.js # 스토어 테스트 코드
+├── styles/                 # CSS 스타일 폴더
+│   └── globals.css         # 글로벌 스타일
+├── .babelrc                # Babel 설정 파일
+├── .eslintrc               # ESLint 설정 파일
+├── package-lock.json       # npm 의존성 잠금 파일
+├── package.json            # 프로젝트 메타 정보 및 의존성
+└── setupTests.js           #  테스트 환경 설정 파일
+
+```
+
+
+Step3) reducer
+Step4) saga
+Step4) view
+
+
+#### [실습] 5. Boot + React + session/cookie ver2 (기본게시판, 회원가입, 이미지/해쉬태그/좋아요/팔로우)
+※entity -> repository -> service -> controller
+
+#### [실습] 6. Boot + React + jwt + security + redis - ver3 (기본게시판, 회원가입, 이미지/해쉬태그/좋아요/팔로우)
 
 2. 회원가입(보안빠진 버전)

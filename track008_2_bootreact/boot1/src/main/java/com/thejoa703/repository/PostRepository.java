@@ -21,7 +21,7 @@ public interface PostRepository extends JpaRepository<Post, Long>{
               "WHERE rnum BETWEEN :start AND :end",
 		nativeQuery=true
 	)
-	List<Post> findPostWithPaging(@Param("start") int start, @Param("end") int end);
+	List<Post> findPostsWithPaging(@Param("start") int start, @Param("end") int end);
 }
 /* 
 (1) 사용할 수 있는 기본 SQL

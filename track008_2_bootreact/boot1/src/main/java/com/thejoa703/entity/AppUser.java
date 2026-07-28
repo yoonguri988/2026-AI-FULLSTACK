@@ -51,7 +51,7 @@ public class AppUser {
 	@Column(length = 30)
 	private String moblie;
 	@Column(name="MBTI_TYPE_ID", length = 150)
-	private Integer mbtiType;
+	private Integer mbtiTypeId;
 	
 	@Column
 	private Boolean deleted=false;
@@ -78,6 +78,7 @@ public class AppUser {
 		this.provider = provider;
 		this.nickname = nickname;
 		this.role = "ROLE_USER";
+		this.mbtiTypeId = 0;
 	}
 	
 	// 한 사람(기준★)이 여러글을 쓸 수 있다.
