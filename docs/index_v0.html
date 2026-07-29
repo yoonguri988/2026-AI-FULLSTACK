@@ -1,0 +1,1379 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./js/support.js"></script>
+    <script src="./js/image-slot.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <template id="__bundler_thumbnail" data-bg-color="#ffe9d4">
+          <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+            <rect width="1200" height="800" fill="#ffe9d4" />
+            <circle cx="600" cy="330" r="120" fill="#ea6a3d" />
+            <text
+              x="600"
+              y="350"
+              font-family="sans-serif"
+              font-size="120"
+              font-weight="700"
+              fill="#fff"
+              text-anchor="middle"
+            >
+              최
+            </text>
+            <rect
+              x="420"
+              y="520"
+              width="360"
+              height="24"
+              rx="12"
+              fill="#33261f"
+            />
+            <rect
+              x="470"
+              y="565"
+              width="260"
+              height="16"
+              rx="8"
+              fill="#a68b7a"
+            />
+          </svg>
+        </template>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700;900&display=swap"
+          rel="stylesheet"
+        />
+        <script src="./js/image-slot.js"></script>
+        <style>
+          @keyframes fadeUp {
+            from {
+              opacity: 0;
+              transform: translateY(26px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          @keyframes drift {
+            0%,
+            100% {
+              transform: translate(0, 0);
+            }
+            50% {
+              transform: translate(24px, -20px);
+            }
+          }
+          @keyframes blink {
+            0%,
+            100% {
+              opacity: 1;
+            }
+            50% {
+              opacity: 0;
+            }
+          }
+          body {
+            margin: 0;
+            background: #ffffff;
+          }
+          a {
+            color: #ea6a3d;
+            text-decoration: none;
+          }
+          a:hover {
+            color: #c2410c;
+          }
+          ::selection {
+            background: #ea6a3d;
+            color: #fff;
+          }
+        </style>
+      </helmet>
+      <div
+        ref="{{ setRoot }}"
+        style="
+          font-family:
+            &quot;Noto Sans KR&quot;,
+            -apple-system,
+            sans-serif;
+          color: #0f172a;
+          background: #ffffff;
+          overflow-x: hidden;
+        "
+      >
+        <!-- NAV -->
+        <nav
+          style="
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 250, 244, 0.92);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #f0ddd0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 40px;
+          "
+        >
+          <span
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-weight: 700;
+              font-size: 18px;
+              color: #33261f;
+              letter-spacing: 0.02em;
+            "
+            >최윤정<span style="color: #ea6a3d">.dev</span></span
+          >
+          <div style="display: flex; gap: 28px">
+            <a
+              href="#projects"
+              style="color: #6b5a4e; font-size: 14px; font-weight: 500"
+              >Projects</a
+            >
+            <a
+              href="#experience"
+              style="color: #6b5a4e; font-size: 14px; font-weight: 500"
+              >Experience</a
+            >
+            <a
+              href="#skills"
+              style="color: #6b5a4e; font-size: 14px; font-weight: 500"
+              >Skills</a
+            >
+            <a
+              href="#contact"
+              style="color: #6b5a4e; font-size: 14px; font-weight: 500"
+              >Contact</a
+            >
+          </div>
+        </nav>
+
+        <!-- HERO -->
+        <header
+          style="
+            position: relative;
+            background: linear-gradient(180deg, #fff8f1 0%, #ffe9d4 100%);
+            padding: 120px 40px 100px;
+            overflow: hidden;
+          "
+        >
+          <div
+            style="
+              position: absolute;
+              top: -80px;
+              right: -60px;
+              width: 420px;
+              height: 420px;
+              border-radius: 50%;
+              background: radial-gradient(
+                circle,
+                rgba(234, 106, 61, 0.28),
+                transparent 70%
+              );
+              filter: blur(10px);
+              animation: drift 9s ease-in-out infinite;
+              pointer-events: none;
+            "
+          ></div>
+          <div
+            style="
+              position: absolute;
+              bottom: -100px;
+              left: -80px;
+              width: 340px;
+              height: 340px;
+              border-radius: 50%;
+              background: radial-gradient(
+                circle,
+                rgba(242, 165, 65, 0.28),
+                transparent 70%
+              );
+              filter: blur(10px);
+              animation: drift 11s ease-in-out infinite reverse;
+              pointer-events: none;
+            "
+          ></div>
+          <div
+            style="
+              position: relative;
+              max-width: 1100px;
+              margin: 0 auto;
+              display: grid;
+              grid-template-columns: 1fr 0.45fr;
+              gap: 56px;
+              align-items: center;
+            "
+          >
+            <div>
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  background: rgba(234, 106, 61, 0.12);
+                  border: 1px solid rgba(234, 106, 61, 0.3);
+                  color: #c2410c;
+                  font-family: &quot;JetBrains Mono&quot;, monospace;
+                  font-size: 12px;
+                  letter-spacing: 0.08em;
+                  padding: 6px 14px;
+                  border-radius: 100px;
+                  opacity: 0;
+                  animation: fadeUp 0.7s ease 0.05s forwards;
+                "
+              >
+                <span
+                  style="
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 50%;
+                    background: #22c55e;
+                    animation: blink 1.6s ease-in-out infinite;
+                  "
+                ></span>
+                경력직 신입 · 실무 경험 기반 개발자
+              </div>
+              <h1
+                style="
+                  font-family: &quot;Space Grotesk&quot;, sans-serif;
+                  font-size: 60px;
+                  line-height: 1.08;
+                  font-weight: 700;
+                  color: #33261f;
+                  margin: 24px 0 0;
+                  opacity: 0;
+                  animation: fadeUp 0.7s ease 0.15s forwards;
+                "
+              >
+                최윤정
+              </h1>
+              <div
+                style="
+                  margin: 18px 0 36px;
+                  font-size: 26px;
+                  font-weight: 500;
+                  color: #5b4a3f;
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: 10px;
+                "
+              >
+                <sc-for
+                  list="{{ heroWords }}"
+                  as="w"
+                  hint-placeholder-count="4"
+                >
+                  <span
+                    style="display:inline-block;opacity:0;animation:fadeUp 0.6s ease {{ w.delay }} forwards;"
+                    >{{ w.text }}</span
+                  >
+                </sc-for>
+              </div>
+              <p
+                style="
+                  max-width: 560px;
+                  font-size: 16px;
+                  line-height: 1.75;
+                  color: #8a7568;
+                  opacity: 0;
+                  animation: fadeUp 0.7s ease 0.6s forwards;
+                "
+              >
+                데이터 시각화 솔루션 기업에서 2년 7개월간 실무를 익힌 뒤, 그
+                위에 백엔드·프론트엔드 개발 역량을 쌓았습니다. 기능을 만드는
+                것보다 "실제로 잘 쓰이는가"를 기준으로 판단하고, 배운 것은 직접
+                만들어 배포하며 증명합니다.
+              </p>
+              <div
+                style="
+                  display: flex;
+                  gap: 36px;
+                  margin-top: 44px;
+                  opacity: 0;
+                  animation: fadeUp 0.7s ease 0.75s forwards;
+                "
+              >
+                <div>
+                  <div
+                    style="
+                      font-family: &quot;Space Grotesk&quot;, sans-serif;
+                      font-size: 30px;
+                      font-weight: 700;
+                      color: #33261f;
+                    "
+                  >
+                    2.7<span style="color: #ea6a3d">년</span>
+                  </div>
+                  <div
+                    style="
+                      font-size: 12px;
+                      color: #9c8577;
+                      letter-spacing: 0.04em;
+                      margin-top: 4px;
+                    "
+                  >
+                    실무 경력 · 위세아이텍
+                  </div>
+                </div>
+                <div
+                  style="width: 1px; background: rgba(51, 38, 31, 0.14)"
+                ></div>
+                <div>
+                  <div
+                    style="
+                      font-family: &quot;Space Grotesk&quot;, sans-serif;
+                      font-size: 30px;
+                      font-weight: 700;
+                      color: #33261f;
+                    "
+                  >
+                    2
+                  </div>
+                  <div
+                    style="
+                      font-size: 12px;
+                      color: #9c8577;
+                      letter-spacing: 0.04em;
+                      margin-top: 4px;
+                    "
+                  >
+                    개인 프로젝트
+                  </div>
+                </div>
+                <div
+                  style="width: 1px; background: rgba(51, 38, 31, 0.14)"
+                ></div>
+                <div>
+                  <div
+                    style="
+                      font-family: &quot;Space Grotesk&quot;, sans-serif;
+                      font-size: 30px;
+                      font-weight: 700;
+                      color: #33261f;
+                    "
+                  >
+                    v1–v3
+                  </div>
+                  <div
+                    style="
+                      font-size: 12px;
+                      color: #9c8577;
+                      letter-spacing: 0.04em;
+                      margin-top: 4px;
+                    "
+                  >
+                    팀 프로젝트 · 기술 고도화
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                position: relative;
+                opacity: 0;
+                animation: fadeUp 0.8s ease 0.2s forwards;
+                max-width: 200px;
+                justify-self: end;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  inset: -12px;
+                  border-radius: 20px;
+                  border: 2px solid rgba(234, 106, 61, 0.35);
+                "
+              ></div>
+              <img
+                src="./assets/its_me.jpg"
+                alt="최윤정 프로필 사진"
+                style="
+                  width: 100%;
+                  aspect-ratio: 3/4;
+                  object-fit: cover;
+                  border-radius: 16px;
+                  box-shadow:
+                    10px 14px 0 rgba(234, 106, 61, 0.18),
+                    0 16px 32px rgba(51, 38, 31, 0.12);
+                  display: block;
+                "
+              />
+            </div>
+          </div>
+        </header>
+
+        <!-- PROJECTS -->
+        <section
+          id="projects"
+          data-reveal-id="projects"
+          style="max-width:1100px;margin:0 auto;padding:120px 40px 40px;opacity:{{ projectsOpacity }};transform:translateY({{ projectsY }}px);transition:opacity 0.8s ease, transform 0.8s ease;"
+        >
+          <div
+            style="
+              font-family: &quot;JetBrains Mono&quot;, monospace;
+              font-size: 12px;
+              letter-spacing: 0.14em;
+              color: #ea6a3d;
+              font-weight: 600;
+            "
+          >
+            FEATURED WORK
+          </div>
+          <h2
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-size: 36px;
+              font-weight: 700;
+              margin: 8px 0 48px;
+            "
+          >
+            실무처럼 설계하고, 끝까지 배포한 프로젝트
+          </h2>
+
+          <!-- Team project -->
+          <div
+            style="
+              border: 1px solid #f0ddd0;
+              border-radius: 18px;
+              padding: 36px;
+              background: #fff8f1;
+              margin-bottom: 32px;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                flex-wrap: wrap;
+                gap: 16px;
+                margin-bottom: 24px;
+              "
+            >
+              <div>
+                <div style="display: flex; align-items: center; gap: 10px">
+                  <h3 style="font-size: 22px; font-weight: 700; margin: 0">
+                    Spring Breeze ERP
+                  </h3>
+                  <span
+                    style="
+                      font-size: 11px;
+                      font-weight: 700;
+                      background: #ea6a3d;
+                      color: #fff;
+                      padding: 4px 10px;
+                      border-radius: 100px;
+                    "
+                    >팀장</span
+                  >
+                </div>
+                <p style="color: #8a7568; font-size: 13px; margin: 6px 0 0">
+                  팀 프로젝트 · {{ currentVersion.period }} · 기술 스택 변경에
+                  따른 v1 → v3 단계적 고도화
+                </p>
+              </div>
+              <a
+                href="https://github.com/yoonguri988/spring-breeze-erp"
+                target="_blank"
+                style="
+                  font-size: 13px;
+                  font-weight: 600;
+                  background: #33261f;
+                  color: #fff;
+                  padding: 9px 16px;
+                  border-radius: 8px;
+                "
+                >GitHub Repo ↗</a
+              >
+            </div>
+            <div style="display: flex; gap: 8px; margin-bottom: 24px">
+              <button
+                onClick="{{ setTabV1 }}"
+                style="cursor:pointer;border:1px solid {{ v1BorderColor }};background:{{ v1Bg }};color:{{ v1Color }};font-weight:600;font-size:13px;padding:9px 18px;border-radius:100px;"
+              >
+                v1
+              </button>
+              <button
+                onClick="{{ setTabV2 }}"
+                style="cursor:pointer;border:1px solid {{ v2BorderColor }};background:{{ v2Bg }};color:{{ v2Color }};font-weight:600;font-size:13px;padding:9px 18px;border-radius:100px;"
+              >
+                v2
+              </button>
+              <button
+                onClick="{{ setTabV3 }}"
+                style="cursor:pointer;border:1px solid {{ v3BorderColor }};background:{{ v3Bg }};color:{{ v3Color }};font-weight:600;font-size:13px;padding:9px 18px;border-radius:100px;"
+              >
+                v3 · 진행중
+              </button>
+            </div>
+            <div
+              style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px"
+            >
+              <div>
+                <p
+                  style="
+                    font-size: 15px;
+                    line-height: 1.7;
+                    color: #4a3b31;
+                    margin: 0 0 16px;
+                  "
+                >
+                  {{ currentVersion.desc }}
+                </p>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                  <sc-for
+                    list="{{ currentVersion.stack }}"
+                    as="tech"
+                    hint-placeholder-count="4"
+                  >
+                    <span
+                      style="
+                        background: rgba(242, 165, 65, 0.14);
+                        color: #a8580c;
+                        border: 1px solid rgba(242, 165, 65, 0.35);
+                        border-radius: 6px;
+                        font-size: 12px;
+                        font-weight: 500;
+                        padding: 5px 12px;
+                      "
+                      >{{ tech }}</span
+                    >
+                  </sc-for>
+                </div>
+              </div>
+              <div
+                style="
+                  border-radius: 12px;
+                  overflow: hidden;
+                  background: #33261f;
+                  min-height: 200px;
+                "
+              >
+                <sc-if
+                  value="{{ currentVersion.videoId }}"
+                  hint-placeholder-val="{{ true }}"
+                >
+                  <iframe
+                    style="
+                      width: 100%;
+                      height: 200px;
+                      display: block;
+                      border: 0;
+                    "
+                    src="https://www.youtube.com/embed/{{ currentVersion.videoId }}"
+                    title="Spring Breeze ERP 시연 영상"
+                    allow="
+                      accelerometer;
+                      autoplay;
+                      clipboard-write;
+                      encrypted-media;
+                      gyroscope;
+                      picture-in-picture;
+                    "
+                    referrerpolicy="strict-origin-when-cross-origin"
+                  ></iframe>
+                </sc-if>
+                <sc-if
+                  value="{{ currentVersion.pending }}"
+                  hint-placeholder-val="{{ false }}"
+                >
+                  <div
+                    style="
+                      height: 200px;
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      justify-content: center;
+                      gap: 8px;
+                      color: #cbb6a5;
+                    "
+                  >
+                    <span
+                      style="
+                        font-family: &quot;JetBrains Mono&quot;, monospace;
+                        font-size: 13px;
+                      "
+                      >시연 영상 준비 중</span
+                    >
+                    <span style="font-size: 12px">v3 완료 후 업로드 예정</span>
+                  </div>
+                </sc-if>
+              </div>
+            </div>
+          </div>
+
+          <!-- Personal projects -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px">
+            <div
+              onMouseMove="{{ handleTiltBank }}"
+              onMouseLeave="{{ resetTiltBank }}"
+              style="border:1px solid #f0ddd0;border-radius:16px;padding:24px;transform:{{ tiltBank }};transition:transform 0.15s ease;"
+            >
+              <div
+                style="
+                  border-radius: 10px;
+                  overflow: hidden;
+                  background: #33261f;
+                  margin-bottom: 18px;
+                "
+              >
+                <iframe
+                  style="width: 100%; height: 180px; display: block; border: 0"
+                  src="https://www.youtube.com/embed/Kl1kExRIBlI"
+                  title="은행 입출금 관리 시스템 시연 영상"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                  "
+                  referrerpolicy="strict-origin-when-cross-origin"
+                ></iframe>
+              </div>
+              <div
+                style="
+                  font-size: 12px;
+                  color: #a68b7a;
+                  font-family: &quot;JetBrains Mono&quot;, monospace;
+                "
+              >
+                2026.03 – 2026.04 · 개인 프로젝트
+              </div>
+              <h4
+                style="
+                  font-size: 17px;
+                  font-weight: 700;
+                  margin: 8px 0 10px;
+                  color: #33261f;
+                "
+              >
+                Java 콘솔 기반 은행 입출금 관리 시스템
+              </h4>
+              <p
+                style="
+                  font-size: 14px;
+                  line-height: 1.7;
+                  color: #6b5a4e;
+                  margin: 0 0 14px;
+                "
+              >
+                단일 클래스에서 시작해 5단계 리팩토링을 거쳐 완성한 순수 Java
+                은행 관리 시스템. Command Pattern으로 분기 로직을 제거하고, 최대
+                반복 횟수 초과 시 안전 종료하는 커스텀 예외로 런타임 안정성을
+                확보했습니다.
+              </p>
+              <div
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: 8px;
+                  margin-bottom: 14px;
+                "
+              >
+                <span
+                  style="
+                    background: rgba(234, 106, 61, 0.08);
+                    color: #c2410c;
+                    border: 1px solid rgba(234, 106, 61, 0.2);
+                    border-radius: 6px;
+                    font-size: 12px;
+                    padding: 5px 12px;
+                  "
+                  >Java 11</span
+                >
+                <span
+                  style="
+                    background: rgba(234, 106, 61, 0.08);
+                    color: #c2410c;
+                    border: 1px solid rgba(234, 106, 61, 0.2);
+                    border-radius: 6px;
+                    font-size: 12px;
+                    padding: 5px 12px;
+                  "
+                  >Command Pattern</span
+                >
+                <span
+                  style="
+                    background: rgba(234, 106, 61, 0.08);
+                    color: #c2410c;
+                    border: 1px solid rgba(234, 106, 61, 0.2);
+                    border-radius: 6px;
+                    font-size: 12px;
+                    padding: 5px 12px;
+                  "
+                  >In-Memory</span
+                >
+              </div>
+              <a
+                href="https://github.com/yoonguri988/2026-AI-FULLSTACK/tree/main/track003_java/bankproject"
+                target="_blank"
+                style="font-size: 13px; font-weight: 600"
+                >코드 보기 ↗</a
+              >
+            </div>
+
+            <div
+              onMouseMove="{{ handleTiltCalorie }}"
+              onMouseLeave="{{ resetTiltCalorie }}"
+              style="border:1px solid #f0ddd0;border-radius:16px;padding:24px;transform:{{ tiltCalorie }};transition:transform 0.15s ease;"
+            >
+              <div
+                style="
+                  border-radius: 10px;
+                  overflow: hidden;
+                  background: #33261f;
+                  margin-bottom: 18px;
+                "
+              >
+                <iframe
+                  style="width: 100%; height: 180px; display: block; border: 0"
+                  src="https://www.youtube.com/embed/zXw6y-BGgEA"
+                  title="칼로리 추적 시스템 시연 영상"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                  "
+                  referrerpolicy="strict-origin-when-cross-origin"
+                ></iframe>
+              </div>
+              <div
+                style="
+                  font-size: 12px;
+                  color: #a68b7a;
+                  font-family: &quot;JetBrains Mono&quot;, monospace;
+                "
+              >
+                2026.04 – 2026.05 · 개인 프로젝트
+              </div>
+              <h4
+                style="
+                  font-size: 17px;
+                  font-weight: 700;
+                  margin: 8px 0 10px;
+                  color: #33261f;
+                "
+              >
+                Java 콘솔 기반 칼로리 추적 및 영양 분석 시스템
+              </h4>
+              <p
+                style="
+                  font-size: 14px;
+                  line-height: 1.7;
+                  color: #6b5a4e;
+                  margin: 0 0 14px;
+                "
+              >
+                사용자 신체 정보 기반 맞춤형 칼로리 산출과 영양 성분 분석을
+                제공하는 MVC 기반 콘솔 애플리케이션.
+                Controller-Service-Repository 계층형 아키텍처를 직접 설계해
+                Spring 전환을 고려한 확장 구조를 확보했습니다.
+              </p>
+              <div
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: 8px;
+                  margin-bottom: 14px;
+                "
+              >
+                <span
+                  style="
+                    background: rgba(234, 106, 61, 0.08);
+                    color: #c2410c;
+                    border: 1px solid rgba(234, 106, 61, 0.2);
+                    border-radius: 6px;
+                    font-size: 12px;
+                    padding: 5px 12px;
+                  "
+                  >Java 11</span
+                >
+                <span
+                  style="
+                    background: rgba(234, 106, 61, 0.08);
+                    color: #c2410c;
+                    border: 1px solid rgba(234, 106, 61, 0.2);
+                    border-radius: 6px;
+                    font-size: 12px;
+                    padding: 5px 12px;
+                  "
+                  >계층형 아키텍처</span
+                >
+                <span
+                  style="
+                    background: rgba(234, 106, 61, 0.08);
+                    color: #c2410c;
+                    border: 1px solid rgba(234, 106, 61, 0.2);
+                    border-radius: 6px;
+                    font-size: 12px;
+                    padding: 5px 12px;
+                  "
+                  >File I/O</span
+                >
+              </div>
+              <a
+                href="https://github.com/yoonguri988/2026-AI-FULLSTACK/tree/main/track003_java/caloriestracker"
+                target="_blank"
+                style="font-size: 13px; font-weight: 600"
+                >코드 보기 ↗</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section
+          id="experience"
+          data-reveal-id="experience"
+          style="max-width:1100px;margin:0 auto;padding:100px 40px 40px;opacity:{{ experienceOpacity }};transform:translateY({{ experienceY }}px);transition:opacity 0.8s ease, transform 0.8s ease;"
+        >
+          <div
+            style="
+              font-family: &quot;JetBrains Mono&quot;, monospace;
+              font-size: 12px;
+              letter-spacing: 0.14em;
+              color: #ea6a3d;
+              font-weight: 600;
+            "
+          >
+            EXPERIENCE
+          </div>
+          <h2
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-size: 36px;
+              font-weight: 700;
+              margin: 8px 0 48px;
+              color: #33261f;
+            "
+          >
+            경력 및 교육
+          </h2>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 220px 1fr;
+              gap: 32px;
+              padding-bottom: 36px;
+              border-bottom: 1px solid #f0ddd0;
+              margin-bottom: 36px;
+            "
+          >
+            <div>
+              <div style="font-weight: 700; font-size: 16px; color: #33261f">
+                AI 활용 풀스택 개발자 부트캠프
+              </div>
+              <div style="font-size: 13px; color: #a68b7a; margin-top: 6px">
+                2026.03 – 2026.10
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 22px">
+              <div>
+                <div style="font-weight: 700; font-size: 15px; color: #33261f">
+                  Java/Spring/React 기반 실전 프로젝트 트랙
+                </div>
+                <p
+                  style="
+                    font-size: 14px;
+                    line-height: 1.7;
+                    color: #6b5a4e;
+                    margin: 6px 0 0;
+                  "
+                >
+                  프론트엔드부터 백엔드까지 웹 개발 전반을 프로젝트 중심으로
+                  습득. 개인 프로젝트 2건과 팀 프로젝트(Spring Breeze ERP)를
+                  통해 설계 → 구현 → 배포 전 과정을 직접 경험했습니다.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="display: grid; grid-template-columns: 220px 1fr; gap: 32px"
+          >
+            <div>
+              <div style="font-weight: 700; font-size: 16px; color: #33261f">
+                (주) 위세아이텍
+              </div>
+              <div style="font-size: 13px; color: #a68b7a; margin-top: 6px">
+                2020.04 – 2022.11
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 22px">
+              <div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    gap: 8px;
+                  "
+                >
+                  <div
+                    style="font-weight: 700; font-size: 15px; color: #33261f"
+                  >
+                    데이터 시각화 플랫폼 개발
+                  </div>
+                  <div style="font-size: 12px; color: #a68b7a">
+                    2020.08 – 2020.11
+                  </div>
+                </div>
+                <p
+                  style="
+                    font-size: 14px;
+                    line-height: 1.7;
+                    color: #6b5a4e;
+                    margin: 6px 0 0;
+                  "
+                >
+                  기업 내 발생 데이터를 통계적으로 분석하고 시각화하는 플랫폼
+                  개발에 참여했습니다.
+                </p>
+              </div>
+              <div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    gap: 8px;
+                  "
+                >
+                  <div
+                    style="font-weight: 700; font-size: 15px; color: #33261f"
+                  >
+                    WiseMeta · WiseDQ Solution 개발
+                  </div>
+                  <div style="font-size: 12px; color: #a68b7a">
+                    2020.08 – 2020.11
+                  </div>
+                </div>
+                <p
+                  style="
+                    font-size: 14px;
+                    line-height: 1.7;
+                    color: #6b5a4e;
+                    margin: 6px 0 0;
+                  "
+                >
+                  JavaScript · RDB · Spring 기반 메타데이터 관리 및 데이터 품질
+                  관리 웹 솔루션 개발에 참여했습니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section
+          id="skills"
+          data-reveal-id="skills"
+          style="max-width:1100px;margin:0 auto;padding:100px 40px 40px;opacity:{{ skillsOpacity }};transform:translateY({{ skillsY }}px);transition:opacity 0.8s ease, transform 0.8s ease;"
+        >
+          <div
+            style="
+              font-family: &quot;JetBrains Mono&quot;, monospace;
+              font-size: 12px;
+              letter-spacing: 0.14em;
+              color: #ea6a3d;
+              font-weight: 600;
+            "
+          >
+            SKILLS
+          </div>
+          <h2
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-size: 36px;
+              font-weight: 700;
+              margin: 8px 0 48px;
+              color: #33261f;
+            "
+          >
+            기술 스택
+          </h2>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+              gap: 32px;
+            "
+          >
+            <sc-for
+              list="{{ skillGroups }}"
+              as="group"
+              hint-placeholder-count="5"
+            >
+              <div>
+                <div
+                  style="
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #a68b7a;
+                    letter-spacing: 0.08em;
+                    margin-bottom: 18px;
+                  "
+                >
+                  {{ group.name }}
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 16px">
+                  <sc-for
+                    list="{{ group.items }}"
+                    as="item"
+                    hint-placeholder-count="3"
+                  >
+                    <div>
+                      <div
+                        style="
+                          display: flex;
+                          justify-content: space-between;
+                          font-size: 13px;
+                          font-weight: 600;
+                          margin-bottom: 6px;
+                          color: #33261f;
+                        "
+                      >
+                        <span>{{ item.label }}</span>
+                        <span
+                          style="
+                            color: #a68b7a;
+                            font-family: &quot;JetBrains Mono&quot;, monospace;
+                          "
+                          >{{ item.pct }}%</span
+                        >
+                      </div>
+                      <div
+                        style="
+                          height: 6px;
+                          background: #f0ddd0;
+                          border-radius: 100px;
+                          overflow: hidden;
+                        "
+                      >
+                        <div
+                          style="height:100%;width:{{ item.width }};background:linear-gradient(90deg,#ea6a3d,#f2a541);border-radius:100px;transition:width 1.1s cubic-bezier(0.16,1,0.3,1);"
+                        ></div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+
+        <!-- EDUCATION / CERTS -->
+        <section
+          id="education"
+          data-reveal-id="education"
+          style="max-width:1100px;margin:0 auto;padding:100px 40px 40px;opacity:{{ educationOpacity }};transform:translateY({{ educationY }}px);transition:opacity 0.8s ease, transform 0.8s ease;"
+        >
+          <div
+            style="
+              font-family: &quot;JetBrains Mono&quot;, monospace;
+              font-size: 12px;
+              letter-spacing: 0.14em;
+              color: #ea6a3d;
+              font-weight: 600;
+            "
+          >
+            CREDENTIALS
+          </div>
+          <h2
+            style="
+              font-family: &quot;Space Grotesk&quot;, sans-serif;
+              font-size: 36px;
+              font-weight: 700;
+              margin: 8px 0 32px;
+              color: #33261f;
+            "
+          >
+            자격증
+          </h2>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px">
+            <span
+              style="
+                background: #ea6a3d;
+                color: #fff;
+                font-weight: 600;
+                font-size: 14px;
+                padding: 10px 20px;
+                border-radius: 8px;
+              "
+              >정보처리기사</span
+            >
+            <span
+              style="
+                background: #ea6a3d;
+                color: #fff;
+                font-weight: 600;
+                font-size: 14px;
+                padding: 10px 20px;
+                border-radius: 8px;
+              "
+              >SQLD</span
+            >
+          </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section
+          id="contact"
+          data-reveal-id="contact"
+          style="opacity:{{ contactOpacity }};transform:translateY({{ contactY }}px);transition:opacity 0.8s ease, transform 0.8s ease;background:#33231a;margin-top:120px;padding:100px 40px;"
+        >
+          <div style="max-width: 1100px; margin: 0 auto">
+            <div
+              style="
+                font-family: &quot;JetBrains Mono&quot;, monospace;
+                font-size: 12px;
+                letter-spacing: 0.14em;
+                color: #f2a541;
+                font-weight: 600;
+              "
+            >
+              GET IN TOUCH
+            </div>
+            <h2
+              style="
+                font-family: &quot;Space Grotesk&quot;, sans-serif;
+                font-size: 36px;
+                font-weight: 700;
+                margin: 8px 0 40px;
+                color: #fff;
+              "
+            >
+              함께 일하고 싶으시다면
+            </h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 40px">
+              <a
+                href="mailto:cyjjeong98@gmail.com"
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  color: #f5e9df;
+                  font-size: 16px;
+                  font-weight: 500;
+                "
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#f2a541"
+                  stroke-width="2"
+                >
+                  <path d="M3 5h18v14H3z"></path>
+                  <path d="M3 6l9 7 9-7"></path>
+                </svg>
+                cyjjeong98@gmail.com
+              </a>
+              <a
+                href="https://github.com/yoonguri988"
+                target="_blank"
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  color: #f5e9df;
+                  font-size: 16px;
+                  font-weight: 500;
+                "
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#f2a541">
+                  <path
+                    d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.03a9.4 9.4 0 015 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.37.2 2.39.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"
+                  ></path>
+                </svg>
+                github.com/yoonguri988
+              </a>
+            </div>
+            <div style="margin-top: 64px; font-size: 12px; color: #a68b7a">
+              © 2026 최윤정. All rights reserved.
+            </div>
+          </div>
+        </section>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script>
+      class Component extends DCLogic {
+        state = { revealed: {}, tab: 'v1', tilt: {} };
+
+        setRoot = (el) => {
+          this.rootEl = el;
+          if (el && !this.observer) {
+            this.observer = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  const id = entry.target.getAttribute('data-reveal-id');
+                  if (id && !this.state.revealed[id]) {
+                    this.setState((s) => ({ revealed: { ...s.revealed, [id]: true } }));
+                  }
+                }
+              });
+            }, { threshold: 0.15 });
+            el.querySelectorAll('[data-reveal-id]').forEach((sec) => this.observer.observe(sec));
+          }
+        };
+
+        componentWillUnmount() {
+          if (this.observer) this.observer.disconnect();
+        }
+
+        setTab = (v) => this.setState({ tab: v });
+
+        handleTilt = (id, e) => {
+          const r = e.currentTarget.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          this.setState((s) => ({ tilt: { ...s.tilt, [id]: { rx: py * -6, ry: px * 6 } } }));
+        };
+
+        resetTilt = (id) => {
+          this.setState((s) => ({ tilt: { ...s.tilt, [id]: { rx: 0, ry: 0 } } }));
+        };
+
+        renderVals() {
+          const revealed = this.state.revealed;
+          const sec = (id) => (revealed[id] ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 });
+          const projects = sec('projects');
+          const experience = sec('experience');
+          const skills = sec('skills');
+          const education = sec('education');
+          const contact = sec('contact');
+
+          const versions = {
+            v1: {
+              period: '2025.06.11 – 2025.06.26 (16일) · 팀원 6명',
+              desc: 'JSP + Spring MVC + MyBatis 기반 ERP 1차 버전. 결재·공지·자원·사원·프로젝트·회사·부서·권한 8개 모듈을 구현했으며, 팀장으로서 회사·부서 관리와 로그인·권한 인증 흐름을 담당했습니다.',
+              stack: ['JSP', 'Spring MVC', 'MyBatis', 'MySQL 8.4', 'Bootstrap 5'],
+              videoId: 'nybOKBw8DDE',
+              pending: false,
+            },
+            v2: {
+              period: '2026.07.02 – 2026.07.15 (14일) · 팀원 4명',
+              desc: 'v1을 Spring Boot·Thymeleaf·Oracle 18c 기반으로 리팩토링하고 AI·외부 API를 결합해 신규 기능 8종 이상을 추가한 버전. 사업자등록증 OCR 등록, 국세청 실시간 검증, AI 부서 이관 추천, 자원 예약 동시성 제어를 팀장으로서 설계·구현했습니다.',
+              stack: ['Spring Boot 3.5', 'Spring Security', 'MyBatis', 'Oracle 18c', 'OpenAI GPT-4o-mini', 'Naver OCR'],
+              videoId: 'IeCpmTbJOy0',
+              pending: false,
+            },
+            v3: {
+              period: '진행 중',
+              desc: 'v2 이후 고도화를 진행 중인 최신 버전입니다. 상세 내용은 완료 후 업데이트할 예정입니다.',
+              stack: [],
+              videoId: null,
+              pending: true,
+            },
+          };
+          const currentVersion = versions[this.state.tab];
+
+          const tabStyle = (key) => {
+            const active = this.state.tab === key;
+            return {
+              border: active ? '#ea6a3d' : '#f0ddd0',
+              bg: active ? '#ea6a3d' : '#ffffff',
+              color: active ? '#ffffff' : '#6b5a4e',
+            };
+          };
+          const v1s = tabStyle('v1');
+          const v2s = tabStyle('v2');
+          const v3s = tabStyle('v3');
+
+          const pct = (v) => (skills.opacity ? v + '%' : '0%');
+          const skillGroups = [
+            {
+              name: 'FRONT-END',
+              items: [
+                { label: 'React', pct: 85, width: pct(85) },
+                { label: 'JavaScript', pct: 82, width: pct(82) },
+                { label: 'Thymeleaf', pct: 80, width: pct(80) },
+                { label: 'Bootstrap / jQuery', pct: 88, width: pct(88) },
+              ],
+            },
+            {
+              name: 'BACK-END',
+              items: [
+                { label: 'Java', pct: 85, width: pct(85) },
+                { label: 'Spring Boot / MVC', pct: 85, width: pct(85) },
+                { label: 'Spring Security', pct: 78, width: pct(78) },
+                { label: 'MyBatis', pct: 82, width: pct(82) },
+                { label: 'Python', pct: 75, width: pct(75) },
+              ],
+            },
+            {
+              name: 'DATABASE',
+              items: [
+                { label: 'Oracle 18c', pct: 85, width: pct(85) },
+                { label: 'MySQL', pct: 82, width: pct(82) },
+              ],
+            },
+            {
+              name: 'AI & EXTERNAL API',
+              items: [
+                { label: 'OpenAI API (GPT-4o-mini)', pct: 80, width: pct(80) },
+                { label: 'Naver OCR / 공공데이터 API', pct: 75, width: pct(75) },
+              ],
+            },
+            {
+              name: 'TOOLS & COLLABORATION',
+              items: [
+                { label: 'Git / GitHub', pct: 90, width: pct(90) },
+                { label: 'Figma', pct: 75, width: pct(75) },
+                { label: 'Notion', pct: 82, width: pct(82) },
+              ],
+            },
+          ];
+
+          const heroText = ['경력을', '증명하는', '실행력.'];
+          const heroWords = heroText.map((text, i) => ({ text, delay: (0.3 + i * 0.12).toFixed(2) + 's' }));
+
+          const tilt = this.state.tilt;
+          const tiltCss = (id) => {
+            const t = tilt[id] || { rx: 0, ry: 0 };
+            return `perspective(900px) rotateX(${t.rx}deg) rotateY(${t.ry}deg)`;
+          };
+
+          return {
+            setRoot: this.setRoot,
+            heroWords,
+            projectsOpacity: projects.opacity, projectsY: projects.y,
+            experienceOpacity: experience.opacity, experienceY: experience.y,
+            skillsOpacity: skills.opacity, skillsY: skills.y,
+            educationOpacity: education.opacity, educationY: education.y,
+            contactOpacity: contact.opacity, contactY: contact.y,
+            currentVersion,
+            setTabV1: () => this.setTab('v1'),
+            setTabV2: () => this.setTab('v2'),
+            setTabV3: () => this.setTab('v3'),
+            v1BorderColor: v1s.border, v1Bg: v1s.bg, v1Color: v1s.color,
+            v2BorderColor: v2s.border, v2Bg: v2s.bg, v2Color: v2s.color,
+            v3BorderColor: v3s.border, v3Bg: v3s.bg, v3Color: v3s.color,
+            skillGroups,
+            handleTiltBank: (e) => this.handleTilt('bank', e),
+            resetTiltBank: () => this.resetTilt('bank'),
+            tiltBank: tiltCss('bank'),
+            handleTiltCalorie: (e) => this.handleTilt('calorie', e),
+            resetTiltCalorie: () => this.resetTilt('calorie'),
+            tiltCalorie: tiltCss('calorie'),
+          };
+        }
+      }
+    </script>
+  </body>
+</html>
