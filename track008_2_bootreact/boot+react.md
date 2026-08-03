@@ -338,11 +338,55 @@ Step4) view
 <Link href="/signup">    signup.js    # 회원가입
 <Link href="/post/new">  posts/new.js # 글쓰기 파일
 
+## (1) : 회원가입 + board (CRUD) - 보안빠진 버전
+## (2) : 멤버기능 + board (이미지업로드, 해쉬태그, 좋아요, 팔로우)(CRUD)
+boot2  - 프로젝트 만들기
+- table -> mapper -> service -> controller
+- @Entity -> repository -> service -> restController
+
+1. 유저는 많은 글을 쓸 수 있다.
+<AppUser> -> <Post>
+
+<AppUser>
+@OneToMany( mappedBy = "user" ,cascade = CascadeType.ALL, orphanRemoval = true )
+private List<Post> posts = new ArrayList<>(); 
+
+<Post>
+@ManyToOne   //1. 다대일
+@JoinColumn(name="APP_USER_ID" , nullable = false)
+private AppUser user; 
+
+2. 글은 많은 이미지를 갖는다.
+<Post> -> <Image>
+3. 글은 많은 해쉬태그를 갖는다 / 해쉬태그는 많은 글을 갖는다.
+1) 다 : 다
+2) 중간 테이블
+<Post> -> <Hashtag>
+@ManyToMany
+<Hashtag> -> <Post>
+1 test
+1 like
+1 hot
+2 test
+2 like
+2 hot
+
+2) 글은 많은 좋아요를 갖는다.
+하나의 글에 여러 유저가 좋아요를 누른다.
+<Post>                                        <POST_LIKE>
+@OneToMany List<POST_LIKE> likes;             @ManyToOne AppUser user;
+<AppUser>                                     <POST_LIKE>
+@OneToMany List<POST_LIKE> likes;             @ManyToOne Post post;
+
+
+3) 리트윗
+
+4) 팔로우
+
+front2 - 프로젝트 복사하기
 
 
 #### [실습] 5. Boot + React + session/cookie ver2 (기본게시판, 회원가입, 이미지/해쉬태그/좋아요/팔로우)
 ※entity -> repository -> service -> controller
 
 #### [실습] 6. Boot + React + jwt + security + redis - ver3 (기본게시판, 회원가입, 이미지/해쉬태그/좋아요/팔로우)
-
-2. 회원가입(보안빠진 버전)

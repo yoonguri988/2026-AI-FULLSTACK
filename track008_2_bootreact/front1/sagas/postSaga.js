@@ -65,7 +65,7 @@ export const deletePostApi = (id) => axios.delete(`${POST_API_BASE}/${id}`);
 export function* deletePost(action) {
     try {
         const result = yield call(deletePostApi, action.payload);
-        yield put(deletePostSuccess(result.data));
+        yield put(deletePostSuccess(action.payload));
     } catch(err){
         yield put(deletePostFailure(err.response?.data?.message || err.message));
     }
