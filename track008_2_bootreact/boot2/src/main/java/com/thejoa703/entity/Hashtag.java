@@ -17,7 +17,7 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-@Table(name="hashtags")
+@Table(name="HASHTAGS")
 public class Hashtag {
    
    @Id

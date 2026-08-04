@@ -31,10 +31,10 @@ spring:
 #      - optional:file:.env[.properties]
 
 
-#mybatis:
-#  config-location: classpath:mybatis-config.xml
-#  mapper-locations: classpath:mapper/**/*.xml
-#  type-aliases-package: com.thejoa703.domain 
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.thejoa703.domain 
 
 #jwt:
 #  issuer: thejoa703
