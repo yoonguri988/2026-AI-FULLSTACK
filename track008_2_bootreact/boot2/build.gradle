@@ -1,21 +1,26 @@
+## 회의 내용 ##
+Trigger -> created, updated 방식
+@Entity -> OnCreate(), OnUpdate() 방식
+
+
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '4.0.7'
-	id 'io.spring.dependency-management' version '1.1.7'
+   id 'java'
+   id 'org.springframework.boot' version '3.3.5'
+   id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.thejoa703'
 version = '0.0.1-SNAPSHOT'
-description = 'Demo project for Spring Boot'
+description= 'Demo projecet for Spring Boot'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
+   toolchain {
+      languageVersion = JavaLanguageVersion.of(17)
+   }
 }
 
 repositories {
-	mavenCentral()
+   mavenCentral()
 }
 
 dependencies {
@@ -24,7 +29,7 @@ dependencies {
    implementation 'org.springframework.boot:spring-boot-starter-web'
    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
    implementation 'org.springframework.boot:spring-boot-starter-validation'
-   implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:4.0.1'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3' 
    
    // 보안 + redis + oauth2.0
 /*   implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -61,5 +66,5 @@ dependencies {
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+   useJUnitPlatform()
 }

@@ -44,8 +44,8 @@ mybatis:
 #  header: Authorization
 #  prefix: Bearer
 
-#file:
-#  upload-dir: uploads
+file:
+  upload-dir: uploads
 
 #server:
 #  port: 8484s

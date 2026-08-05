@@ -389,4 +389,22 @@ front2 - 프로젝트 복사하기
 #### [실습] 5. Boot + React + session/cookie ver2 (기본게시판, 회원가입, 이미지/해쉬태그/좋아요/팔로우)
 ※entity -> repository -> service -> controller
 
+회원가입 ( 이메일 중복 검사, 닉네임 중복 검사)
+  ↓
+로그인
+  ↓
+마이페이지 (닉네임 변경, 프로필이미지 변경, 회원 탈퇴) ※ 팔로워 / 팔로잉
+1) UserRequestDto / UserResponseDto
+UserRequestDto <email, password, nickname, ★image (ufile:Multipart 빠짐) / provider, moblie, mbtitype>
+UserResponseDto <email, role, nickname, ★image  ufile / provider, moblie, mbtitype>
+2) LoginRequst <email, password, provider>
+
+게시글 관리
+게시글 작성
+  ↓
+게시글 목록 (전체글 / 좋아요한글/ 내글+리트윗)
+1. 각세부내용/수정/삭제
+2. 좋아요, 리트윗, 댓글
+
+
 #### [실습] 6. Boot + React + jwt + security + redis - ver3 (기본게시판, 회원가입, 이미지/해쉬태그/좋아요/팔로우)
