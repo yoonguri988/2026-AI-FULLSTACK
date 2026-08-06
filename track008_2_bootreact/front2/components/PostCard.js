@@ -1,4 +1,1 @@
-export default function PostCard() {
-
-    return (<></>);
-}
+export default function PostCard(){}

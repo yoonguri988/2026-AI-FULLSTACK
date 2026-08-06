@@ -29,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 
 @Tag(name="User Api", description = "사용자 관련 API") //swagger
 @RestController  // @Controller + @ResponseBody
-@RequestMapping("/api/users")
+@RequestMapping("/auth")
 @RequiredArgsConstructor // 권장사항
 //@CrossOrigin(origins="*")
 public class UserController {

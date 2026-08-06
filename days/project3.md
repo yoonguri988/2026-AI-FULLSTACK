@@ -24,3 +24,10 @@
 2. 3차 프로젝트에서 새로운 기능은
 1) @Entity > Repository > Service > RestController
 2) Security + jwt + redis
+
+# 과제 
+1) 0803 @Entity 
+2) 0804 @repository + @mapper
+3) 0805 DTOD(request/response)
+        @Service +  @RestController
+4) backend 리팩토링

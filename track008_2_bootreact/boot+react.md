@@ -406,5 +406,7 @@ UserResponseDto <email, role, nickname, ★image  ufile / provider, moblie, mbti
 1. 각세부내용/수정/삭제
 2. 좋아요, 리트윗, 댓글
 
+3. FRONT 개발
+1
 
 #### [실습] 6. Boot + React + jwt + security + redis - ver3 (기본게시판, 회원가입, 이미지/해쉬태그/좋아요/팔로우)
