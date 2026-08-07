@@ -35,6 +35,12 @@ public class GlobalExceptionHandler {
         );
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
+    
+    //
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<?> handleForbiddenException(ForbiddenException e) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(createErrorBody(e.getMessage())); // 403
+    }
 
     private Map<String, String> createErrorBody(String message) {
         Map<String, String> error = new HashMap<>();

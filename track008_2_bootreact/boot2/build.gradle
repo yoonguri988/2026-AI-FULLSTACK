@@ -1,8 +1,3 @@
-## 회의 내용 ##
-Trigger -> created, updated 방식
-@Entity -> OnCreate(), OnUpdate() 방식
-
-
 plugins {
    id 'java'
    id 'org.springframework.boot' version '3.3.5'

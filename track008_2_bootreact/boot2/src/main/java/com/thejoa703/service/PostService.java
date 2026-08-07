@@ -1,14 +1,25 @@
 package com.thejoa703.service;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.thejoa703.dto.PostDto.PostRequestDto;
+import com.thejoa703.dto.PostDto.PostResponseDto;
 import com.thejoa703.entity.AppUser;
+import com.thejoa703.entity.Hashtag;
+import com.thejoa703.entity.Image;
 import com.thejoa703.entity.Post;
+import com.thejoa703.exception.ForbiddenException;
 import com.thejoa703.repository.AppUserRepository;
+import com.thejoa703.repository.HashtagRepository;
 import com.thejoa703.repository.PostRepository;
+import com.thejoa703.util.FileStorageService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,10 +29,12 @@ import lombok.RequiredArgsConstructor;
 public class PostService {
 	private final AppUserRepository userRepo;
 	private final PostRepository postRepo;
+	private final HashtagRepository hashtagRepo;
+	private final FileStorageService fileStorageService;
 	
 	//1. 전체 게시글 조회
 	public List<Post> getAllPosts() {
-		return postRepo.findByDeletedFalse();
+		return postRepo.findByDeletedFalseOrderByCreatedAtDesc();
 	}
 	//2. 단건 조회
 	public Post getPostById(Long id) {
@@ -40,26 +53,86 @@ public class PostService {
 	
 	//4. 게시글 생성 (save)
 	@Transactional
-	public Post createPost(Long userId, String content) {
+	public PostResponseDto createPost(Long userId, PostRequestDto dto, List<MultipartFile> files) {
 		AppUser user = userRepo.findById(userId)
 				               .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자 입니다. ID: "+userId));
 		Post post = new Post();
-		post.setContent(content);
+		post.setContent(dto.getContent());
 		post.setUser(user);
 		
-		return postRepo.save(post);
+		// 이미지 업로드
+		if(files != null && !files.isEmpty()) {
+			files.forEach(file->{
+				String url = fileStorageService.upload(file);
+				Image image = new Image();
+				image.setSrc(url);
+				image.setPost(post);
+				post.getImages().add(image);
+			});
+		}
+		// 해쉬태그 (1.겹치면안됨, 2.#해쉬 #first #태그)
+		if(dto.getHashtags() != null && !dto.getHashtags().isEmpty()) {
+			Set<String> distinctTags = Arrays.stream(dto.getHashtags().split(","))//기준으로 분리해서 배열을 스트림
+                    .map(String::trim)   // 공백빼기
+                    .filter(s -> !s.isEmpty())    // 빈거 아닌 애들
+                    .collect(Collectors.toSet()); // 콜렉션프레임워크, 겹치는 값이 있으면 안됨
+			// 코드 읽기 시도,  ai 이용해서 분석
+            distinctTags.forEach(tagStr -> {
+                String normalized = tagStr.startsWith("#") ? tagStr.substring(1) : tagStr; // #기호제거
+                Hashtag tag = hashtagRepo.findByName(normalized) // 기존에 등록된 태그인지 먼저 확인
+                        .orElseGet(() -> { // 존재하지 않으면
+                            Hashtag newTag = new Hashtag(); // 새로운 hashtag
+                            newTag.setName(normalized); // 이름셋팅
+                            return hashtagRepo.save(newTag); // 저장
+                        });
+                post.getHashtags().add(tag); // 해쉬태그 객체에 저장
+            });
+		}
+		
+		return PostResponseDto.from( postRepo.save(post) );
 	}
 	
 	//5. 게시글 수정 (save 안쓰고 update 쿼리 반영)
 	@Transactional
-	public Post updatePost(Long postId, String content) {
+	public PostResponseDto updatePost(Long userId, Long postId, PostRequestDto dto, List<MultipartFile> files) {
 		Post post = postRepo.findById(postId)
-				            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시글 입니다. ID: "+postId));
-		if(post.isDeleted()) {
-			throw new IllegalArgumentException("삭제된 게시글 입니다.");
+				            .orElseThrow(() -> new ForbiddenException("존재하지 않는 게시글 입니다. ID: "+postId));
+		if(!post.getUser().getId().equals(userId)) {
+			throw new ForbiddenException("본인 글만 수정할 수 있습니다.");
 		}
-		post.setContent(content);  // save 안쓰고 setContent만 사용해도 update 쿼리반영
-		return post; // 더티체킹 (Dirty Checking)
+		post.setContent(dto.getContent());  // save 안쓰고 setContent만 사용해도 update 쿼리반영
+		
+		// 이미지 업로드
+		if(files != null && !files.isEmpty()) {
+			files.forEach(file->{
+				String url = fileStorageService.upload(file);
+				Image image = new Image();
+				image.setSrc(url);
+				image.setPost(post);
+				post.getImages().add(image);
+			});
+		}
+		// 해쉬태그 (1.겹치면안됨, 2.#해쉬 #first #태그)
+		if(dto.getHashtags() != null && !dto.getHashtags().isEmpty()) {
+			post.getHashtags().clear();
+			Set<String> distinctTags = Arrays.stream(dto.getHashtags().split(","))//기준으로 분리해서 배열을 스트림
+                    .map(String::trim)   // 공백빼기
+                    .filter(s -> !s.isEmpty())    // 빈거 아닌 애들
+                    .collect(Collectors.toSet()); // 콜렉션프레임워크, 겹치는 값이 있으면 안됨
+			// 코드 읽기 시도,  ai 이용해서 분석
+            distinctTags.forEach(tagStr -> {
+                String normalized = tagStr.startsWith("#") ? tagStr.substring(1) : tagStr; // #기호제거
+                Hashtag tag = hashtagRepo.findByName(normalized) // 기존에 등록된 태그인지 먼저 확인
+                        .orElseGet(() -> { // 존재하지 않으면
+                            Hashtag newTag = new Hashtag(); // 새로운 hashtag
+                            newTag.setName(normalized); // 이름셋팅
+                            return hashtagRepo.save(newTag); // 저장
+                        });
+                post.getHashtags().add(tag); // 해쉬태그 객체에 저장
+            });
+		}
+		
+		return PostResponseDto.from(post); // 더티체킹 (Dirty Checking)
 	}
 	
 	//6. 게시글 삭제

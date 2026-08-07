@@ -50,7 +50,7 @@ export  function* logout(action){
     }
 }
 // ---  닉네임변경  PATCH  /auth/{userId}/nickname , params 통해서 닉네임 넘기기 ---
-export  const  updateNicknameApi = ( {userId, nickname} )=> axios.ferch( `${USER_API_BASE}/${userId}/nickname`, null, {
+export  const  updateNicknameApi = ( {userId, nickname} )=> axios.patch( `${USER_API_BASE}/${userId}/nickname`, null, {
     params:{nickname},
 });
 export  function* updateNickname(action){

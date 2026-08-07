@@ -31,7 +31,8 @@ const authReducer=createSlice({
         // --- 로그인 (세션 기반이므로 user 정보만 관리) ---
         loginRequest: (state) => {
             state.loading = true;  
-            state.error   = null;   
+            state.error   = null;
+            state.success = false;   
         },
         loginSuccess: (state, action) => {
             state.loading = false;  
