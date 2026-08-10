@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 export default function EditPostModal({
     visible, onCancel, editPost, onSubmit, uploadFiles, setUploadFiles
 }) {
+    
     return (<Modal title="글 수정" open={visible} onCancel={onCancel} footer={null} destroyOnClose  >
         <Form
             initialValues={{
@@ -23,11 +24,13 @@ export default function EditPostModal({
             </Form.Item>
             {/* 이미지 업로드 */}
             <Form.Item name="profileImage" label="이미지 업로드">
-                <Upload multiple
+                <Upload
+                    multiple
                     beforeUpload={() => false}
                     fileList={uploadFiles}
-                    onChange={({ fileList: newFileList }) => setUploadFiles(newFileList)}
-                    listType="picture-card">
+                    onChange={({ fileList }) => setUploadFiles(fileList)}
+                    listType="picture-card"
+                >
                     <Button icon={<UploadOutlined />}>이미지 선택</Button>
                 </Upload>
             </Form.Item>

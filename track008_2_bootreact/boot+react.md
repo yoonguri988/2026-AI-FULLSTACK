@@ -406,7 +406,131 @@ UserResponseDto <email, role, nickname, ★image  ufile / provider, moblie, mbti
 1. 각세부내용/수정/삭제
 2. 좋아요, 리트윗, 댓글
 
+1) 부분 수정    >
+2) 게시판리스트  > List<PostResponseDto>
+3) 이미지-캐로셀 >
+4) 해쉬태그     >
+
 3. FRONT 개발
-1
+
+4. 보안 + 시큐리티
+1) build.gradle 시큐리티 / .env (필요한 설정파일)
+   각종설정 파일: WebConfig (세션, 쿠키 - false / jwt)
+2) security : JWT + Redis
+com.thejoa703.security
+  L JwtAuthenticationFilter (4) 출입증 검사
+  L JwtProperties  (1)
+  L JwtProvider    (1)
+  L TokenStore     (1)
+3) oauth2 : 소셜 처리(구글/카카오/네이버 인증)
+com.thejoa703.oauth2
+L UserInfoOAuth2 (1) 소셜 공통 속성 추출
+L UserInfoGoogle / UserInfoKakao / UserInfoNaver (2) 각 소셜마다 처리
+L CustomOAuth2User (3) Security : local + OAuth2: 소셜 + 유저정보
+L OAuthSuccessHandler (4) 소셜 로그인시 - redis / jwt 설정 (소셜 로그인시 유저 저장, 토큰 설정)
+
+STEP1)
+```
+[사용자]
+   ├─▶ 로컬 회원가입/로그인
+   │       - 이메일/비밀번호(local) → DB 저장
+   │       - 로그인 성공 시 JWT 발급
+   │
+   └─▶ 소셜 로그인(OAuth2)
+           - 구글/카카오/네이버 인증
+           - OAuth2SuccessHandler 실행
+             • 사용자 정보 추출
+             • DB 저장/조회
+             • Access Token 발급 (출입증)
+             • Refresh Token 발급 (장기체류증) → Redis 저장 + 쿠키
+```
+
+STEP2)
+```
+[프론트엔드]
+   └─▶ Access Token localStorage 저장
+        API 호출 시 Authorization 헤더에 Bearer 붙임
+```
+
+STEP3)
+```
+[Spring Boot 서버]
+   ├─▶ JwtAuthenticationFilter
+   │       - 토큰 검증 (출입증 검사)
+   │       - SecurityContext에 사용자 정보 저장
+   │
+   └─▶ Controller/Service
+           - userId 기반 DB 조회
+           - 응답 반환 (사원증 스캔)
+```
+
+■ 핵심 정리
+1. JWT VS 세션
+- 세션: 서버 메모리에 사용자 상태를 저장 -> 서버 확장시 부담
+       (서버에서 출입 명단을 직접 들고 있기)
+- JWT(Json Web Token) : 토큰 자체에 인증정보 포함 ->
+  (사용자가 직접 출입증 들고 다니기)
+
+2. Access Token vs Refresh Token
+- Access Token  : 짧은 기간 유효(출입증) -> api 호출시 사용
+- Refresh Token : 긴 기간 유효(장기체류증) -> redis 냉장고에 보관 안전보관
+
+3. Redis 사용
+토큰 냉장고 -> 장기체류증 안전하게 보관, 필요시 꺼내 씀
+- Refresh Token 중앙에서 관리
+- TTL(만료시간) 로 자동 만료처리
+- 로그아웃시 즉시 삭제
+
+4. 구조확인)
+1) security + jwt + redis
+  - JwtProperties : 토큰 
+    * secret, issuer, expSeconds 기본속성
+  - JwtProvider   : 토큰 발급 / 검증
+    Access Token  (출입증)
+    Refresh Token (장기)
+  - TokenStore    : 토큰 저장소
+    Redis 저장소, Refresh Token 
+  - JwtAuthenticationFilter   : 보안 게이트
+    * 매 요청마다 Authorization 헤더 확인 -> 토큰 검증 -> SecurityContext 에 사용자 정보저장
+    * api 사용시 신분증은 검사하는 게이트
+2) oauth2.0
+  - OAuth2  : 입국 심사대
+  - UserInfoOAuth2 / UserInfoNaver , UserInfoKakao , UserInfoGoogle
+  - CustomOAuth2User
+  - OAuth2SuccessHandler
+
+3) 설정파일
+  - SecurityConfig
+  - WebConfig
+  - RedisConfig
+  - SwaggerConfig
+
+4) jwt 구조
+1. Header → 토큰의 머릿말 ( 이 토큰은 HS256 알고리즘으로 서명했어!  정보 )
+```json
+   { "alg": "HS256", "typ": "JWT" }
+```
+2. Payload(Claims)   →  토큰의 몸통 ( 누가, 어떤권한, 언제까지  사용자의 신분증정보)
+```json
+   {
+     "iss": "thejoa703",   // 발급자
+     "sub": "12345",       // 사용자 ID
+     "role": "USER",       // 권한
+     "email": "user@test.com",
+     "exp": 1737000000     // 만료 시간
+   }
+```
+3. Signature     →  토큰의 도장 ( 서버만 아는 비밀키로 찍은 도장 → 위변조 방지)
+```json
+   HMACSHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload), secret)
+```
+
+4) service - 기존 활용
+L AuthUserJwtService ( 유저 정보 활용 )
+5) controller
+L UserController (로그인 시 - accessToken, refreshToken / cookie 설정)
+L post 에서 AuthUserJwtService 활용해서 가져오기
+6) react
+
 
 #### [실습] 6. Boot + React + jwt + security + redis - ver3 (기본게시판, 회원가입, 이미지/해쉬태그/좋아요/팔로우)
