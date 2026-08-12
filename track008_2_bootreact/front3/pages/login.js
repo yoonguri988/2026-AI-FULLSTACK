@@ -21,7 +21,11 @@ export default function LoginPage() {
             message.success(`${user.nickname}님 환영합니다.`);
             router.push(`/mypage`);
         }
-    }, [user, router, dispatch]);
+    }, [user, router]);
+
+    const handleSocialLogin=(provider)=>{ 
+        window.location.href = `http://localhost:8080/oauth2/authorization/${provider}`;
+    }; 
 
     {/* justify 이용해서 중앙 배치, 위쪽에 여백 40 */}
     return (
@@ -55,6 +59,29 @@ export default function LoginPage() {
                             >
                                 로그인
                             </Button>
+                        </div>
+
+                         {/*   소셜  로그인 이미지 버튼 */}
+                        <div style={{ marginTop: 20, textAlign: "center" }}>
+                            <img
+                                src="/images/google.png"       alt="Google Login"
+                                style={{ cursor: "pointer", width: "200px", marginBottom: "10px" }}
+                                onClick={()=> handleSocialLogin("google")}
+                            />
+                        </div> 
+                        <div style={{ marginTop: 20, textAlign: "center" }}>
+                            <img
+                                src="/images/kakao.png"      alt="Kakao Login"
+                                style={{ cursor: "pointer", width: "200px", marginBottom: "10px" }}
+                                onClick={()=> handleSocialLogin("kakao")}
+                            />
+                        </div>
+                        <div style={{ marginTop: 20, textAlign: "center" }}>
+                            <img
+                                src="/images/naver.png"      alt="Naver Login"
+                                style={{ cursor: "pointer", width: "200px", marginBottom: "10px" }}
+                                onClick={()=> handleSocialLogin("naver")}
+                            />
                         </div>
                     </Form> 
             </Col>

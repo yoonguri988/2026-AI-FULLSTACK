@@ -549,3 +549,12 @@ L mypage.js
 
 3. social 개발자 사이트 key 찾기
 > kakao 개발자, naver 개발자, google 개발자
+> boot .env 파일 바꾸기
+boot3
+L service: 
+
+front3
+L pages
+  L oauth2
+    L callback.js
+      String targetUrl = redirectUrl + "?accessToken=" + access;
