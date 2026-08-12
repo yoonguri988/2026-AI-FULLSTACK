@@ -532,5 +532,20 @@ L UserController (로그인 시 - accessToken, refreshToken / cookie 설정)
 L post 에서 AuthUserJwtService 활용해서 가져오기
 6) react
 
-
 #### [실습] 6. Boot + React + jwt + security + redis - ver3 (기본게시판, 회원가입, 이미지/해쉬태그/좋아요/팔로우)
+1. boot
+1) docker -> redis
+2) boot 구동
+
+2. react
+1) 폴더만들기 
+2) 프로젝트 설치 
+3) reducer -> saga -> page
+4) jwt 사용
+front3
+L api/axios.js
+L login.js
+L mypage.js
+
+3. social 개발자 사이트 key 찾기
+> kakao 개발자, naver 개발자, google 개발자
