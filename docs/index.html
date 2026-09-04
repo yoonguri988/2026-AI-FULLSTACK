@@ -65,7 +65,7 @@
             </div>
             <div class="divider"></div>
             <div>
-              <div class="num">v1–v2</div>
+              <div class="num">v1–v3</div>
               <div class="label">팀 프로젝트 · 기술 고도화</div>
             </div>
           </div>
@@ -96,8 +96,9 @@
             </div>
             <p class="project-meta">
               팀 프로젝트 · v1 2025.06.11–06.26(16일, 6인) · v2
-              2026.07.02–07.15(14일, 4인) · JSP·MySQL → Spring
-              Boot·Thymeleaf·Oracle 18c 리팩토링 및 AI/API 고도화
+              2026.07.02–07.15(14일, 4인) · v3 2026.08.03–08.31(29일, 4인) ·
+              JSP·MySQL → Spring Boot·Thymeleaf·Oracle 18c 리팩토링을 거쳐
+              JPA·JWT·Redis·OAuth2.0·React SPA 구조까지 고도화
             </p>
           </div>
           <a
@@ -110,19 +111,19 @@
         </div>
 
         <div class="version-tabs">
-          <button type="button" class="version-tab active" data-target="v1">
+          <button type="button" class="version-tab" data-target="v1">
             v1
           </button>
           <button type="button" class="version-tab" data-target="v2">
-            v2 · 현재
+            v2
           </button>
-          <button type="button" class="version-tab" data-target="v3">
-            v3 · 예정
+          <button type="button" class="version-tab active" data-target="v3">
+            v3 · 완료
           </button>
         </div>
 
         <!-- v1 : SBerp (spring-breeze-erp-v1) -->
-        <div class="version-panel active" data-version="v1">
+        <div class="version-panel" data-version="v1">
           <div>
             <p class="version-desc">
               팀 6명이 8개 모듈(결재·공지·자원·사원·프로젝트·회사·부서·권한)을
@@ -200,33 +201,61 @@
           </div>
         </div>
 
-        <!-- v3 : 예정 (계획 단계) -->
-        <div class="version-panel" data-version="v3">
+        <!-- v3 : SBerp v3 (spring-breeze-erp-v3) -->
+        <div class="version-panel active" data-version="v3">
           <div>
             <p class="version-desc">
-              <strong>다음 단계로 계획 중인 버전.</strong> 백엔드는 JPA · JWT ·
-              Redis · OAuth2.0 기반으로 전환해 세션 대신 토큰 인증과 소셜
-              로그인을 도입하고, 캐싱으로 조회 성능을 개선할 예정입니다.
-              프론트엔드는 Thymeleaf(SSR)에서 React · Next.js 기반 SPA로
-              분리하고, Jest로 테스트 커버리지를 확보할 계획입니다.
+              팀 4명이 v2를 <strong>JPA · JWT · Redis · OAuth2.0</strong>
+              기반으로 전면 리팩토링하고, 프론트엔드를
+              <strong>React(Redux-Saga) · Next.js · Ant Design</strong> SPA로
+              완전히 분리한 3차 프로젝트. 팀장으로서
+              <strong>회사·부서·로그인·자원·자원예약·급여관리·다국어</strong>를
+              담당해, Google·Kakao·Naver 소셜 로그인 후 JWT Access/Refresh
+              Token을 발급하고 Refresh Token은 Redis에 TTL로 저장·관리하는
+              인증 구조를 구현했습니다. 급여 모듈에서는 국민연금·건강보험·
+              고용보험·소득세 등 8종 급여 항목을 전략 패턴으로 분리한 계산
+              엔진과, OpenAI 임베딩 기반 RAG로 급여 규정 문서를 검색해
+              답하는 AI 챗봇을 구축했고, 자원 예약에는 예약자 이력·경과
+              시간·자원 유형을 가중합해 노쇼 위험도를 점수화하는 규칙 기반
+              스코어러를 추가해 관리자 알림 우선순위와 GPT 안내 문구의
+              어조를 조정하도록 연동했습니다. 이 외에 채용·이력서 AI 검색
+              (RAG 기반 코사인 유사도), 근태, 평가, 프로젝트/업무, 결재 등
+              20여 개 업무 모듈과 한국어/영어 다국어(i18n)를 팀 전체가 함께
+              완성했고, 프론트엔드는 Jest 기반 리듀서·사가 테스트 41건으로
+              검증했습니다.
             </p>
             <div class="tech-chip-list">
               <span class="tech-chip">Spring Boot</span>
-              <span class="tech-chip">JPA</span>
+              <span class="tech-chip">JPA (Hibernate)</span>
+              <span class="tech-chip">MyBatis 혼용</span>
+              <span class="tech-chip">Spring Security</span>
               <span class="tech-chip">JWT</span>
               <span class="tech-chip">Redis</span>
-              <span class="tech-chip">OAuth2.0</span>
-              <span class="tech-chip">REST API</span>
+              <span class="tech-chip">OAuth2.0 (Google·Kakao·Naver)</span>
+              <span class="tech-chip">Oracle 18c</span>
+              <span class="tech-chip">OpenAI Embedding · RAG</span>
+              <span class="tech-chip">OpenAI GPT-4o-mini</span>
               <span class="tech-chip">React</span>
-              <span class="tech-chip">Next.js</span>
+              <span class="tech-chip">Redux-Saga</span>
+              <span class="tech-chip">Ant Design</span>
+              <span class="tech-chip">react-i18next</span>
               <span class="tech-chip">Jest</span>
             </div>
           </div>
           <div class="video-frame">
-            <div class="video-pending">
-              <span class="mono">계획 단계</span>
-              <small>개발 시작 전 · 시연 영상 없음</small>
-            </div>
+            <iframe
+              src="https://www.youtube.com/embed/Acrkiq_NGY0"
+              title="SBerp v3 시연 영상"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
           </div>
         </div>
       </div>

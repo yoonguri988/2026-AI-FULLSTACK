@@ -402,11 +402,116 @@ git push origin main
 6) 외부테스트
 http://13.124.155.220/
 
-```
+```bash
 ssh 접속
 pm2 list
-pm2 logs backend
+pm2 logs backend # 이거 켜놓고 실행하면 현재 실행되는 과정 확인 쌉가능
+
+# 에러도 확인하기
+pm2 logs backend --out --lines 200 | grep -E -A 5 "(Exception|Caused by|Error)"
 ```
 
 ■ Step4. HTTPS + DOMAIN
+1. DuckDns 도메인 생성
+1) https://www.duckdns.org/
+2) 로그인
+3) SUB Domain -> 원하는 이름.duckdns.org -> add domain
+4) ec2 public ip 연동
+5) Token
+```
+http://jjeong98v1.duckdns.org/
+82e7d457-0275-4496-b4dd-5e57917adfa3
+```
 
+2. EC2 서버에서 DuckDns IP 자동 갱신설정
+  > AWS EC2의 인스턴스를 중지했다가 키면, 퍼블릭 ip 주소가 바뀜
+
+  1) ssh 접속
+  ```bash
+  ssh -i "thejoa703.pem" ubuntu@ec2-13-124-155-220.ap-northeast-2.compute.amazonaws.com
+  ```
+  2) duckdns 폴더 만들기
+  ```bash
+  sudo mkdir -p ~/duckdns
+  cd ~/duckdns
+  ```
+  3) duck.sh 쉘스크립트 작성
+  ```bash
+  sudo vi duck.sh
+  esc , i
+  esc , :wq!
+  ```
+
+  ```bash
+    echo url="https://www.duckdns.org/update?domains=jjeong98v1.duckdns.org&token=82e7d457-0275-4496-b4dd-5e57917adfa3&ip=" | curl -k -o ~/duckdns/duck.log -K -
+  ```
+
+  ※ -k : ssl/tls 인증서 건너뛰기
+  ※ -o ~/duckdns/duck.log : 성공 ok, 실패시 ko
+  ※ -K 표준입력의 설정,,,, 코드 중간에 | curl 설정파일 형태로 읽어들이기
+
+4) 실행권한주기   소유자 모든권한, 그룹 X, 다른 X
+```bash
+sudo chmod 700 duck.sh
+crontab -e
+2
+
+*/5 * * * *  /home/ubuntu/duckdns/duck.sh > dev/null 2>&1
+# */5 * * * *  년 [월일 시분<-] 초
+# 분 시 일 월 요일
+
+# >/dev/null 화면에 안띄우기
+# 2 >&1 에러메시지 무시처리
+
+crontab -l
+```
+
+3. Nginx 설정 변경
+1) 설정 파일 수정
+```bash
+sudo vi /etc/nginx/sites-available/default
+```
+```bash
+# esc, i
+
+    server {
+        listen 80;
+        server_name   thejoa703v2.duckdns.org;
+        #   ... 기존내용그래도  ...
+   } 
+# esc, :wq!
+```   
+2) Nginx 재시작
+```bash
+sudo nginx -t
+sudo systemctl restart nginx
+```
+
+4. Certbot 으로 https(SSL) 인증서 발급 받기
+1) certbot 설치
+```bash
+sudo apt update
+sudo apt install snapd -y # 격리된 환경
+sudo snap install core
+sudo snap refresh core
+sudo snap install --classic certbot # certbot SSL 무료 인증서 발급도구
+sudo ln -s /snap/bin/certbot /usr/bin/certbot # 터미널 어디에서든지 certbot 사용
+```
+2) 인증서 발금 명령어 실행
+```bash
+# sudo certbot --nginx -d mytestapp.duckdns.org
+
+sudo certbot --nginx -d jjeong98v1.duckdns.org
+# email 입력 - 만료알림용, 약관동의 y, 이메일수진, 리다이렉트 설정 2
+```
+
+
+5. 프로젝트 환경변수 및 설정 수정
+> before: http://13.124.155.220
+> after: https://jjeong98v1.duckdns.org
+
+1) boot : SecurityConfig, yml
+2) react: .env
+
+6. 소셜 마무리
+http://13.124.155.220/
