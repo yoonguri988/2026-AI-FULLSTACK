@@ -11,17 +11,17 @@
 ※ thejoa703.pem 보관주의
 
 ```bash
-chmod 400 "thejoa703.pem" # 소유자(4)r-- 그룹(0)--- 다른사람(0)---
+chmod 400 "SBerp.pem" # 소유자(4)r-- 그룹(0)--- 다른사람(0)---
 ```
 
 ```
   # 1. 상속 권한 완전히 제거
-  icacls "thejoa703.pem" /inheritance:r /grant:r "$($env:USERNAME):(R)"
+  icacls "SBerp.pem" /inheritance:r /grant:r "$($env:USERNAME):(R)"
 
   # 2. 혹시 남아있을 수 있는 다른 사용자 권한 강제 삭제
-  icacls "thejoa703.pem" /remove "NT AUTHORITY\Authenticated Users"
-  icacls "thejoa703.pem" /remove "BUILTIN\Users"
-  icacls "thejoa703.pem" /remove "NT AUTHORITY\SYSTEM"
+  icacls "SBerp.pem" /remove "NT AUTHORITY\Authenticated Users"
+  icacls "SBerp.pem" /remove "BUILTIN\Users"
+  icacls "SBerp.pem" /remove "NT AUTHORITY\SYSTEM"
 ``` 
 
 ■4. EC2에서 nginx
@@ -50,7 +50,7 @@ sudo vi   /etc/nginx/sites-available/default
 
 server {
     listen 80;
-    server_name 54.253.74.183;
+    server_name 43.200.171.91;
 
     # 프론트엔드 (Next.js SSR 서버)
     location / {
@@ -150,7 +150,7 @@ sudo systemctl restart nginx
 2) 이미지 태그 설정 - Mutable (연습용-latest 덮어쓸수 있음)
 3) 암호화 설정 - 기본키 그대로
 ```
-349421152175.dkr.ecr.ap-northeast-2.amazonaws.com/thejoa703
+349421152175.dkr.ecr.ap-northeast-2.amazonaws.com/sberp
 ```
 
 6. 필수 패키지 설정
@@ -233,6 +233,9 @@ sudo docker run -d --name oracle-xe -p 1521:1521 -p 5500:5500 -e ORACLE_PASSWORD
 
         CREATE USER boot IDENTIFIED BY react;
         GRANT CONNECT, RESOURCE TO boot;
+
+        CREATE USER sberp IDENTIFIED BY sberp1234;
+        GRANT CONNECT, RESOURCE TO sberp;
         exit;
 
         # 3. 새로 만든 scott 계정으로 접속 확인
@@ -419,7 +422,7 @@ pm2 logs backend --out --lines 200 | grep -E -A 5 "(Exception|Caused by|Error)"
 4) ec2 public ip 연동
 5) Token
 ```
-http://jjeong98v1.duckdns.org/
+http://sberp-cyj.duckdns.org/
 82e7d457-0275-4496-b4dd-5e57917adfa3
 ```
 
@@ -443,7 +446,7 @@ http://jjeong98v1.duckdns.org/
   ```
 
   ```bash
-    echo url="https://www.duckdns.org/update?domains=jjeong98v1.duckdns.org&token=82e7d457-0275-4496-b4dd-5e57917adfa3&ip=" | curl -k -o ~/duckdns/duck.log -K -
+    echo url="https://www.duckdns.org/update?domains=sberp-cyj.duckdns.org&token=82e7d457-0275-4496-b4dd-5e57917adfa3&ip=" | curl -k -o ~/duckdns/duck.log -K -
   ```
 
   ※ -k : ssl/tls 인증서 건너뛰기
@@ -501,14 +504,14 @@ sudo ln -s /snap/bin/certbot /usr/bin/certbot # 터미널 어디에서든지 cer
 ```bash
 # sudo certbot --nginx -d mytestapp.duckdns.org
 
-sudo certbot --nginx -d jjeong98v1.duckdns.org
+sudo certbot --nginx -d sberp-cyj.duckdns.org
 # email 입력 - 만료알림용, 약관동의 y, 이메일수진, 리다이렉트 설정 2
 ```
 
 
 5. 프로젝트 환경변수 및 설정 수정
 > before: http://13.124.155.220
-> after: https://jjeong98v1.duckdns.org
+> after: https://sberp-cyj.duckdns.org
 
 1) boot : SecurityConfig, yml
 2) react: .env
