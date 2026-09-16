@@ -389,6 +389,48 @@ img {
   gap: 8px;
 }
 
+/* 버전 기간 · 인원 (연한 회색, 본문과 분리) */
+.version-period {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: #a68b7a;
+  letter-spacing: 0.02em;
+  margin: 0 0 10px;
+}
+
+/* 버전별 핵심 성과: 항목을 줄 단위로 분리해서 정리된 리스트처럼 표시 */
+.version-highlight {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(234, 106, 61, 0.08);
+  border: 1px solid rgba(234, 106, 61, 0.25);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #4a3b31;
+  font-weight: 600;
+  margin: 14px 0 16px;
+}
+.version-highlight strong {
+  color: #a8580c;
+}
+.version-highlight span {
+  position: relative;
+  padding-left: 14px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #6b5a4e;
+}
+.version-highlight span::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: #ea6a3d;
+  font-weight: 700;
+}
+
 /* 영상 프레임: 16:9 비율로 카드 너비에 맞춰 반응형으로 커지도록 처리 */
 .video-frame {
   position: relative;
@@ -452,7 +494,7 @@ img {
   font-size: 13.5px;
   line-height: 1.75;
   color: #6b5a4e;
-  max-width: 640px;
+  max-width: 680px;
 }
 .v4-callout-text strong {
   color: #33261f;
@@ -575,8 +617,8 @@ img {
 }
 .exp-row {
   display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 32px;
+  grid-template-columns: 240px 1fr;
+  gap: 26px;
   padding-bottom: 36px;
   border-bottom: 1px solid #f0ddd0;
   margin-bottom: 36px;
@@ -621,6 +663,22 @@ img {
   line-height: 1.7;
   color: #6b5a4e;
   margin: 6px 0 0;
+}
+/* exp-item-desc 안에 span으로 항목을 나눠 넣으면 줄 단위 리스트로 정리해서 표시 */
+.exp-item-desc span {
+  display: block;
+  position: relative;
+  padding-left: 14px;
+}
+.exp-item-desc span + span {
+  margin-top: 6px;
+}
+.exp-item-desc span::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: #ea6a3d;
+  font-weight: 700;
 }
 
 /* ===== Education ===== */

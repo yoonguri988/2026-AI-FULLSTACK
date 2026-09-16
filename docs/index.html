@@ -95,10 +95,7 @@
               <span class="role-badge">팀장</span>
             </div>
             <p class="project-meta">
-              팀 프로젝트 · v1 2025.06.11–06.26(16일, 6인) · v2
-              2026.07.02–07.15(14일, 4인) · v3 2026.08.03–08.31(29일, 4인) ·
-              JSP·MySQL → Spring Boot·Thymeleaf·Oracle 18c 리팩토링을 거쳐
-              JPA·JWT·Redis·OAuth2.0·React SPA 구조까지 고도화
+              팀 프로젝트 · JSP·MySQL에서 Spring Boot4·JPA·JWT·Redis·React까지 3단계로 고도화
             </p>
           </div>
           <a
@@ -118,28 +115,30 @@
             v2
           </button>
           <button type="button" class="version-tab active" data-target="v3">
-            v3 · 완료
+            v3
           </button>
         </div>
 
         <!-- v1 : SBerp (spring-breeze-erp-v1) -->
         <div class="version-panel" data-version="v1">
           <div>
+            <p class="version-period">2025.06.11–06.26 (6인)</p>
             <p class="version-desc">
-              팀 6명이 8개 모듈(결재·공지·자원·사원·프로젝트·회사·부서·권한)을
-              분담해 완성한 전사적 자원관리 시스템. 팀장으로서
-              <strong>회사·부서·로그인·권한</strong> 모듈을 담당해 회사
-              CRUD·사업자번호 중복 검사, 부서 트리 구조(1:N) 관리를 구현하고,
-              최초 로그인 강제 비밀번호 재설정과 사번·이메일·휴대폰 기반
-              본인확인을 거치는 비밀번호 분실 재설정 흐름을 설계했습니다.
+              6명이 8개 모듈을 분담해 신규 구축한 팀 프로젝트입니다.<br/>
+              팀장으로서 <strong>회사·부서·로그인·권한</strong>을 맡아 인증 기반을 가장 먼저 완성해,<br/>
+              다른 팀원들이 막힘없이 개발할 수 있는 토대를 마련했습니다.
             </p>
+            <div class="version-highlight">
+              <span><strong>회사 CRUD·사업자번호 중복 검사</strong></span>
+              <span>부서 트리(1:N) 구조 설계</span>
+              <span>최초 로그인 강제 비밀번호 재설정까지 인증 흐름 전체 구현</span>
+            </div>
             <div class="tech-chip-list">
               <span class="tech-chip">JSP</span>
               <span class="tech-chip">Spring MVC</span>
               <span class="tech-chip">MyBatis</span>
-              <span class="tech-chip">MySQL 8.4</span>
+              <span class="tech-chip">MySQL</span>
               <span class="tech-chip">Session 인증</span>
-              <span class="tech-chip">Bootstrap5 · jQuery</span>
             </div>
           </div>
           <div class="video-frame">
@@ -163,26 +162,23 @@
         <!-- v2 : SBerp v2 (spring-breeze-erp-v2) -->
         <div class="version-panel" data-version="v2">
           <div>
+            <p class="version-period">2026.07.02–07.15 (4인)</p>
             <p class="version-desc">
-              팀 4명이 v1(JSP·MySQL)을
-              <strong>Spring Boot 3.5.16 · Thymeleaf · Oracle 18c</strong>
-              기반으로 리팩토링하고 AI·외부 API를 결합해 고도화한 2차 프로젝트.
-              팀장으로서 <strong>회사·부서·자원 예약</strong>을 담당해 Naver
-              OCR로 사업자등록증 1장에서 6개 필드를 자동 인식(등록 소요시간 약
-              70% 단축), 국세청 공공데이터 API로 사업자번호·휴폐업 여부를 3중
-              검증(타임아웃 시 Fallback 처리), 부서 삭제 시 AI가 유사 부서를
-              추천하는 이관 로직, 기간 겹침(Overlap) 검증 기반 자원 예약 동시성
-              제어를 구현했습니다.
+              <strong>Spring Boot·Thymeleaf·Oracle 18c</strong> 기반으로 리팩토링한 프로젝트<br/>
+              <strong>AI·외부 API 8종 이상을 결합</strong>해 고도화했고, 회사·부서·자원 예약 담당.<br/>
             </p>
+            <div class="version-highlight">
+              <span>Naver OCR를 통한 사업자등록증 등록 소요시간 <strong>69.57% 단축</strong>(46초→14초)</span>
+              <span>국세청 API로 검증: 잘못된 사업자번호 유입 <strong>100% 차단</strong></span>
+              <span>부서 삭제 마법사: 트랜잭션 실패시 <strong>데이터 정합성 유지율 100%</strong></span>
+              <span>자원 예약 <strong>동시성 제어</strong>: 신청 시점에 서버가 동일 기간 겹침까지 다시 계산</span>
+            </div>
             <div class="tech-chip-list">
-              <span class="tech-chip">Spring Boot 3.5.16</span>
-              <span class="tech-chip">Spring Security</span>
-              <span class="tech-chip">MyBatis</span>
-              <span class="tech-chip">Thymeleaf</span>
+              <span class="tech-chip">Spring Boot</span>
               <span class="tech-chip">Oracle 18c</span>
               <span class="tech-chip">Naver OCR</span>
               <span class="tech-chip">국세청 공공데이터 API</span>
-              <span class="tech-chip">OpenAI GPT-4o-mini</span>
+              <span class="tech-chip">GPT-4o-mini</span>
             </div>
           </div>
           <div class="video-frame">
@@ -206,42 +202,25 @@
         <!-- v3 : SBerp v3 (spring-breeze-erp-v3) -->
         <div class="version-panel active" data-version="v3">
           <div>
+            <p class="version-period">2026.08.01–08.28 (4인)</p>
             <p class="version-desc">
-              팀 4명이 v2를 <strong>JPA · JWT · Redis · OAuth2.0</strong>
-              기반으로 전면 리팩토링하고, 프론트엔드를
-              <strong>React(Redux-Saga) · Next.js · Ant Design</strong> SPA로
-              완전히 분리한 3차 프로젝트. 팀장으로서
-              <strong>회사·부서·로그인·자원·자원예약·급여관리·다국어</strong>를
-              담당해, Google·Kakao·Naver 소셜 로그인 후 JWT Access/Refresh
-              Token을 발급하고 Refresh Token은 Redis에 TTL로 저장·관리하는
-              인증 구조를 구현했습니다. 급여 모듈에서는 국민연금·건강보험·
-              고용보험·소득세 등 8종 급여 항목을 전략 패턴으로 분리한 계산
-              엔진과, OpenAI 임베딩 기반 RAG로 급여 규정 문서를 검색해
-              답하는 AI 챗봇을 구축했고, 자원 예약에는 예약자 이력·경과
-              시간·자원 유형을 가중합해 노쇼 위험도를 점수화하는 규칙 기반
-              스코어러를 추가해 관리자 알림 우선순위와 GPT 안내 문구의
-              어조를 조정하도록 연동했습니다. 이 외에 채용·이력서 AI 검색
-              (RAG 기반 코사인 유사도), 근태, 평가, 프로젝트/업무, 결재 등
-              20여 개 업무 모듈과 한국어/영어 다국어(i18n)를 팀 전체가 함께
-              완성했고, 프론트엔드는 Jest 기반 리듀서·사가 테스트 41건으로
-              검증했습니다.
+              <strong>Spring Boot4·JPA·JWT·Redis·React</strong> 기반으로 재구축한 HR 중심 ERP.<br/>
+              20여 개 모듈 규모로, <strong>회사·부서·인증·자원예약·급여</strong> 담당.<br/>
+              급여 계산 엔진, RAG 기반 급여 규정 챗봇을 새로 설계 및 구현.
             </p>
+            <div class="version-highlight">
+              <span>급여 계산기 10종의 <strong>순서 의존성을 Strategy+DI 구조로 해결</strong></span>
+              <span>JWT+Redis 인증에 계정 잠금(15분 내 5회 실패) 적용</span>
+              <span>유효 규정 청크와 코사인 유사도를 계산, <strong>상위 3개만 근거</strong>로 사용</span>
+            </div>
             <div class="tech-chip-list">
-              <span class="tech-chip">Spring Boot</span>
-              <span class="tech-chip">JPA (Hibernate)</span>
-              <span class="tech-chip">MyBatis 혼용</span>
-              <span class="tech-chip">Spring Security</span>
-              <span class="tech-chip">JWT</span>
-              <span class="tech-chip">Redis</span>
-              <span class="tech-chip">OAuth2.0 (Google·Kakao·Naver)</span>
-              <span class="tech-chip">Oracle 18c</span>
-              <span class="tech-chip">OpenAI Embedding · RAG</span>
-              <span class="tech-chip">OpenAI GPT-4o-mini</span>
-              <span class="tech-chip">React</span>
-              <span class="tech-chip">Redux-Saga</span>
+              <span class="tech-chip">Spring Boot 4</span>
+              <span class="tech-chip">JPA</span>
+              <span class="tech-chip">JWT · Redis</span>
+              <span class="tech-chip">OAuth2.0</span>
+              <span class="tech-chip">OpenAI RAG</span>
+              <span class="tech-chip">React · Next.js</span>
               <span class="tech-chip">Ant Design</span>
-              <span class="tech-chip">react-i18next</span>
-              <span class="tech-chip">Jest</span>
             </div>
           </div>
           <div class="video-frame">
@@ -266,11 +245,9 @@
         <!-- v4 : 개인 확장 (sberp) -->
         <div class="v4-callout">
           <div class="v4-callout-text">
-            🚀 <strong>개인 확장 · V4</strong> — v3 종료 이후 개인적으로
-            <strong>AWS EC2 + GitHub Actions</strong>로 백엔드·프론트엔드·분석
-            서버 3개 Job이 병렬 배포되는 CI/CD 파이프라인을 구축하고,
-            <strong>Python(Django) · Pandas</strong> 기반 부서별 평균급여·월별
-            지급추이 등을 보여주는 급여 분석 대시보드를 추가했습니다.
+            🚀 <strong>개인 확장 · V4</strong> — v3 이후 이어간 확장<br/>
+            <strong>GitHub Actions 3-Job 병렬 배포</strong>로 EC2에 무중단에 가깝게 자동 배포되는 CI/CD 구축. <br/>
+            기존 Spring 서버는 그대로 둔 채 <strong>Python·Django·pandas</strong> 읽기 전용 급여 분석 서비스를 제공해 대시보드 카드를 제공.
           </div>
           <a
             class="repo-link"
@@ -300,12 +277,23 @@
           >
         </div>
         <div class="solo-body">
-          <p class="version-desc">
-            데이터 컬럼명이나 샘플 값을 입력하면 적합한 표준 도메인을 AI가
-            추천해주는 개인 프로젝트입니다. 위세아이텍에서 메타데이터·데이터
-            품질 솔루션을 다뤘던 실무 경험에서 출발해, 반복적인 도메인 매핑
-            작업을 AI로 보조하는 아이디어를 직접 구현까지 이어간 사례입니다.
-          </p>
+          <div>
+            <p class="version-desc">
+            데이터 컬럼명이나 샘플 값을 입력하면 적합한 표준 도메인을 AI가 추천. <br/>
+            기존 회사에서 메타데이터·데이터품질 솔루션을 다뤘던 실무 경험에서 출발. <br/>
+            반복적인 매핑 작업을 AI로 보조하는 아이디어를 직접 구현까지 이어간 사례.
+            </p>
+            <div class="tech-chip-list">
+              <span class="tech-chip">Java 17</span>
+              <span class="tech-chip">Spring Boot 4</span>
+              <span class="tech-chip">JWT · Redis</span>
+              <span class="tech-chip">OAuth2.0</span>
+              <span class="tech-chip">React · Next.js</span>
+              <span class="tech-chip">Ant Design</span>
+              <span class="tech-chip">Oracle 18c XE</span>
+              <span class="tech-chip">외부 AI API (RestClient)</span>
+            </div>
+          </div>
           <div class="video-frame">
             <iframe
               src="https://www.youtube.com/embed/hx2kfynsDys"
@@ -323,42 +311,42 @@
             ></iframe>
           </div>
         </div>
+      </div>
 
-        <!-- 부트캠프 초기 실습: 자바 콘솔 프로젝트 (가벼운 실습 수준) -->
-        <div class="early-practice">
-          <div class="early-practice-heading">🌱 그 외 부트캠프 초기 실습</div>
-          <p class="early-practice-sub">
-            Java 문법과 객체지향을 익히던 트랙 초반의 콘솔 기반 실습입니다.
-            가볍게 훑어보시면 됩니다.
-          </p>
-          <div class="practice-item">
-            <span class="practice-title">은행 입출금 관리 시스템</span>
-            <span class="practice-desc"
-              >단일 클래스로 만든 뒤 Command 패턴으로 리팩토링한 콘솔 실습 ·
-              Java 11</span
-            >
-            <a
-              class="practice-link"
-              href="https://github.com/yoonguri988/2026-AI-FULLSTACK/tree/main/track003_java/bankproject"
-              target="_blank"
-              rel="noopener"
-              >코드 보기 ↗</a
-            >
-          </div>
-          <div class="practice-item">
-            <span class="practice-title">칼로리 추적 및 영양 분석 시스템</span>
-            <span class="practice-desc"
-              >Controller-Service-Repository 계층형 구조를 연습한 콘솔 실습 ·
-              Java 11</span
-            >
-            <a
-              class="practice-link"
-              href="https://github.com/yoonguri988/2026-AI-FULLSTACK/tree/main/track003_java/caloriestracker"
-              target="_blank"
-              rel="noopener"
-              >코드 보기 ↗</a
-            >
-          </div>
+      <!-- 부트캠프 초기 실습: 자바 콘솔 프로젝트 (가벼운 실습 수준) -->
+      <div class="early-practice">
+        <div class="early-practice-heading">🌱 그 외 부트캠프 초기 실습</div>
+        <p class="early-practice-sub">
+          Java 문법과 객체지향을 익히던 트랙 초반의 콘솔 기반 실습입니다.
+          가볍게 훑어보시면 됩니다.
+        </p>
+        <div class="practice-item">
+          <span class="practice-title">은행 입출금 관리 시스템</span>
+          <span class="practice-desc"
+            >단일 클래스로 만든 뒤 Command 패턴으로 리팩토링한 콘솔 실습 ·
+            Java 11</span
+          >
+          <a
+            class="practice-link"
+            href="https://github.com/yoonguri988/2026-AI-FULLSTACK/tree/main/track003_java/bankproject"
+            target="_blank"
+            rel="noopener"
+            >코드 보기 ↗</a
+          >
+        </div>
+        <div class="practice-item">
+          <span class="practice-title">칼로리 추적 및 영양 분석 시스템</span>
+          <span class="practice-desc"
+            >Controller-Service-Repository 계층형 구조를 연습한 콘솔 실습 ·
+            Java 11</span
+          >
+          <a
+            class="practice-link"
+            href="https://github.com/yoonguri988/2026-AI-FULLSTACK/tree/main/track003_java/caloriestracker"
+            target="_blank"
+            rel="noopener"
+            >코드 보기 ↗</a
+          >
         </div>
       </div>
     </section>
@@ -370,16 +358,16 @@
 
       <div class="highlight-grid">
         <div class="highlight-card">
-          <span class="highlight-tag">AUTH</span>
-          <h4>소셜 로그인 3사, 응답 구조가 제각각인 문제</h4>
-          <p><span class="label">왜?</span> 같은 로그인 성공 응답인데도 구글은 <code>sub</code>, 카카오는 <code>id</code>, 네이버는 <code>response.id</code>로 식별자 위치가 달라 하나의 로직으로 처리할 수 없었습니다.</p>
-          <p><span class="label">됐다!</span> 세 서비스의 실제 응답을 각각 로그로 찍어 구조를 비교 정리하고, provider별 분기 로직으로 흡수해 하나의 인증 흐름으로 통합했습니다.</p>
+          <span class="highlight-tag">TRANSACTION</span>
+          <h4>부서를 지운다는 건, 함께 옮긴다는 것</h4>
+          <p><span class="label">왜?</span> 부서를 삭제하려면 소속 사원을 전부 다른 부서로 옮겨야 하는데, 예약·결재 등 여러 모듈이 부서가 아닌 사원(<code>emp_id</code>)을 참조하고 있어 관리자가 전체 영향 범위를 한눈에 파악하기 어려웠습니다.</p>
+          <p><span class="label">됐다!</span> 이관 대상을 사원 단위로 좁히고 여러 사원의 이관을 하나의 트랜잭션(<code>@Transactional</code>)으로 묶어 하나라도 실패하면 전체 롤백되도록 설계했습니다. 부서 상태를 ACTIVE→PENDING_DELETE→DELETED 3단계로 관리해, 사원 전원 이관이 끝나면 부서가 자동으로 소프트 삭제되도록 만들었습니다.</p>
         </div>
         <div class="highlight-card">
-          <span class="highlight-tag">PAYROLL / DI</span>
-          <h4>급여 계산기 실행 순서 의존성 문제</h4>
-          <p><span class="label">왜?</span> 급여 계산기(Strategy 패턴) 10종을 Spring <code>List</code>로 주입했는데, “장기요양보험은 건강보험료를 먼저 계산해야 한다”처럼 순서 의존성이 있어 주입 순서만으로는 실행 순서를 보장할 수 없었습니다.</p>
-          <p><span class="label">됐다!</span> 오케스트레이터가 주입 순서에 기대지 않도록 바꾸고, 의존하는 계산기가 필요한 선행 계산기를 직접 DI로 주입받아 호출하는 구조로 재설계했습니다.</p>
+          <span class="highlight-tag">PAYROLL · DI</span>
+          <h4>계산기를 나눴더니, 누가 먼저?</h4>
+          <p><span class="label">왜?</span> 장기요양보험료·지방소득세처럼 일부 항목이 다른 항목의 계산 결과에 의존하는데, 급여 계산기(Strategy 패턴) 10종을 Spring <code>List</code>로 주입하다 보니 주입 순서만으로는 실행 순서를 보장할 수 없었습니다.</p>
+          <p><span class="label">됐다!</span> 오케스트레이터가 주입 순서에 기대지 않도록 바꾸고, 의존하는 계산기(장기요양보험·지방소득세)가 필요한 선행 계산기(건강보험·소득세)를 Spring DI로 직접 주입받아 자기 내부에서 호출하는 구조로 재설계했습니다.</p>
         </div>
       </div>
     </section>
@@ -401,10 +389,8 @@
               <div class="exp-item-date">2020.05 – 2022.10</div>
             </div>
             <p class="exp-item-desc">
-              Spring · JavaScript · RDB 기반 메타데이터 관리 및 데이터 품질
-              관리 웹 솔루션의 기능 개발과 유지보수를 담당했습니다. RDB 기반의
-              복잡한 데이터 조회·검증 로직을 구현하고 웹 인터페이스와
-              연동했습니다.
+              <span>메타데이터 및 데이터 품질 관리 웹 솔루션 개발: Spring·JavaScript·RDB 기반 기능 개발 및 유지보수 담당</span>
+              <span>데이터 흐름 및 쿼리 제어: RDB 기반 복잡한 데이터 조회·검증 로직 구현 및 웹 인터페이스 연동 처리</span>
             </p>
           </div>
           <div>
@@ -413,8 +399,7 @@
               <div class="exp-item-date">2020.08 – 2020.11</div>
             </div>
             <p class="exp-item-desc">
-              기업 내 데이터를 다각도로 통계 분석하고, 그 결과를 대시보드
-              형태로 시각화하는 웹 플랫폼 개발에 참여했습니다.
+              <span>통계분석 및 시각화 기능 구축: 기업 내 데이터를 다각도로 통계 분석해 대시보드 형태로 시각화하는 웹 플랫폼 개발 참여</span>
             </p>
           </div>
         </div>
@@ -427,12 +412,11 @@
         </div>
         <div class="exp-items">
           <div>
-            <div class="exp-item-title">사업 운영 · 고객 관리 지원 (파워워시출장세차)</div>
+            <div class="exp-item-title">사업 운영 · 고객 관리 지원</div>
+            <div class="exp-item-date">파워워시출장세차</div>
             <p class="exp-item-desc">
-              가족 사업체의 작업 일정을 Excel로 관리하고 당일 진행 여부를
-              확인했습니다. 고객의 일정 변경·요청사항을 담당자에게 전달하고
-              조율을 지원하며, 개발 밖에서도 데이터 정리와 커뮤니케이션 감각을
-              쌓았습니다.
+              <span>작업 일정 및 현황 관리: 당일 세차 진행 여부와 작업 일정을 확인하고 Excel로 일별 작업 현황 관리</span>
+              <span>고객 요청사항 관리: 일정 변경 및 요청사항을 확인해 담당자에게 전달하고 조율 지원</span>
             </p>
           </div>
         </div>
@@ -446,21 +430,21 @@
 
       <div class="exp-row">
         <div>
-          <div class="exp-org">AI 활용 풀스택 부트캠프</div>
+          <div class="exp-org">AI활용 풀스택 (프론트엔드, 백엔드)부트캠프 (자바,파이썬,플러터)</div>
           <div class="exp-period">2026.03.26 – 2026.10.13</div>
         </div>
         <div class="exp-items">
           <div>
             <div class="exp-item-title">
-              프론트엔드·백엔드(자바·파이썬·플러터) 실전 프로젝트 트랙
+              교육 내용
             </div>
             <p class="exp-item-desc">
-              Git·HTML부터 Java, DB(Oracle/MySQL), JSP·Spring, Spring Boot,
-              React, Linux/AWS, Python/Django까지 이어지는 트랙을 거치며 MVC
-              게시판 → RAG 챗봇 실습 → Spring Boot4·JPA·JWT·Redis·OAuth2.0 +
-              React(Redux-Saga)·Ant Design 기반 ERP까지, 3번의 팀 프로젝트
-              사이클을 완주했습니다. 다음 목표는 Flutter 기반 4번째 사이클
-              프로젝트입니다.
+                <span>프론트엔드 개발: HTML5, CSS3, JavaScript, React 기반 인터페이스 구축</span>
+                <span>백엔드 시스템 설계: Java(Spring)기반 서버 및 데이터 처리 구현</span>
+                <span>RESTful API 설계 및 DB 연동(MySQL)</span>
+                <span>Flutter를 활용한 크로스 플랫폼 모바일 UI 개발</span>
+                <span>버전 관리(Git), CI/CD 개념 학습</span>
+                <span>프로젝트 실습을 통한 실무 개발 프로세스 경험</span>
             </p>
           </div>
         </div>
@@ -468,17 +452,20 @@
 
       <div class="exp-row">
         <div>
-          <div class="exp-org">디지털 융합 SW 전문가 양성과정</div>
+          <div class="exp-org">디지털 융합 SW 전문가 양성 과정</div>
           <div class="exp-period">2019.08.12 – 2020.02.17</div>
         </div>
         <div class="exp-items">
           <div>
-            <div class="exp-item-title">Java 서버 · MariaDB 연동 팀 프로젝트</div>
+            <div class="exp-item-title">
+              교육 내용
+            </div>
             <p class="exp-item-desc">
-              HTML5·jQuery·AJAX 기반 화면과 Java Servlet·Spring MVC 백엔드를
-              연동하고, MariaDB·MyBatis로 CRUD를 구현했습니다. Spring AOP로
-              관리자 권한 검증 로직을 구현하고 Git 기반 팀 프로젝트를
-              경험했습니다.
+                <span>프론트엔드 개발: HTML5, CSS3, JavaScript, jQuery 기반 UI 구현 및 AJAX 비동기 처리</span>
+                <span>백엔드 시스템 설계: Java Servlet 및 Spring MVC 기반 서버 로직 구현</span>
+                <span>DB 설계 및 연동(MariaDB): MyBatis 매퍼 기반 CRUD 및 데이터 연동 처리</span>
+                <span>Spring AOP 기반 관리자 권한 검증 로직 구현</span>
+                <span>팀 프로젝트 협업: Git 버전관리를 통한 개발 경험</span>
             </p>
           </div>
         </div>
