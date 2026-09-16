@@ -7,22 +7,28 @@
 
 ## 💙 개인정보
 
-<img src="its_me.jpg" alt="본인 사진" style="width: 100px" />
-
-<p>
-  <a href="mailto:cyjjeong98@gmail.com">
-    <img src="https://img.shields.io/badge/EMAIL-cyjjeong98%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
-  </a>
-  <a href="https://app.notion.com/p/4c6038944be7827d96c8815724615b5c?source=copy_link">
-    <img src="https://img.shields.io/badge/NOTION-포트폴리오-000000?style=for-the-badge&logo=notion&logoColor=white" alt="Notion" />
-  </a>
-  <a href="https://github.com/yoonguri988">
-    <img src="https://img.shields.io/badge/GITHUB-yoonguri988-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
-  </a>
-  <a href="https://yoonguri988.github.io/2026-AI-FULLSTACK/">
-    <img src="https://img.shields.io/badge/GITHUB%20PAGES-포트폴리오%20웹페이지-222222?style=for-the-badge&logo=githubpages&logoColor=white" alt="GitHub Pages" />
-  </a>
-</p>
+<table>
+  <tr>
+    <td><img src="its_me.jpg" alt="본인 사진" style="width: 200px" /></td>
+    <td>
+      <p>
+        <a href="mailto:cyjjeong98@gmail.com">
+          <img src="https://img.shields.io/badge/EMAIL-cyjjeong98%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+        </a>
+        <br/>
+        <a href="https://app.notion.com/p/4c6038944be7827d96c8815724615b5c?source=copy_link">
+          <img src="https://img.shields.io/badge/NOTION-포트폴리오-000000?style=for-the-badge&logo=notion&logoColor=white" alt="Notion" />
+        </a>
+        <a href="https://github.com/yoonguri988">
+          <img src="https://img.shields.io/badge/GITHUB-yoonguri988-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+        </a>
+        <a href="https://yoonguri988.github.io/2026-AI-FULLSTACK/">
+          <img src="https://img.shields.io/badge/GITHUB%20PAGES-포트폴리오%20웹페이지-222222?style=for-the-badge&logo=githubpages&logoColor=white" alt="GitHub Pages" />
+        </a>
+      </p>
+    </td>
+  </tr>
+</table>
 
 <br>
 
