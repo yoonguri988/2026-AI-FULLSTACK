@@ -389,6 +389,26 @@ img {
   gap: 8px;
 }
 
+/* 발표자료 PDF 다운로드 링크 */
+.pdf-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #a8580c;
+  background: rgba(242, 165, 65, 0.14);
+  border: 1px solid rgba(242, 165, 65, 0.35);
+  border-radius: 8px;
+  padding: 7px 12px;
+  width: fit-content;
+}
+.pdf-link:hover {
+  background: rgba(242, 165, 65, 0.24);
+  color: #8a4408;
+}
+
 /* 버전 기간 · 인원 (연한 회색, 본문과 분리) */
 .version-period {
   font-family: "JetBrains Mono", monospace;
