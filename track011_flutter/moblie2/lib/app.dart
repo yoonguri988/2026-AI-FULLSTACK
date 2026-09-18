@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:moblie2/features/auth/presentation/login_page.dart';
 import 'package:moblie2/features/auth/presentation/signup_page.dart';
 import 'package:moblie2/features/auth/presentation/users_page.dart';
+import 'package:moblie2/features/post/presentation/post_detail_page.dart';
+import 'package:moblie2/features/post/presentation/post_list_page.dart';
+import 'package:moblie2/features/post/presentation/post_write_page.dart';
 // import 'shared/components/app_layout.dart';
 // 공통 상단바 메이아웃 (AppLayout)
 class App extends StatelessWidget {
@@ -21,10 +24,11 @@ class App extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const UsersPage(),        // 메인페이지(게시글 목록)
+        '/': (context) => const PostListPage(),        // 메인페이지(게시글 목록)
         '/login': (context) => const LoginPage(),   // 로그인
         '/signup': (context) => const SignupPage(), // 회원가입
         '/users': (context) => const UsersPage(),   // 마이페이지
+        '/post-write': (context) => const PostWritePage(), // 게시글 작성 페이지
         // '/': (context) => const AppLayout(
         //       child: Center(
         //         child: Text(

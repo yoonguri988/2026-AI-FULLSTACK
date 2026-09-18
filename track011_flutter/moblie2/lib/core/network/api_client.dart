@@ -11,7 +11,7 @@ class ApiClient {
     if (kIsWeb) return 'http://localhost:8080';
     try {
       // 2. Android 에뮬레이터에서 PC 서버(localhost) 접속 우회 전용 IP ###
-      if (Platform.isAndroid) return 'http://10.0.2.2:8080';
+      if (Platform.isAndroid) return 'https://d2big.duckdns.org';
     } catch (_) {}
     //3. window 데스크톱 네이티브 앱 실행
     return 'http://localhost:8080';
